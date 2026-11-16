@@ -1,14 +1,15 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { ButtonModule } from '@openng/optimus-ui/button';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+
+import { LanguageService } from './core/services/language.service';
+import { MainLayout } from './layout/main-layout/main-layout';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ButtonModule],
-  templateUrl: './app.html',
-  styleUrl: './app.scss',
+  imports: [MainLayout],
+  template: '<app-main-layout />',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App {
-  protected readonly title = signal('Task Dashboard');
+  // Instantiated at startup so the saved language and direction apply immediately.
+  private readonly _language = inject(LanguageService);
 }

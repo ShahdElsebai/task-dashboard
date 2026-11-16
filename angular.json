@@ -28,9 +28,18 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets/i18n",
+                "output": "assets/i18n"
               }
             ],
-            "styles": ["src/styles.scss"]
+            "styles": [
+              "src/assets/tailwind.css",
+              "node_modules/@openng/icons/openng-icons.css",
+              "src/styles.scss"
+            ]
           },
           "configurations": {
             "production": {
@@ -46,7 +55,13 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.production.ts"
+                }
+              ]
             },
             "development": {
               "optimization": false,

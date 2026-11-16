@@ -1,0 +1,6 @@
+/* Tailwind CSS v4 + Optimus UI integration */
+@import 'tailwindcss';
+@import '@openng/optimus-ui-tailwindcss';
+
+/* Dark mode follows the same selector Optimus uses (see app.config.ts) */
+@custom-variant dark (&:where(.app-dark, .app-dark *));

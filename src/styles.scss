@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global styles. Utilities come from src/assets/tailwind.css */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--p-font-family, system-ui, sans-serif);
+}
