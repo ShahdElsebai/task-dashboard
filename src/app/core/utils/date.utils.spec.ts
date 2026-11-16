@@ -3,9 +3,7 @@ import { daysBetween, parseDateOnly, startOfDay, toDateOnlyString } from './date
 describe('date utils', () => {
   it('parseDateOnly returns local midnight of that day', () => {
     const date = parseDateOnly('2026-11-16');
-    expect([date.getFullYear(), date.getMonth(), date.getDate(), date.getHours()]).toEqual([
-      2026, 10, 16, 0,
-    ]);
+    expect([date.getFullYear(), date.getMonth(), date.getDate(), date.getHours()]).toEqual([2026, 10, 16, 0]);
   });
 
   it('toDateOnlyString round-trips with parseDateOnly', () => {

@@ -9,9 +9,7 @@ describe('isTaskOverdue', () => {
   });
 
   it('is false when due today', () => {
-    expect(isTaskOverdue({ status: TaskStatus.InProgress, dueDate: '2026-11-16' }, today)).toBe(
-      false,
-    );
+    expect(isTaskOverdue({ status: TaskStatus.InProgress, dueDate: '2026-11-16' }, today)).toBe(false);
   });
 
   it('is false for done tasks even if past due', () => {

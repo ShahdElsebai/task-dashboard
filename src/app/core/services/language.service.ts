@@ -1,24 +1,24 @@
-import { DOCUMENT, Injectable, effect, inject, signal } from '@angular/core';
+import { DOCUMENT, Service, type WritableSignal, effect, inject, signal } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 import { environment } from '../../../environments/environment';
 import type { AppLanguage } from '../../../environments/environment.model';
 import { LANGUAGES } from '../config/i18n.config';
 
-const STORAGE_KEY = 'app.lang';
+const STORAGE_KEY: string = 'app.lang';
 
-@Injectable({ providedIn: 'root' })
+@Service()
 export class LanguageService {
-  readonly current = signal<AppLanguage>(this.readStoredLang());
+  private readonly translate: TranslateService = inject(TranslateService);
+  private readonly document: Document = inject(DOCUMENT);
 
-  private readonly translate = inject(TranslateService);
-  private readonly document = inject(DOCUMENT);
+  readonly current: WritableSignal<AppLanguage> = signal<AppLanguage>(this.readStoredLang());
 
   constructor() {
     effect(() => {
-      const lang = this.current();
+      const lang: AppLanguage = this.current();
       this.translate.use(lang);
-      const html = this.document.documentElement;
+      const html: HTMLElement = this.document.documentElement;
       html.lang = lang;
       html.dir = LANGUAGES[lang].dir;
       try {
@@ -30,12 +30,12 @@ export class LanguageService {
   }
 
   toggle(): void {
-    this.current.update((lang) => (lang === 'en' ? 'ar' : 'en'));
+    this.current.update((lang: AppLanguage) => (lang === 'en' ? 'ar' : 'en'));
   }
 
   private readStoredLang(): AppLanguage {
     try {
-      const stored = localStorage.getItem(STORAGE_KEY);
+      const stored: string | null = localStorage.getItem(STORAGE_KEY);
       if (stored === 'en' || stored === 'ar') return stored;
     } catch {
       /* ignore */

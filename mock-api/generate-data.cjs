@@ -4,7 +4,7 @@
  * Data Generator Script (provided with the assignment).
  *
  * Generates tasks.json and statistics.json with dates relative to today.
- * `npm run mock:generate` runs this, then build-db.js merges the output
+ * `npm run mock:generate` runs this, then build-db.cjs merges the output
  * into db.json for json-server.
  */
 
@@ -101,8 +101,7 @@ function generateTasks() {
     {
       id: 'task-001',
       title: 'Design new homepage layout',
-      description:
-        'Create wireframes and mockups for the new homepage redesign with modern UI elements',
+      description: 'Create wireframes and mockups for the new homepage redesign with modern UI elements',
       status: 'todo',
       priority: 'high',
       dueDate: formatDate(addDays(now, 2)),

@@ -1,5 +1,6 @@
 import { definePreset } from '@openng/optimus-ui-themes';
 import Aura from '@openng/optimus-ui-themes/aura';
+import type { Preset } from '@openng/optimus-ui-themes/types';
 
 /**
  * App theme preset built on top of Optimus UI's Aura preset.
@@ -8,7 +9,7 @@ import Aura from '@openng/optimus-ui-themes/aura';
  * Optimus component and the Tailwind `primary-*` / `surface-*` utilities share
  * one palette. Priority/status colors live in `src/assets/tailwind.css`.
  */
-export const AppThemePreset = definePreset(Aura, {
+export const AppThemePreset: Preset = definePreset(Aura, {
   primitive: {
     brand: {
       50: '#e3f2fd',

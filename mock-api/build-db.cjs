@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Builds db.json for json-server from the output of generate-data.js.
+ * Builds db.json for json-server from the output of generate-data.cjs.
  *
  * - tasks: the generated tasks, with `isOverdue` computed for every task
  *   (the generator only sets it on a few) and missing optional fields filled.
@@ -14,7 +14,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const read = (file) => JSON.parse(fs.readFileSync(path.join(__dirname, file), 'utf8'));
+const read = file => JSON.parse(fs.readFileSync(path.join(__dirname, file), 'utf8'));
 
 /** True when the due date is before today (date-only) and the task is not done. */
 function isOverdue(task) {
@@ -30,16 +30,16 @@ function main() {
   const { tasks: rawTasks } = read('tasks.json');
   const { statistics } = read('statistics.json');
 
-  const tasks = rawTasks.map((task) => ({
+  const tasks = rawTasks.map(task => ({
     ...task,
     isOverdue: isOverdue(task),
     completedAt: task.completedAt ?? null,
   }));
 
-  const users = [...new Map(tasks.map((t) => [t.assignee.id, t.assignee])).values()];
+  const users = [...new Map(tasks.map(t => [t.assignee.id, t.assignee])).values()];
 
   const activities = tasks
-    .flatMap((t) => {
+    .flatMap(t => {
       const items = [
         {
           type: 'created',
@@ -74,9 +74,7 @@ function main() {
 
   const db = { tasks, statistics, users, activities };
   fs.writeFileSync(path.join(__dirname, 'db.json'), JSON.stringify(db, null, 2) + '\n', 'utf8');
-  console.log(
-    `✅ Built db.json: ${tasks.length} tasks, ${users.length} users, ${activities.length} activities`,
-  );
+  console.log(`✅ Built db.json: ${tasks.length} tasks, ${users.length} users, ${activities.length} activities`);
 }
 
 main();

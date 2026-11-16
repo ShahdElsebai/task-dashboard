@@ -2,9 +2,9 @@
   <header class="flex items-center justify-between border-b border-surface-200 px-6 py-4">
     <h1 class="text-xl font-semibold">{{ 'app.title' | translate }}</h1>
     <p-button
-      [label]="'common.switchLanguage' | translate"
       icon="pi pi-globe"
       severity="secondary"
+      [label]="'common.switchLanguage' | translate"
       [text]="true"
       (onClick)="language.toggle()"
     />

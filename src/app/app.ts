@@ -8,6 +8,6 @@ import { LanguageService } from './core/services/language.service';
   imports: [RouterOutlet],
   template: '<router-outlet />',
 })
-export class App {
-  private readonly _language = inject(LanguageService);
+export class AppComponent {
+  private readonly _language: LanguageService = inject(LanguageService);
 }

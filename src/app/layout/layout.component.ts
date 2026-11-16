@@ -10,5 +10,5 @@ import { LanguageService } from '../core/services/language.service';
   templateUrl: './layout.component.html',
 })
 export class LayoutComponent {
-  protected readonly language = inject(LanguageService);
+  protected readonly language: LanguageService = inject(LanguageService);
 }
