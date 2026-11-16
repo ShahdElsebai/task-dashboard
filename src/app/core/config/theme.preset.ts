@@ -23,7 +23,6 @@ export const AppThemePreset = definePreset(Aura, {
       900: '#0d47a1',
       950: '#082a5e',
     },
-    /** Neutral greys: page background, borders, body and muted text. */
     neutral: {
       0: '#ffffff',
       50: '#fafafa',
@@ -69,7 +68,6 @@ export const AppThemePreset = definePreset(Aura, {
           900: '{neutral.900}',
           950: '{neutral.950}',
         },
-        // The design's blue is the 700 shade (#1976d2), hover is 800 (#1565c0).
         primary: {
           color: '{brand.700}',
           contrastColor: '#ffffff',
@@ -83,7 +81,6 @@ export const AppThemePreset = definePreset(Aura, {
           focusColor: '{brand.800}',
         },
       },
-      // Not in the design; a lighter blue keeps contrast on dark surfaces.
       dark: {
         surface: {
           0: '#ffffff',
