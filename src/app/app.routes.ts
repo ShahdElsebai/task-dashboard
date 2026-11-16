@@ -1,3 +1,8 @@
-import { type Routes } from '@angular/router';
+import type { Routes } from '@angular/router';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+  {
+    path: '',
+    loadChildren: () => import('./layout/layout.component.route').then((m) => m.LayoutRoutes),
+  },
+];

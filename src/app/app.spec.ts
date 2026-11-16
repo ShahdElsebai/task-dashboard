@@ -2,8 +2,10 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
+import { RouterTestingHarness } from '@angular/router/testing';
 
 import { App } from './app';
+import { routes } from './app.routes';
 import { provideI18n } from './core/config/i18n.config';
 
 describe('App', () => {
@@ -11,7 +13,7 @@ describe('App', () => {
     await TestBed.configureTestingModule({
       imports: [App],
       providers: [
-        provideRouter([]),
+        provideRouter(routes),
         provideHttpClient(),
         provideHttpClientTesting(),
         provideI18n(),
@@ -25,9 +27,7 @@ describe('App', () => {
   });
 
   it('should render the layout header', async () => {
-    const fixture = TestBed.createComponent(App);
-    await fixture.whenStable();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('app-main-layout header')).toBeTruthy();
+    const harness = await RouterTestingHarness.create('/');
+    expect(harness.routeNativeElement?.querySelector('header')).toBeTruthy();
   });
 });

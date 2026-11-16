@@ -7,13 +7,8 @@ import { LANGUAGES } from '../config/i18n.config';
 
 const STORAGE_KEY = 'app.lang';
 
-/**
- * Holds the current UI language as a signal and keeps
- * ngx-translate, `<html lang>` and `<html dir>` in sync with it.
- */
 @Injectable({ providedIn: 'root' })
 export class LanguageService {
-  /** Current UI language. */
   readonly current = signal<AppLanguage>(this.readStoredLang());
 
   private readonly translate = inject(TranslateService);
