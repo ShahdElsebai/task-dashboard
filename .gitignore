@@ -42,3 +42,6 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+# json-server working copy (seed data stays in mock-api/db.json)
+mock-api/db.runtime.json
