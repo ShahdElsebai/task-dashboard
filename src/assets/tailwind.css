@@ -257,9 +257,3 @@
     border-color: var(--color-surface-200, currentcolor);
   }
 }
-
-.p-menu .p-menu-item-link.p-menu-item-link-active,
-.p-menu .p-menu-item-link-active .p-menu-item-icon {
-  background: var(--p-primary-color);
-  color: var(--p-primary-contrast-color);
-}
