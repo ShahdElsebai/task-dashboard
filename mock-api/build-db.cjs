@@ -9,6 +9,11 @@
  *   from tasks too; this endpoint is kept to match the provided API).
  * - users: unique assignees, used by the assignee filter and the Team page.
  * - activities: a seed activity feed built from task timestamps.
+ *
+ * Board columns are fixed (one per status). Each task gets a `position` inside
+ * its column, in gaps of 1000 (1000, 2000, 3000, …), so moving a task only
+ * updates that task: its new position is the midpoint between its new
+ * neighbours. See src/app/core/utils/position.utils.ts.
  */
 
 const fs = require('fs');
@@ -26,15 +31,26 @@ function isOverdue(task) {
   return due < today;
 }
 
+/** Gap between neighbouring positions. Keep in sync with POSITION_GAP in the app. */
+const POSITION_GAP = 1000;
+
 function main() {
   const { tasks: rawTasks } = read('tasks.json');
   const { statistics } = read('statistics.json');
 
-  const tasks = rawTasks.map(task => ({
-    ...task,
-    isOverdue: isOverdue(task),
-    completedAt: task.completedAt ?? null,
-  }));
+  // Order inside each status column: by due date, then id; then assign 1000, 2000, 3000, …
+  const sorted = [...rawTasks].sort((a, b) => a.dueDate.localeCompare(b.dueDate) || a.id.localeCompare(b.id));
+  const nextPosition = new Map();
+  const tasks = sorted.map(task => {
+    const position = (nextPosition.get(task.status) ?? 0) + POSITION_GAP;
+    nextPosition.set(task.status, position);
+    return {
+      ...task,
+      isOverdue: isOverdue(task),
+      completedAt: task.completedAt ?? null,
+      position,
+    };
+  });
 
   const users = [...new Map(tasks.map(t => [t.assignee.id, t.assignee])).values()];
 
@@ -74,7 +90,7 @@ function main() {
 
   const db = { tasks, statistics, users, activities };
   fs.writeFileSync(path.join(__dirname, 'db.json'), JSON.stringify(db, null, 2) + '\n', 'utf8');
-  console.log(`✅ Built db.json: ${tasks.length} tasks, ${users.length} users, ${activities.length} activities`);
+  console.log(`Built db.json: ${tasks.length} tasks, ${users.length} users, ${activities.length} activities`);
 }
 
 main();

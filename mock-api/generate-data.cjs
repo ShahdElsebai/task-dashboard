@@ -30,7 +30,7 @@ function generateStatistics() {
       {
         id: 'stat-001',
         title: 'Total Tasks',
-        icon: '📊',
+        icon: 'pi pi-chart-bar',
         value: 156,
         change: '+12',
         changeLabel: 'this week',
@@ -40,7 +40,7 @@ function generateStatistics() {
       {
         id: 'stat-002',
         title: 'Completed',
-        icon: '✅',
+        icon: 'pi pi-check-circle',
         value: 89,
         change: '+8',
         changeLabel: 'today',
@@ -50,7 +50,7 @@ function generateStatistics() {
       {
         id: 'stat-003',
         title: 'In Progress',
-        icon: '🔄',
+        icon: 'pi pi-sync',
         value: 42,
         change: '0',
         changeLabel: 'Same as yesterday',
@@ -60,7 +60,7 @@ function generateStatistics() {
       {
         id: 'stat-004',
         title: 'Overdue',
-        icon: '⚠️',
+        icon: 'pi pi-exclamation-triangle',
         value: 25,
         change: '+3',
         changeLabel: 'today',
@@ -332,17 +332,17 @@ function generateTasks() {
 function writeJsonFile(filename, data) {
   const filePath = path.join(__dirname, filename);
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2) + '\n', 'utf8');
-  console.log(`✅ Generated: ${filename}`);
+  console.log(`Generated: ${filename}`);
 }
 
 function main() {
-  console.log('🚀 Generating fresh data with dynamic dates...\n');
+  console.log('Generating fresh data with dynamic dates...\n');
   try {
     writeJsonFile('statistics.json', generateStatistics());
     writeJsonFile('tasks.json', generateTasks());
-    console.log('\n✨ All data files generated successfully!');
+    console.log('\nAll data files generated successfully!');
   } catch (error) {
-    console.error('❌ Error generating data:', error);
+    console.error('Error generating data:', error);
     process.exit(1);
   }
 }
