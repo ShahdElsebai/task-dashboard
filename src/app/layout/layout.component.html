@@ -1,16 +1,22 @@
-<div class="flex min-h-screen flex-col">
-  <header class="flex items-center justify-between border-b border-surface-200 px-6 py-4">
-    <h1 class="text-xl font-semibold">{{ 'app.title' | translate }}</h1>
-    <p-button
-      icon="pi pi-globe"
-      severity="secondary"
-      [label]="'common.switchLanguage' | translate"
-      [text]="true"
-      (onClick)="language.toggle()"
-    />
-  </header>
+<a
+  class="sr-only z-50 rounded bg-primary px-4 py-2 text-primary-contrast focus:not-sr-only focus:fixed focus:start-2 focus:top-2"
+  href="#main"
+>
+  {{ 'common.skipToContent' | translate }}
+</a>
 
-  <main class="flex-1 p-6">
+<app-header (menuToggle)="menuOpen.set(true)" />
+
+<div class="flex min-h-[calc(100vh-4rem)]">
+  <aside class="hidden w-60 shrink-0 border-e border-surface-200 bg-surface-0 lg:block">
+    <app-sidebar />
+  </aside>
+
+  <p-drawer [header]="'app.title' | translate" [visible]="menuOpen()" (visibleChange)="menuOpen.set($event)">
+    <app-sidebar (navigate)="menuOpen.set(false)" />
+  </p-drawer>
+
+  <main class="min-w-0 flex-1 p-4 lg:p-6" id="main" tabindex="-1">
     <router-outlet />
   </main>
 </div>

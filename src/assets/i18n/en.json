@@ -1,10 +1,11 @@
 {
   "app": {
-    "title": "Task Dashboard"
+    "title": "Task Manager"
   },
   "common": {
     "switchLanguage": "العربية",
-    "retry": "Retry"
+    "retry": "Retry",
+    "skipToContent": "Skip to content"
   },
   "notifications": {
     "success": "Done",
@@ -28,5 +29,31 @@
       "inProgress": "In Progress",
       "done": "Done"
     }
+  },
+  "header": {
+    "searchPlaceholder": "Search tasks...",
+    "notifications": "Notifications",
+    "openMenu": "Open menu"
+  },
+  "nav": {
+    "label": "Main navigation",
+    "dashboard": "Dashboard",
+    "tasks": "Tasks",
+    "calendar": "Calendar",
+    "analytics": "Analytics",
+    "team": "Team",
+    "settings": "Settings"
+  },
+  "tasks": {
+    "new": "New Task"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "message": "The page you're looking for doesn't exist or was moved.",
+    "back": "Back to dashboard"
+  },
+  "comingSoon": {
+    "title": "Coming soon",
+    "message": "This page is under construction."
   }
 }

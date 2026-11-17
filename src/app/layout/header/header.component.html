@@ -1,0 +1,53 @@
+<header
+  class="sticky top-0 z-20 flex h-16 items-center gap-4 border-b border-surface-200 bg-surface-0 px-4 shadow-sm lg:px-6"
+>
+  <p-button
+    class="lg:hidden"
+    icon="pi pi-bars"
+    severity="secondary"
+    [text]="true"
+    [ariaLabel]="'header.openMenu' | translate"
+    (onClick)="menuToggle.emit()"
+  />
+
+  <a class="flex items-center gap-2 text-primary no-underline" routerLink="/dashboard">
+    <span class="flex size-8 items-center justify-center rounded-md bg-primary text-primary-contrast">
+      <i class="pi pi-check-square" aria-hidden="true"></i>
+    </span>
+    <span class="hidden text-xl font-semibold sm:inline">{{ 'app.title' | translate }}</span>
+  </a>
+
+  <div class="mx-auto w-full max-w-md">
+    <p-iconfield>
+      <p-inputicon class="pi pi-search" />
+      <input
+        #searchInput
+        class="w-full"
+        pInputText
+        type="search"
+        [placeholder]="'header.searchPlaceholder' | translate"
+        [attr.aria-label]="'header.searchPlaceholder' | translate"
+        [value]="filters.filters().search"
+        (input)="onSearch(searchInput.value)"
+      />
+    </p-iconfield>
+  </div>
+
+  <div class="flex items-center gap-1">
+    <p-button
+      icon="pi pi-globe"
+      severity="secondary"
+      [text]="true"
+      [label]="'common.switchLanguage' | translate"
+      (onClick)="language.toggle()"
+    />
+    <p-button
+      icon="pi pi-bell"
+      severity="secondary"
+      [text]="true"
+      [rounded]="true"
+      [ariaLabel]="'header.notifications' | translate"
+    />
+    <app-user-avatar [user]="currentUser" />
+  </div>
+</header>

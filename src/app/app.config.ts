@@ -1,6 +1,13 @@
 import { ErrorHandler, ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { provideRouter, withComponentInputBinding } from '@angular/router';
+import {
+  PreloadAllModules,
+  provideRouter,
+  withComponentInputBinding,
+  withInMemoryScrolling,
+  withPreloading,
+  withViewTransitions,
+} from '@angular/router';
 import { MessageService } from '@openng/optimus-ui/api';
 import { provideOptimus } from '@openng/optimus-ui/config';
 
@@ -20,7 +27,13 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     { provide: ErrorHandler, useClass: GlobalErrorHandler },
-    provideRouter(routes, withComponentInputBinding()),
+    provideRouter(
+      routes,
+      withComponentInputBinding(),
+      withPreloading(PreloadAllModules),
+      withViewTransitions(),
+      withInMemoryScrolling({ scrollPositionRestoration: 'top' })
+    ),
     provideHttpClient(
       withInterceptors([apiUrlInterceptor, loadingInterceptor, errorInterceptor, cacheInterceptor, retryInterceptor])
     ),
