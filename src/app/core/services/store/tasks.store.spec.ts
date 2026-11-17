@@ -1,10 +1,10 @@
-import { HttpTestingController, type TestRequest } from '@angular/common/http/testing';
+import { HttpTestingController, TestRequest } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
-import { TaskPriority, TaskStatus, type TaskDto } from '../../dto';
-import type { TaskFormValue } from '../../models';
+import { TaskPriority, TaskStatus, TaskDto } from '../../dto';
+import { TaskFormValue } from '../../models';
 import {
-  type NotificationsMock,
+  NotificationsMock,
   flushActivities,
   flushInitialLoad,
   makeTask,

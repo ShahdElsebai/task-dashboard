@@ -1,10 +1,10 @@
 import { TaskStatus } from '../dto/enum.dto';
-import type { CreateTaskDto, TaskDto, UpdateTaskDto } from '../dto/task.dto';
-import type { UserDto } from '../dto/user.dto';
-import type { TaskFilters } from '../models/task-filters.model';
-import type { TaskFormValue } from '../models/task-form.model';
-import type { TaskStats } from '../models/board.model';
-import { type PositionUpdate, planMove } from './position.utils';
+import { CreateTaskDto, TaskDto, UpdateTaskDto } from '../dto/task.dto';
+import { UserDto } from '../dto/user.dto';
+import { TaskFilters } from '../models/task-filters.model';
+import { TaskFormValue } from '../models/task-form.model';
+import { TaskStats } from '../models/board.model';
+import { PositionUpdate, planMove } from './position.utils';
 import { completedAtFor, isTaskOverdue, matchesSearch } from './task.utils';
 
 export interface TaskUpdate {

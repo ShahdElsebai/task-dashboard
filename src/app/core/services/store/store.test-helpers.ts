@@ -1,9 +1,9 @@
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { HttpTestingController, type TestRequest, provideHttpClientTesting } from '@angular/common/http/testing';
-import { ApplicationRef, type EnvironmentProviders, type Provider } from '@angular/core';
+import { HttpTestingController, TestRequest, provideHttpClientTesting } from '@angular/common/http/testing';
+import { ApplicationRef, EnvironmentProviders, Provider } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
-import { TaskPriority, TaskStatus, type TaskDto, type UserDto } from '../../dto';
+import { TaskPriority, TaskStatus, TaskDto, UserDto } from '../../dto';
 import { apiUrlInterceptor } from '../http/api-url.interceptor';
 import { NotificationService } from '../notification.service';
 

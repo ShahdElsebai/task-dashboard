@@ -1,18 +1,11 @@
-import type { HttpResourceRef } from '@angular/common/http';
-import { Service, type Signal, computed, inject } from '@angular/core';
-import { type Observable, firstValueFrom, forkJoin } from 'rxjs';
+import { HttpResourceRef } from '@angular/common/http';
+import { Service, Signal, computed, inject } from '@angular/core';
+import { Observable, firstValueFrom, forkJoin } from 'rxjs';
 
+import { ActivityType, CreateTaskDto, TaskStatus, TaskDto, UpdateTaskDto, UserDto } from '../../dto';
+import { TaskFormValue } from '../../models';
 import {
-  ActivityType,
-  type CreateTaskDto,
-  TaskStatus,
-  type TaskDto,
-  type UpdateTaskDto,
-  type UserDto,
-} from '../../dto';
-import type { TaskFormValue } from '../../models';
-import {
-  type TaskUpdate,
+  TaskUpdate,
   buildCreateTaskDto,
   buildUpdateTaskDto,
   byPosition,

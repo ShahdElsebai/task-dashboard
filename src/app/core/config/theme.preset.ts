@@ -1,6 +1,6 @@
 import { definePreset } from '@openng/optimus-ui-themes';
 import Aura from '@openng/optimus-ui-themes/aura';
-import type { Preset } from '@openng/optimus-ui-themes/types';
+import { Preset } from '@openng/optimus-ui-themes/types';
 
 export const AppThemePreset: Preset = definePreset(Aura, {
   primitive: {

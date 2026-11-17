@@ -1,5 +1,5 @@
-import type { BoardColumnConfig } from '../config/board.config';
-import type { TaskDto } from '../dto/task.dto';
+import { BoardColumnConfig } from '../config/board.config';
+import { TaskDto } from '../dto/task.dto';
 
 export interface BoardColumn extends BoardColumnConfig {
   tasks: TaskDto[];

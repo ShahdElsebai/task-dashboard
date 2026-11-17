@@ -1,5 +1,5 @@
-import type { ChangeType } from './enum.dto';
-import type { Identifiable } from './shared.dto';
+import { ChangeType } from './enum.dto';
+import { Identifiable } from './shared.dto';
 
 export interface StatisticDto extends Identifiable {
   title: string;

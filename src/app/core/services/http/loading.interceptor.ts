@@ -1,6 +1,6 @@
-import type { HttpEvent, HttpHandlerFn, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
+import { HttpEvent, HttpHandlerFn, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { type Observable, finalize } from 'rxjs';
+import { Observable, finalize } from 'rxjs';
 
 import { LoadingService } from '../loading.service';
 import { SKIP_LOADING } from './http-context.tokens';

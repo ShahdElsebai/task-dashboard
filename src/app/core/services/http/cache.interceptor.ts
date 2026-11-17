@@ -1,12 +1,6 @@
-import {
-  type HttpEvent,
-  type HttpHandlerFn,
-  type HttpInterceptorFn,
-  type HttpRequest,
-  HttpResponse,
-} from '@angular/common/http';
+import { HttpEvent, HttpHandlerFn, HttpInterceptorFn, HttpRequest, HttpResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { type Observable, of, tap } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 
 import { HttpCacheService } from './http-cache.service';
 import { SKIP_CACHE } from './http-context.tokens';

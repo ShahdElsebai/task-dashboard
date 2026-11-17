@@ -1,8 +1,8 @@
-import { Service, type Signal, computed, inject } from '@angular/core';
+import { Service, Signal, computed, inject } from '@angular/core';
 
-import { BOARD_COLUMNS, type BoardColumnConfig } from '../../config/board.config';
-import type { TaskDto, TaskStatus } from '../../dto';
-import type { BoardColumn, TaskStats } from '../../models';
+import { BOARD_COLUMNS, BoardColumnConfig } from '../../config/board.config';
+import { TaskDto, TaskStatus } from '../../dto';
+import { BoardColumn, TaskStats } from '../../models';
 import { byPosition, computeStats, toFullIndex } from '../../utils';
 import { TaskFiltersStore } from './task-filters.store';
 import { TasksStore } from './tasks.store';
