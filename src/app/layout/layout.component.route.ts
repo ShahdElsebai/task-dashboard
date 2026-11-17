@@ -1,11 +1,34 @@
-import { Routes } from '@angular/router';
+import { Route, Routes } from '@angular/router';
 
 import { LayoutComponent } from './layout.component';
+
+type ComingSoonModule = typeof import('../features/coming-soon/coming-soon.component');
+
+const comingSoon: (titleKey: string, icon: string) => Route = (titleKey: string, icon: string): Route => ({
+  data: { titleKey, icon },
+  loadComponent: () =>
+    import('../features/coming-soon/coming-soon.component').then((m: ComingSoonModule) => m.ComingSoonComponent),
+});
 
 export const LayoutRoutes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    children: [],
+    children: [
+      { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
+      { path: 'dashboard', ...comingSoon('nav.dashboard', 'pi pi-th-large') },
+      { path: 'tasks', ...comingSoon('nav.tasks', 'pi pi-check-square') },
+      { path: 'calendar', ...comingSoon('nav.calendar', 'pi pi-calendar') },
+      { path: 'analytics', ...comingSoon('nav.analytics', 'pi pi-chart-bar') },
+      { path: 'team', ...comingSoon('nav.team', 'pi pi-users') },
+      { path: 'settings', ...comingSoon('nav.settings', 'pi pi-cog') },
+      {
+        path: '**',
+        loadComponent: () =>
+          import('../features/not-found/not-found.component').then(
+            (m: typeof import('../features/not-found/not-found.component')) => m.NotFoundComponent
+          ),
+      },
+    ],
   },
 ];

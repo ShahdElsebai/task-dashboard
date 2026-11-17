@@ -1,0 +1,37 @@
+import { Component, Signal, computed, inject, output, OutputEmitterRef } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { MenuItem } from '@openng/optimus-ui/api';
+import { ButtonModule } from '@openng/optimus-ui/button';
+import { MenuModule } from '@openng/optimus-ui/menu';
+
+import { NAV_ITEMS, NavItem } from '../../core/config/navigation.config';
+
+@Component({
+  selector: 'app-sidebar',
+  imports: [TranslatePipe, ButtonModule, MenuModule],
+  templateUrl: './sidebar.component.html',
+})
+export class SidebarComponent {
+  private readonly translate: TranslateService = inject(TranslateService);
+  private readonly labels: Signal<Record<string, string>> = toSignal(
+    this.translate.stream(NAV_ITEMS.map((item: NavItem) => item.labelKey)),
+    { initialValue: {} }
+  );
+
+  /** Emitted after any action, so the mobile drawer can close. */
+  readonly navigate: OutputEmitterRef<void> = output<void>();
+
+  protected readonly items: Signal<MenuItem[]> = computed(() =>
+    NAV_ITEMS.map((item: NavItem) => ({
+      label: this.labels()[item.labelKey],
+      icon: item.icon,
+      routerLink: `/${item.path}`,
+      command: () => this.navigate.emit(),
+    }))
+  );
+
+  protected newTask(): void {
+    this.navigate.emit();
+  }
+}

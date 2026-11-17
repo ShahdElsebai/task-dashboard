@@ -1,0 +1,12 @@
+<span class="inline-flex items-center gap-2">
+  <p-avatar
+    shape="circle"
+    class="bg-primary text-primary-contrast font-semibold"
+    [label]="user().avatar"
+    [size]="size() === 'large' ? 'large' : undefined"
+    [ariaLabel]="user().name"
+  />
+  @if (showName()) {
+    <span class="text-sm text-text-default">&#64;{{ firstName() }}</span>
+  }
+</span>

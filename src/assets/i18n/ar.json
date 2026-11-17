@@ -1,10 +1,11 @@
 {
   "app": {
-    "title": "لوحة المهام"
+    "title": "مدير المهام"
   },
   "common": {
     "switchLanguage": "English",
-    "retry": "إعادة المحاولة"
+    "retry": "إعادة المحاولة",
+    "skipToContent": "تخطَّ إلى المحتوى"
   },
   "notifications": {
     "success": "تم",
@@ -28,5 +29,31 @@
       "inProgress": "قيد التنفيذ",
       "done": "مكتملة"
     }
+  },
+  "header": {
+    "searchPlaceholder": "ابحث في المهام...",
+    "notifications": "الإشعارات",
+    "openMenu": "فتح القائمة"
+  },
+  "nav": {
+    "label": "التنقل الرئيسي",
+    "dashboard": "لوحة التحكم",
+    "tasks": "المهام",
+    "calendar": "التقويم",
+    "analytics": "التحليلات",
+    "team": "الفريق",
+    "settings": "الإعدادات"
+  },
+  "tasks": {
+    "new": "مهمة جديدة"
+  },
+  "notFound": {
+    "title": "الصفحة غير موجودة",
+    "message": "الصفحة التي تبحث عنها غير موجودة أو تم نقلها.",
+    "back": "العودة إلى لوحة التحكم"
+  },
+  "comingSoon": {
+    "title": "قريبًا",
+    "message": "هذه الصفحة قيد الإنشاء."
   }
 }
