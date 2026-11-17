@@ -1,0 +1,16 @@
+@switch (variant()) {
+  @case ('stats') {
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4" aria-hidden="true">
+      @for (slot of statSlots; track slot) {
+        <p-skeleton height="9rem" borderRadius="0.75rem" />
+      }
+    </div>
+  }
+  @default {
+    <div class="grid grid-cols-1 gap-4 lg:grid-cols-3" aria-hidden="true">
+      @for (slot of columnSlots; track slot) {
+        <p-skeleton height="24rem" borderRadius="0.75rem" />
+      }
+    </div>
+  }
+}

@@ -1,0 +1,35 @@
+<div class="flex flex-wrap items-center gap-3 rounded-xl bg-surface-0 p-4 shadow-sm">
+  <p-selectbutton
+    optionLabel="label"
+    optionValue="value"
+    [allowEmpty]="false"
+    [ariaLabel]="'filters.status' | translate"
+    [ngModel]="status()"
+    [options]="statusOptions()"
+    (ngModelChange)="status.set($event)"
+  />
+
+  <div class="ms-auto flex flex-wrap items-center gap-3">
+    <p-select
+      optionLabel="label"
+      optionValue="value"
+      [ariaLabel]="'filters.priority' | translate"
+      [ngModel]="priority()"
+      [options]="priorityOptions()"
+      [placeholder]="'filters.priority' | translate"
+      [showClear]="true"
+      (ngModelChange)="priority.set($event ?? null)"
+    />
+    <p-select
+      optionLabel="name"
+      optionValue="id"
+      [ariaLabel]="'filters.assignee' | translate"
+      [ngModel]="assigneeId()"
+      [options]="users()"
+      [placeholder]="'filters.assignee' | translate"
+      [showClear]="true"
+      (ngModelChange)="assigneeId.set($event ?? null)"
+    />
+    <p-button icon="pi pi-plus" [label]="'tasks.new' | translate" (onClick)="newTask.emit()" />
+  </div>
+</div>

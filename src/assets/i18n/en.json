@@ -5,7 +5,8 @@
   "common": {
     "switchLanguage": "العربية",
     "retry": "Retry",
-    "skipToContent": "Skip to content"
+    "skipToContent": "Skip to content",
+    "cancel": "Cancel"
   },
   "notifications": {
     "success": "Done",
@@ -28,7 +29,8 @@
       "todo": "To Do",
       "inProgress": "In Progress",
       "done": "Done"
-    }
+    },
+    "emptyColumn": "No tasks here"
   },
   "header": {
     "searchPlaceholder": "Search tasks...",
@@ -45,7 +47,13 @@
     "settings": "Settings"
   },
   "tasks": {
-    "new": "New Task"
+    "new": "New Task",
+    "actions": "Task actions",
+    "edit": "Edit",
+    "delete": "Delete",
+    "moveTo": "Move to",
+    "deleteTitle": "Delete task?",
+    "deleteMessage": "\"{{title}}\" will be permanently deleted."
   },
   "priority": {
     "high": "High",
@@ -71,5 +79,18 @@
   "comingSoon": {
     "title": "Coming soon",
     "message": "This page is under construction."
+  },
+  "stats": {
+    "label": "Task statistics",
+    "total": "Total Tasks",
+    "completed": "Completed",
+    "inProgress": "In Progress",
+    "overdue": "Overdue"
+  },
+  "filters": {
+    "status": "Filter by status",
+    "all": "All",
+    "priority": "Priority",
+    "assignee": "Assignee"
   }
 }

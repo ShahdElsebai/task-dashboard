@@ -16,7 +16,13 @@ export const LayoutRoutes: Routes = [
     component: LayoutComponent,
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
-      { path: 'dashboard', ...comingSoon('nav.dashboard', 'pi pi-th-large') },
+      {
+        path: 'dashboard',
+        loadComponent: () =>
+          import('../features/dashboard/dashboard.component').then(
+            (m: typeof import('../features/dashboard/dashboard.component')) => m.DashboardComponent
+          ),
+      },
       { path: 'tasks', ...comingSoon('nav.tasks', 'pi pi-check-square') },
       { path: 'calendar', ...comingSoon('nav.calendar', 'pi pi-calendar') },
       { path: 'analytics', ...comingSoon('nav.analytics', 'pi pi-chart-bar') },
