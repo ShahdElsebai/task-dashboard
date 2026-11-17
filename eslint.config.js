@@ -9,7 +9,7 @@ export default defineConfig([
   // ── TypeScript files ──────────────────────────────────────────────────────
   {
     files: ['**/*.ts'],
-    ignores: ['**/*.spec.ts', '**/*.test.ts', '**/*.spec.js', '**/*.test.js'],
+    ignores: ['**/*.spec.ts', '**/*.test.ts', '**/*.test-helpers.ts', '**/*.spec.js', '**/*.test.js'],
     extends: [
       eslint.configs.recommended,
       ...tseslint.configs.recommended,

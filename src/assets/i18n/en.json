@@ -7,7 +7,10 @@
     "retry": "Retry"
   },
   "notifications": {
-    "success": "Done"
+    "success": "Done",
+    "taskCreated": "Task created",
+    "taskUpdated": "Task updated",
+    "taskDeleted": "Task deleted"
   },
   "errors": {
     "title": "Something went wrong",
@@ -18,5 +21,12 @@
     "validation": "Some of the data was invalid.",
     "unexpected": "An unexpected error occurred. The page may not work as expected.",
     "loadFailed": "We couldn't load this section."
+  },
+  "board": {
+    "columns": {
+      "todo": "To Do",
+      "inProgress": "In Progress",
+      "done": "Done"
+    }
   }
 }

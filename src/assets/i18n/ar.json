@@ -7,7 +7,10 @@
     "retry": "إعادة المحاولة"
   },
   "notifications": {
-    "success": "تم"
+    "success": "تم",
+    "taskCreated": "تم إنشاء المهمة",
+    "taskUpdated": "تم تحديث المهمة",
+    "taskDeleted": "تم حذف المهمة"
   },
   "errors": {
     "title": "حدث خطأ",
@@ -18,5 +21,12 @@
     "validation": "بعض البيانات غير صالحة.",
     "unexpected": "حدث خطأ غير متوقع. قد لا تعمل الصفحة كما ينبغي.",
     "loadFailed": "تعذّر تحميل هذا الجزء."
+  },
+  "board": {
+    "columns": {
+      "todo": "للتنفيذ",
+      "inProgress": "قيد التنفيذ",
+      "done": "مكتملة"
+    }
   }
 }
