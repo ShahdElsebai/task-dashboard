@@ -38,18 +38,11 @@ export function buildCreateTaskDto(
 }
 
 export interface UpdateTaskContext {
-  /** The new assignee, when `changes.assigneeId` differs from the current one. */
   assignee?: UserDto;
-  /** Position at the bottom of the new status column, used when the status changes. */
   endPosition: (status: TaskStatus) => number;
   now?: string;
 }
 
-/**
- * Builds a PATCH body with only the fields that changed.
- * A status change also sets/clears `completedAt` and moves the task to the
- * bottom of its new column.
- */
 export function buildUpdateTaskDto(
   current: TaskDto,
   changes: Partial<TaskFormValue>,
@@ -73,14 +66,6 @@ export function buildUpdateTaskDto(
   return dto;
 }
 
-/**
- * PATCH bodies for a drag-and-drop move.
- * Usually one entry (the moved task gets the midpoint between its new
- * neighbours). Only when the gap is used up do neighbours get new positions too.
- *
- * @param columnTasks All tasks of the target column, sorted by position.
- * @param index       Target index in that column, after the move.
- */
 export function planTaskMove(
   task: TaskDto,
   columnTasks: readonly TaskDto[],

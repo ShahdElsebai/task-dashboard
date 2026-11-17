@@ -5,7 +5,6 @@ import { type Observable, finalize } from 'rxjs';
 import { LoadingService } from '../loading.service';
 import { SKIP_LOADING } from './http-context.tokens';
 
-/** Tracks every request in LoadingService unless it opts out with SKIP_LOADING. */
 export const loadingInterceptor: HttpInterceptorFn = (
   req: HttpRequest<unknown>,
   next: HttpHandlerFn

@@ -3,12 +3,6 @@ import type { Observable } from 'rxjs';
 
 import { environment } from '../../../../environments/environment';
 
-/**
- * Prefixes relative API paths with `environment.apiUrl`.
- *
- * Services request `'tasks'`, the browser calls `/api/tasks`. Absolute URLs
- * (`http…`) and root paths (`/assets/i18n/en.json`) pass through unchanged.
- */
 export const apiUrlInterceptor: HttpInterceptorFn = (
   req: HttpRequest<unknown>,
   next: HttpHandlerFn

@@ -38,7 +38,6 @@ describe('position utils', () => {
 
   describe('planMove', () => {
     it('updates only the moved item when there is room', () => {
-      // move item-3 between item-1 and item-2
       expect(planMove(list(1000, 2000, 3000), 'item-3', 1)).toEqual([{ id: 'item-3', position: 1500 }]);
     });
 

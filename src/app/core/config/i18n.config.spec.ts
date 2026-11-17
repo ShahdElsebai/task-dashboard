@@ -14,11 +14,7 @@ import {
 } from '../services/http';
 import { provideI18n } from './i18n.config';
 
-/**
- * Regression test: the translation loader goes through the real interceptor chain.
- * errorInterceptor → NotificationService → TranslateService used to form a
- * circular dependency (NG0200), so no translations loaded and keys showed raw.
- */
+// Regression: errorInterceptor → NotificationService → TranslateService used to be circular (NG0200).
 describe('i18n with the real interceptor chain', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({

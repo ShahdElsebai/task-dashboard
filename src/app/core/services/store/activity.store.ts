@@ -21,10 +21,7 @@ export class ActivityStore {
     this.resource.reload();
   }
 
-  /**
-   * Shows the entry immediately and saves it in the background.
-   * The feed is non-critical, so a failed save is ignored (no toast, no rollback).
-   */
+  // Non-critical feed: a failed save is ignored, no toast or rollback.
   log(type: ActivityType, task: TaskDto): void {
     const entry: CreateActivityDto = {
       type,

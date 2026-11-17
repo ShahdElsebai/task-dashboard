@@ -6,12 +6,11 @@ import type { CreateTaskDto, TaskDto, UpdateTaskDto } from '../../dto';
 
 const PATH: string = 'tasks';
 
-/** REST client for `/tasks`. Reads use httpResource, writes use HttpClient. */
 @Service()
 export class TasksApiService {
   private readonly http: HttpClient = inject(HttpClient);
 
-  /** All tasks as a signal-based resource. Call from an injection context (field initializer). */
+  // Call from an injection context (field initializer).
   listResource(): HttpResourceRef<TaskDto[]> {
     return httpResource<TaskDto[]>(() => PATH, { defaultValue: [] });
   }

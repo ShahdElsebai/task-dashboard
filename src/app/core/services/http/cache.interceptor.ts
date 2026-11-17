@@ -11,11 +11,6 @@ import { type Observable, of, tap } from 'rxjs';
 import { HttpCacheService } from './http-cache.service';
 import { SKIP_CACHE } from './http-context.tokens';
 
-/**
- * Serves repeated GETs from memory for a short time (see CACHE_TTL_MS),
- * so navigating between pages doesn't refetch the same data.
- * Any POST/PUT/PATCH/DELETE clears the cache for that collection.
- */
 export const cacheInterceptor: HttpInterceptorFn = (
   req: HttpRequest<unknown>,
   next: HttpHandlerFn

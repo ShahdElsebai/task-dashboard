@@ -6,10 +6,6 @@ import { NotificationService } from '../notification.service';
 import { type AppError, toAppError } from './app-error';
 import { SKIP_ERROR_TOAST } from './http-context.tokens';
 
-/**
- * Shows one toast per failed request (after retries are exhausted) and
- * rethrows the original error so callers can still roll back or show inline state.
- */
 export const errorInterceptor: HttpInterceptorFn = (
   req: HttpRequest<unknown>,
   next: HttpHandlerFn

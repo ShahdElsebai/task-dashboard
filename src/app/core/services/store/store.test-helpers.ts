@@ -40,7 +40,6 @@ export function storeTestProviders(notifications: NotificationsMock): (Provider 
   ];
 }
 
-/** Answers the initial GETs of every store that has been created, then waits for the resources. */
 export async function flushInitialLoad(http: HttpTestingController, tasks: TaskDto[]): Promise<void> {
   TestBed.tick();
   http.match('/api/tasks').forEach((req: TestRequest) => req.flush(tasks));
@@ -49,7 +48,6 @@ export async function flushInitialLoad(http: HttpTestingController, tasks: TaskD
   await TestBed.inject(ApplicationRef).whenStable();
 }
 
-/** Answers background activity POSTs, if any. */
 export function flushActivities(http: HttpTestingController): void {
   http.match('/api/activities').forEach((req: TestRequest) => req.flush({ ...req.request.body, id: 'a' }));
 }

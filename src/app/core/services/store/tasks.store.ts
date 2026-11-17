@@ -29,13 +29,7 @@ import { NotificationService } from '../notification.service';
 import { ActivityStore } from './activity.store';
 import { UsersStore } from './users.store';
 
-/**
- * Owns the task data and every write to it. Knows nothing about filters or the UI.
- *
- * Writes are optimistic: the resource value changes first, then the request
- * runs; on failure only the affected tasks are rolled back
- * (errorInterceptor has already shown the toast).
- */
+// Writes are optimistic; on failure only the affected tasks roll back (errorInterceptor already toasts).
 @Service()
 export class TasksStore {
   private readonly api: TasksApiService = inject(TasksApiService);
@@ -56,7 +50,6 @@ export class TasksStore {
     return this.tasks().find((task: TaskDto) => task.id === id);
   }
 
-  /** Tasks of one status column, sorted by position. */
   column(status: TaskStatus): TaskDto[] {
     return byPosition(this.tasks().filter((task: TaskDto) => task.status === status));
   }
@@ -122,10 +115,7 @@ export class TasksStore {
     }
   }
 
-  /**
-   * Moves a task to `index` in the `toStatus` column (index in the full column,
-   * not a filtered view: BoardStore does that mapping). Usually one PATCH.
-   */
+  // `index` is in the full column, not a filtered view (BoardStore maps it).
   async move(taskId: string, toStatus: TaskStatus, index: number): Promise<boolean> {
     const task: TaskDto | undefined = this.find(taskId);
     if (!task) return false;

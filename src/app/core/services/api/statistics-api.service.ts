@@ -3,11 +3,7 @@ import { Service } from '@angular/core';
 
 import type { StatisticDto } from '../../dto';
 
-/**
- * Read-only client for `/statistics`.
- * The dashboard derives live numbers from tasks; this endpoint provides the
- * card metadata (icon, colour, change label) from the provided mock API.
- */
+// Live numbers come from tasks; this endpoint only provides card metadata (icon, colour, change label).
 @Service()
 export class StatisticsApiService {
   listResource(): HttpResourceRef<StatisticDto[]> {

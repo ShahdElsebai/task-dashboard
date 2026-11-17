@@ -2,15 +2,10 @@ import { Injector, Service, inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from '@openng/optimus-ui/api';
 
-/** Thin wrapper over the Optimus toast so the rest of the app doesn't depend on it directly. */
 @Service()
 export class NotificationService {
   private readonly messages: MessageService = inject(MessageService);
-  /**
-   * TranslateService is resolved lazily, not injected in the constructor.
-   * It loads its JSON through HttpClient → errorInterceptor → this service,
-   * so injecting it eagerly creates a circular dependency (NG0200).
-   */
+  // Resolved lazily: TranslateService loads via HttpClient → errorInterceptor → this service (NG0200).
   private readonly injector: Injector = inject(Injector);
 
   success(detailKey: string, params?: Record<string, unknown>): void {
