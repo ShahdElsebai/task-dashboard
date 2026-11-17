@@ -3,7 +3,7 @@
     {
       "id": "stat-001",
       "title": "Total Tasks",
-      "icon": "📊",
+      "icon": "pi pi-chart-bar",
       "value": 156,
       "change": "+12",
       "changeLabel": "this week",
@@ -13,7 +13,7 @@
     {
       "id": "stat-002",
       "title": "Completed",
-      "icon": "✅",
+      "icon": "pi pi-check-circle",
       "value": 89,
       "change": "+8",
       "changeLabel": "today",
@@ -23,7 +23,7 @@
     {
       "id": "stat-003",
       "title": "In Progress",
-      "icon": "🔄",
+      "icon": "pi pi-sync",
       "value": 42,
       "change": "0",
       "changeLabel": "Same as yesterday",
@@ -33,7 +33,7 @@
     {
       "id": "stat-004",
       "title": "Overdue",
-      "icon": "⚠️",
+      "icon": "pi pi-exclamation-triangle",
       "value": 25,
       "change": "+3",
       "changeLabel": "today",
@@ -41,5 +41,5 @@
       "color": "#D32F2F"
     }
   ],
-  "lastUpdated": "2026-11-16T21:44:10.850Z"
+  "lastUpdated": "2026-11-17T13:22:55.488Z"
 }
