@@ -2,7 +2,6 @@ import { Component, input, InputSignal } from '@angular/core';
 
 import { EmptyStateComponent } from '../../shared';
 
-/** Placeholder for pages built in later phases. `titleKey` comes from route data. */
 @Component({
   selector: 'app-coming-soon',
   imports: [EmptyStateComponent],

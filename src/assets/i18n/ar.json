@@ -47,6 +47,22 @@
   "tasks": {
     "new": "مهمة جديدة"
   },
+  "priority": {
+    "high": "عالية",
+    "medium": "متوسطة",
+    "low": "منخفضة"
+  },
+  "due": {
+    "today": "مستحقة اليوم",
+    "tomorrow": "مستحقة غدًا",
+    "inDays": "مستحقة خلال {{count}} أيام",
+    "overdueOne": "متأخرة يومًا واحدًا",
+    "overdueMany": "متأخرة {{count}} أيام",
+    "completed": "مكتملة",
+    "completedToday": "اكتملت اليوم",
+    "completedYesterday": "اكتملت أمس",
+    "completedDaysAgo": "اكتملت منذ {{count}} أيام"
+  },
   "notFound": {
     "title": "الصفحة غير موجودة",
     "message": "الصفحة التي تبحث عنها غير موجودة أو تم نقلها.",

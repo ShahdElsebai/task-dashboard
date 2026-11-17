@@ -3,7 +3,6 @@ import { AvatarModule } from '@openng/optimus-ui/avatar';
 
 import { UserDto } from '../../../core/dto';
 
-/** Initials avatar, optionally followed by "@FirstName" as in the design. */
 @Component({
   selector: 'app-user-avatar',
   imports: [AvatarModule],
