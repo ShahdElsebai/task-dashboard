@@ -13,7 +13,7 @@ export const errorInterceptor: HttpInterceptorFn = (
   const notifications: NotificationService = inject(NotificationService);
   return next(req).pipe(
     catchError((error: unknown) => {
-      if (!req.context.get(SKIP_ERROR_TOAST)) {
+      if (req.method !== 'GET' && !req.context.get(SKIP_ERROR_TOAST)) {
         const appError: AppError = toAppError(error);
         notifications.error(appError.messageKey);
       }
