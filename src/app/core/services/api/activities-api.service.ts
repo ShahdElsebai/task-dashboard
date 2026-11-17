@@ -11,7 +11,6 @@ const PATH: string = 'activities';
 export class ActivitiesApiService {
   private readonly http: HttpClient = inject(HttpClient);
 
-  // json-server v1 ignores _limit when sorting, so the store caps the list.
   listResource(): HttpResourceRef<ActivityDto[]> {
     return httpResource<ActivityDto[]>(() => `${PATH}?_sort=-timestamp`, { defaultValue: [] });
   }

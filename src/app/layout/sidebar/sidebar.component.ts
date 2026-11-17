@@ -5,7 +5,8 @@ import { MenuItem } from '@openng/optimus-ui/api';
 import { ButtonModule } from '@openng/optimus-ui/button';
 import { MenuModule } from '@openng/optimus-ui/menu';
 
-import { NAV_ITEMS, NavItem } from '../../core/config/navigation.config';
+import { NAV_ITEMS } from '../../core/config/navigation.config';
+import { NavItem } from '../../core/models';
 
 @Component({
   selector: 'app-sidebar',

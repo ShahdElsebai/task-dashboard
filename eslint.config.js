@@ -68,6 +68,7 @@ export default defineConfig([
       // Lifecycle
       '@angular-eslint/no-async-lifecycle-method': 'error',
       '@angular-eslint/no-empty-lifecycle-method': 'error',
+      'no-empty': ['error', { allowEmptyCatch: true }],
       '@angular-eslint/no-lifecycle-call': 'error',
       '@angular-eslint/use-lifecycle-interface': 'error',
 

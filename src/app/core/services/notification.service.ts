@@ -7,7 +7,6 @@ export const DEDUPE_WINDOW_MS: number = 3000;
 @Service()
 export class NotificationService {
   private readonly messages: MessageService = inject(MessageService);
-  // Resolved lazily: TranslateService loads via HttpClient → errorInterceptor → this service (NG0200).
   private readonly injector: Injector = inject(Injector);
   private readonly lastShown: Map<string, number> = new Map<string, number>();
 

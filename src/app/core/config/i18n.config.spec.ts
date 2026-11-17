@@ -14,7 +14,6 @@ import {
 } from '../services/http';
 import { provideI18n } from './i18n.config';
 
-// Regression: errorInterceptor → NotificationService → TranslateService used to be circular (NG0200).
 describe('i18n with the real interceptor chain', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({

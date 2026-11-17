@@ -1,8 +1,4 @@
-export interface NavItem {
-  labelKey: string;
-  icon: string;
-  path: string;
-}
+import { NavItem } from '../models/navigation.model';
 
 export const NAV_ITEMS: readonly NavItem[] = [
   { labelKey: 'nav.dashboard', icon: 'pi pi-th-large', path: 'dashboard' },

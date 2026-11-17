@@ -1,11 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 
-export interface AppError {
-  status: number;
-  messageKey: string;
-  /** For logs only; never shown to users. */
-  detail: string;
-}
+import { AppError } from '../../models/app-error.model';
 
 export function toAppError(error: unknown): AppError {
   if (error instanceof HttpErrorResponse) {
