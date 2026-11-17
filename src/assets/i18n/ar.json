@@ -3,6 +3,20 @@
     "title": "لوحة المهام"
   },
   "common": {
-    "switchLanguage": "English"
+    "switchLanguage": "English",
+    "retry": "إعادة المحاولة"
+  },
+  "notifications": {
+    "success": "تم"
+  },
+  "errors": {
+    "title": "حدث خطأ",
+    "generic": "فشل الطلب. حاول مرة أخرى.",
+    "network": "تعذّر الوصول إلى الخادم. تحقق من اتصالك.",
+    "server": "حدثت مشكلة في الخادم. حاول بعد قليل.",
+    "notFound": "هذا العنصر لم يعد موجودًا.",
+    "validation": "بعض البيانات غير صالحة.",
+    "unexpected": "حدث خطأ غير متوقع. قد لا تعمل الصفحة كما ينبغي.",
+    "loadFailed": "تعذّر تحميل هذا الجزء."
   }
 }
