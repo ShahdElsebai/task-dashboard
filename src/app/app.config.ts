@@ -1,5 +1,5 @@
 import { ErrorHandler, type ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { MessageService } from '@openng/optimus-ui/api';
 import { provideOptimus } from '@openng/optimus-ui/config';
@@ -22,7 +22,6 @@ export const appConfig: ApplicationConfig = {
     { provide: ErrorHandler, useClass: GlobalErrorHandler },
     provideRouter(routes, withComponentInputBinding()),
     provideHttpClient(
-      withFetch(),
       withInterceptors([apiUrlInterceptor, loadingInterceptor, errorInterceptor, cacheInterceptor, retryInterceptor])
     ),
     MessageService,
