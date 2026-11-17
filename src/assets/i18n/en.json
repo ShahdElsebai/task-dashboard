@@ -3,6 +3,20 @@
     "title": "Task Dashboard"
   },
   "common": {
-    "switchLanguage": "العربية"
+    "switchLanguage": "العربية",
+    "retry": "Retry"
+  },
+  "notifications": {
+    "success": "Done"
+  },
+  "errors": {
+    "title": "Something went wrong",
+    "generic": "The request failed. Please try again.",
+    "network": "Can't reach the server. Check your connection.",
+    "server": "The server had a problem. Please try again shortly.",
+    "notFound": "That item no longer exists.",
+    "validation": "Some of the data was invalid.",
+    "unexpected": "An unexpected error occurred. The page may not work as expected.",
+    "loadFailed": "We couldn't load this section."
   }
 }
