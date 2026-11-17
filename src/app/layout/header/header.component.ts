@@ -15,7 +15,6 @@ import { UserAvatarComponent } from '../../shared';
 
 export const SEARCH_DEBOUNCE_MS: number = 250;
 
-/** The signed-in user. There is no auth in this app, so it's a fixed mock user. */
 const CURRENT_USER: UserDto = { id: 'user-001', name: 'John Doe', avatar: 'JD', email: 'john.doe@company.com' };
 
 @Component({

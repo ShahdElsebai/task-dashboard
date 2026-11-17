@@ -1,24 +1,10 @@
 import { TaskStatus } from '../dto/enum.dto';
 import { TaskDto } from '../dto/task.dto';
+import { DueLabel, DueTone } from '../models/due-label.model';
 import { daysBetween, parseDateOnly } from './date.utils';
 
-export type DueTone = 'overdue' | 'soon' | 'normal' | 'done';
-
-/** A translatable label: render with `{{ label.key | translate: label.params }}`. */
-export interface DueLabel {
-  key: string;
-  params: { count: number };
-  tone: DueTone;
-  icon: string;
-}
-
-/** Due in ≤ this many days counts as "soon". */
 export const DUE_SOON_DAYS: number = 2;
 
-/**
- * Human label for a task's due date, matching the design:
- * "Completed today", "Overdue by 2 days", "Due tomorrow", "Due in 5 days".
- */
 export function dueLabel(
   task: Pick<TaskDto, 'status' | 'dueDate' | 'completedAt'>,
   today: Date = new Date()

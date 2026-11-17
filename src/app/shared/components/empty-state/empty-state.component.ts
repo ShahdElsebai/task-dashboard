@@ -1,7 +1,6 @@
 import { Component, input, InputSignal } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 
-/** Friendly placeholder for empty lists and not-yet-built pages. Project extra content (e.g. a button) inside. */
 @Component({
   selector: 'app-empty-state',
   imports: [TranslatePipe],

@@ -19,7 +19,6 @@ export class SidebarComponent {
     { initialValue: {} }
   );
 
-  /** Emitted after any action, so the mobile drawer can close. */
   readonly navigate: OutputEmitterRef<void> = output<void>();
 
   protected readonly items: Signal<MenuItem[]> = computed(() =>
