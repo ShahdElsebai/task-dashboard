@@ -1,8 +1,8 @@
-import { HttpClient, HttpContext, type HttpResourceRef, httpResource } from '@angular/common/http';
+import { HttpClient, HttpContext, HttpResourceRef, httpResource } from '@angular/common/http';
 import { Service, inject } from '@angular/core';
-import type { Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
-import type { ActivityDto, CreateActivityDto } from '../../dto';
+import { ActivityDto, CreateActivityDto } from '../../dto';
 import { SKIP_ERROR_TOAST, SKIP_LOADING } from '../http/http-context.tokens';
 
 const PATH: string = 'activities';

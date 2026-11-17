@@ -1,8 +1,8 @@
 import { HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
-import { TaskPriority, TaskStatus, type TaskDto } from '../../dto';
-import { type NotificationsMock, flushInitialLoad, makeTask, storeTestProviders } from './store.test-helpers';
+import { TaskPriority, TaskStatus, TaskDto } from '../../dto';
+import { NotificationsMock, flushInitialLoad, makeTask, storeTestProviders } from './store.test-helpers';
 import { TaskFiltersStore } from './task-filters.store';
 
 describe('TaskFiltersStore', () => {

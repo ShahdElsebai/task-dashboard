@@ -1,8 +1,8 @@
-import type { HttpResourceRef } from '@angular/common/http';
-import { Service, type Signal, computed, inject } from '@angular/core';
+import { HttpResourceRef } from '@angular/common/http';
+import { Service, Signal, computed, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
-import type { ActivityDto, ActivityType, CreateActivityDto, TaskDto } from '../../dto';
+import { ActivityDto, ActivityType, CreateActivityDto, TaskDto } from '../../dto';
 import { replaceById, tempId } from '../../utils';
 import { ActivitiesApiService } from '../api';
 

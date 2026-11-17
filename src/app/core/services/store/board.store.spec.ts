@@ -1,11 +1,11 @@
 import { HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
-import { TaskPriority, TaskStatus, type TaskDto } from '../../dto';
-import type { BoardColumn } from '../../models';
+import { TaskPriority, TaskStatus, TaskDto } from '../../dto';
+import { BoardColumn } from '../../models';
 import { BoardStore } from './board.store';
 import {
-  type NotificationsMock,
+  NotificationsMock,
   flushActivities,
   flushInitialLoad,
   makeTask,

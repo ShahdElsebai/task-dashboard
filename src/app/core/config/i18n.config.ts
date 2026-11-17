@@ -1,9 +1,9 @@
-import type { Provider } from '@angular/core';
+import { Provider } from '@angular/core';
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { environment } from '../../../environments/environment';
-import type { AppLanguage } from '../../../environments/environment.model';
+import { AppLanguage } from '../../../environments/environment.model';
 
 export interface LanguageOption {
   label: string;

@@ -1,5 +1,5 @@
-import type { Identifiable } from '../dto/shared.dto';
-import type { TaskDto } from '../dto/task.dto';
+import { Identifiable } from '../dto/shared.dto';
+import { TaskDto } from '../dto/task.dto';
 
 // Keep in sync with mock-api/build-db.cjs.
 export const POSITION_GAP: number = 1000;

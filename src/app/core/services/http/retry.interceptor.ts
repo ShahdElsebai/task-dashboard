@@ -1,11 +1,5 @@
-import {
-  HttpErrorResponse,
-  type HttpEvent,
-  type HttpHandlerFn,
-  type HttpInterceptorFn,
-  type HttpRequest,
-} from '@angular/common/http';
-import { type Observable, retry, throwError, timer } from 'rxjs';
+import { HttpErrorResponse, HttpEvent, HttpHandlerFn, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
+import { Observable, retry, throwError, timer } from 'rxjs';
 
 export const MAX_RETRIES: number = 2;
 export const RETRY_BASE_DELAY_MS: number = 300;

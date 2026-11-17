@@ -1,4 +1,4 @@
-import { type HttpResponse } from '@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
 import { Service } from '@angular/core';
 
 interface CacheEntry {

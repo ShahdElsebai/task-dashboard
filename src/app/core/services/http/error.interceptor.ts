@@ -1,9 +1,9 @@
-import type { HttpEvent, HttpHandlerFn, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
+import { HttpEvent, HttpHandlerFn, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { type Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 
 import { NotificationService } from '../notification.service';
-import { type AppError, toAppError } from './app-error';
+import { AppError, toAppError } from './app-error';
 import { SKIP_ERROR_TOAST } from './http-context.tokens';
 
 export const errorInterceptor: HttpInterceptorFn = (

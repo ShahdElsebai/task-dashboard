@@ -1,4 +1,4 @@
-import type { Identifiable } from '../dto/shared.dto';
+import { Identifiable } from '../dto/shared.dto';
 
 export function replaceById<T extends Identifiable>(items: readonly T[], id: string, next: T): T[] {
   return items.map((item: T) => (item.id === id ? next : item));

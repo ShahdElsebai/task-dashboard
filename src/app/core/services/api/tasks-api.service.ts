@@ -1,8 +1,8 @@
-import { HttpClient, type HttpResourceRef, httpResource } from '@angular/common/http';
+import { HttpClient, HttpResourceRef, httpResource } from '@angular/common/http';
 import { Service, inject } from '@angular/core';
-import type { Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
-import type { CreateTaskDto, TaskDto, UpdateTaskDto } from '../../dto';
+import { CreateTaskDto, TaskDto, UpdateTaskDto } from '../../dto';
 
 const PATH: string = 'tasks';
 

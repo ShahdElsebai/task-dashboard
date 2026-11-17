@@ -1,5 +1,4 @@
-import { Component, input, output } from '@angular/core';
-import type { InputSignal, OutputEmitterRef } from '@angular/core';
+import { Component, input, output, InputSignal, OutputEmitterRef } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ButtonModule } from '@openng/optimus-ui/button';
 

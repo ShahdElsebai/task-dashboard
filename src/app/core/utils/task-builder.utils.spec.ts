@@ -1,6 +1,6 @@
 import { TaskPriority, TaskStatus } from '../dto/enum.dto';
-import type { TaskDto } from '../dto/task.dto';
-import type { UserDto } from '../dto/user.dto';
+import { TaskDto } from '../dto/task.dto';
+import { UserDto } from '../dto/user.dto';
 import { EMPTY_FILTERS } from '../models/task-filters.model';
 import {
   buildCreateTaskDto,

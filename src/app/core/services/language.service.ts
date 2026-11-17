@@ -1,8 +1,8 @@
-import { DOCUMENT, Service, type WritableSignal, effect, inject, signal } from '@angular/core';
+import { DOCUMENT, Service, WritableSignal, effect, inject, signal } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 import { environment } from '../../../environments/environment';
-import type { AppLanguage } from '../../../environments/environment.model';
+import { AppLanguage } from '../../../environments/environment.model';
 import { LANGUAGES } from '../config/i18n.config';
 
 const STORAGE_KEY: string = 'app.lang';

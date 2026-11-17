@@ -1,7 +1,7 @@
-import { Service, type Signal, type WritableSignal, computed, inject, signal } from '@angular/core';
+import { Service, Signal, WritableSignal, computed, inject, signal } from '@angular/core';
 
-import type { TaskDto } from '../../dto';
-import { EMPTY_FILTERS, type TaskFilters } from '../../models';
+import { TaskDto } from '../../dto';
+import { EMPTY_FILTERS, TaskFilters } from '../../models';
 import { filterTasks, hasActiveFilters } from '../../utils';
 import { TasksStore } from './tasks.store';
 

@@ -1,6 +1,6 @@
-import type { TaskPriority, TaskStatus } from './enum.dto';
-import type { UserDto } from './user.dto';
-import type { Identifiable } from './shared.dto';
+import { TaskPriority, TaskStatus } from './enum.dto';
+import { UserDto } from './user.dto';
+import { Identifiable } from './shared.dto';
 
 export interface TaskDto extends Identifiable {
   title: string;

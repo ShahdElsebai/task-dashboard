@@ -1,7 +1,7 @@
-import { type HttpResourceRef, httpResource } from '@angular/common/http';
+import { HttpResourceRef, httpResource } from '@angular/common/http';
 import { Service } from '@angular/core';
 
-import type { UserDto } from '../../dto';
+import { UserDto } from '../../dto';
 
 @Service()
 export class UsersApiService {
