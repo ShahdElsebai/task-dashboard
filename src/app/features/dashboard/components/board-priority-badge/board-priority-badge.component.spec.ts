@@ -2,17 +2,17 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideTranslateService } from '@ngx-translate/core';
 
 import { TaskPriority } from '../../../../core/dto';
-import { PriorityBadgeComponent } from './priority-badge.component';
+import { BoardPriorityBadgeComponent } from './board-priority-badge.component';
 
-describe('PriorityBadgeComponent', () => {
-  let fixture: ComponentFixture<PriorityBadgeComponent>;
+describe('BoardPriorityBadgeComponent', () => {
+  let fixture: ComponentFixture<BoardPriorityBadgeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PriorityBadgeComponent],
+      imports: [BoardPriorityBadgeComponent],
       providers: [provideTranslateService()],
     }).compileComponents();
-    fixture = TestBed.createComponent(PriorityBadgeComponent);
+    fixture = TestBed.createComponent(BoardPriorityBadgeComponent);
     fixture.componentRef.setInput('priority', TaskPriority.High);
     await fixture.whenStable();
   });

@@ -1,17 +1,17 @@
 import { HttpTestingController, TestRequest } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
-import { TaskPriority, TaskStatus, TaskDto } from '../../dto';
-import { TaskFormValue } from '../../models';
+import { TaskPriority, TaskStatus, TaskDto } from '../../../core/dto';
+import { TaskFormValue } from '../dashboard.model';
 import {
   NotificationsMock,
   flushActivities,
   flushInitialLoad,
   makeTask,
   storeTestProviders,
-} from './store.test-helpers';
-import { TasksStore } from './tasks.store';
-import { UsersStore } from './users.store';
+} from './dashboard.test-helpers';
+import { DashboardTasksStateService } from './dashboard-tasks-state.service';
+import { UsersStore } from '../../../core/services/store';
 
 const { Todo, InProgress, Done } = TaskStatus;
 
@@ -25,13 +25,13 @@ const form: TaskFormValue = {
   tags: [' UI ', ''],
 };
 
-describe('TasksStore', () => {
+describe('DashboardTasksStateService', () => {
   const notifications: NotificationsMock = { error: vi.fn(), success: vi.fn() };
-  let store: TasksStore;
+  let store: DashboardTasksStateService;
   let http: HttpTestingController;
 
   async function load(tasks: TaskDto[]): Promise<void> {
-    store = TestBed.inject(TasksStore);
+    store = TestBed.inject(DashboardTasksStateService);
     TestBed.inject(UsersStore);
     await flushInitialLoad(http, tasks);
   }

@@ -10,7 +10,7 @@ import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
 
 import { UserDto } from '../../core/dto';
 import { LanguageService } from '../../core/services/language.service';
-import { TaskFiltersStore } from '../../core/services/store';
+import { BoardStateService } from '../../features/dashboard/services/board-state.service';
 import { UserAvatarComponent } from '../../shared';
 
 export const SEARCH_DEBOUNCE_MS: number = 250;
@@ -32,7 +32,7 @@ const CURRENT_USER: UserDto = { id: 'user-001', name: 'John Doe', avatar: 'JD', 
 })
 export class HeaderComponent {
   protected readonly language: LanguageService = inject(LanguageService);
-  protected readonly filters: TaskFiltersStore = inject(TaskFiltersStore);
+  protected readonly board: BoardStateService = inject(BoardStateService);
   protected readonly currentUser: UserDto = CURRENT_USER;
 
   readonly menuToggle: OutputEmitterRef<void> = output<void>();
@@ -42,7 +42,7 @@ export class HeaderComponent {
   constructor() {
     this.search$
       .pipe(debounceTime(SEARCH_DEBOUNCE_MS), distinctUntilChanged(), takeUntilDestroyed(inject(DestroyRef)))
-      .subscribe((search: string) => this.filters.set({ search }));
+      .subscribe((search: string) => this.board.setFilters({ search }));
   }
 
   protected onSearch(value: string): void {

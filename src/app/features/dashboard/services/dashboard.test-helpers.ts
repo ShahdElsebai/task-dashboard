@@ -3,9 +3,9 @@ import { HttpTestingController, TestRequest, provideHttpClientTesting } from '@a
 import { ApplicationRef, EnvironmentProviders, Provider } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
-import { TaskPriority, TaskStatus, TaskDto, UserDto } from '../../dto';
-import { apiUrlInterceptor } from '../http/api-url.interceptor';
-import { NotificationService } from '../notification.service';
+import { TaskPriority, TaskStatus, TaskDto, UserDto } from '../../../core/dto';
+import { apiUrlInterceptor } from '../../../core/services/http/api-url.interceptor';
+import { NotificationService } from '../../../core/services/notification.service';
 
 export const TEST_USER: UserDto = { id: 'user-1', name: 'John Doe', avatar: 'JD', email: 'j@x.com' };
 
@@ -45,6 +45,7 @@ export async function flushInitialLoad(http: HttpTestingController, tasks: TaskD
   http.match('/api/tasks').forEach((req: TestRequest) => req.flush(tasks));
   http.match('/api/users').forEach((req: TestRequest) => req.flush([TEST_USER]));
   http.match('/api/activities?_sort=-timestamp').forEach((req: TestRequest) => req.flush([]));
+  http.match('/api/statistics').forEach((req: TestRequest) => req.flush([]));
   await TestBed.inject(ApplicationRef).whenStable();
 }
 
