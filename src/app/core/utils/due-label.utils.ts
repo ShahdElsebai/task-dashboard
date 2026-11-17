@@ -1,0 +1,51 @@
+import { TaskStatus } from '../dto/enum.dto';
+import { TaskDto } from '../dto/task.dto';
+import { daysBetween, parseDateOnly } from './date.utils';
+
+export type DueTone = 'overdue' | 'soon' | 'normal' | 'done';
+
+/** A translatable label: render with `{{ label.key | translate: label.params }}`. */
+export interface DueLabel {
+  key: string;
+  params: { count: number };
+  tone: DueTone;
+  icon: string;
+}
+
+/** Due in ≤ this many days counts as "soon". */
+export const DUE_SOON_DAYS: number = 2;
+
+/**
+ * Human label for a task's due date, matching the design:
+ * "Completed today", "Overdue by 2 days", "Due tomorrow", "Due in 5 days".
+ */
+export function dueLabel(
+  task: Pick<TaskDto, 'status' | 'dueDate' | 'completedAt'>,
+  today: Date = new Date()
+): DueLabel {
+  if (task.status === TaskStatus.Done) return completedLabel(task.completedAt ?? null, today);
+
+  const days: number = daysBetween(today, parseDateOnly(task.dueDate));
+  if (days < 0) {
+    const count: number = -days;
+    return {
+      key: count === 1 ? 'due.overdueOne' : 'due.overdueMany',
+      params: { count },
+      tone: 'overdue',
+      icon: 'pi pi-exclamation-triangle',
+    };
+  }
+  const tone: DueTone = days <= DUE_SOON_DAYS ? 'soon' : 'normal';
+  const key: string = days === 0 ? 'due.today' : days === 1 ? 'due.tomorrow' : 'due.inDays';
+  return { key, params: { count: days }, tone, icon: 'pi pi-calendar' };
+}
+
+function completedLabel(completedAt: string | null, today: Date): DueLabel {
+  const base: Omit<DueLabel, 'key' | 'params'> = { tone: 'done', icon: 'pi pi-check-circle' };
+  if (!completedAt) return { ...base, key: 'due.completed', params: { count: 0 } };
+
+  const daysAgo: number = Math.max(0, daysBetween(new Date(completedAt), today));
+  if (daysAgo === 0) return { ...base, key: 'due.completedToday', params: { count: 0 } };
+  if (daysAgo === 1) return { ...base, key: 'due.completedYesterday', params: { count: 1 } };
+  return { ...base, key: 'due.completedDaysAgo', params: { count: daysAgo } };
+}

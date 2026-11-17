@@ -47,6 +47,22 @@
   "tasks": {
     "new": "New Task"
   },
+  "priority": {
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low"
+  },
+  "due": {
+    "today": "Due today",
+    "tomorrow": "Due tomorrow",
+    "inDays": "Due in {{count}} days",
+    "overdueOne": "Overdue by 1 day",
+    "overdueMany": "Overdue by {{count}} days",
+    "completed": "Completed",
+    "completedToday": "Completed today",
+    "completedYesterday": "Completed yesterday",
+    "completedDaysAgo": "Completed {{count}} days ago"
+  },
   "notFound": {
     "title": "Page not found",
     "message": "The page you're looking for doesn't exist or was moved.",

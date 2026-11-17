@@ -1,0 +1,11 @@
+<span
+  class="inline-flex items-center rounded px-2 py-1 text-xs font-semibold uppercase tracking-wide"
+  [class.text-priority-high]="priority() === Priority.High"
+  [class.bg-priority-high-bg]="priority() === Priority.High"
+  [class.text-priority-medium]="priority() === Priority.Medium"
+  [class.bg-priority-medium-bg]="priority() === Priority.Medium"
+  [class.text-priority-low]="priority() === Priority.Low"
+  [class.bg-priority-low-bg]="priority() === Priority.Low"
+>
+  {{ 'priority.' + priority() | translate }}
+</span>
