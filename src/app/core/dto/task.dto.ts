@@ -14,6 +14,7 @@ export interface TaskDto extends Identifiable {
   tags: string[];
   createdAt: string;
   updatedAt: string;
+  position: number;
 }
 
 export type CreateTaskDto = Omit<TaskDto, 'id' | 'isOverdue'>;
