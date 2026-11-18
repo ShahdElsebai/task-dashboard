@@ -5,12 +5,12 @@ import { provideRouter } from '@angular/router';
 import { provideTranslateService } from '@ngx-translate/core';
 import { MessageService } from '@openng/optimus-ui/api';
 
-import { TaskFiltersStore } from '../../core/services/store';
+import { BoardStateService } from '../../features/dashboard/services/board-state.service';
 import { HeaderComponent, SEARCH_DEBOUNCE_MS } from './header.component';
 
 describe('HeaderComponent', () => {
   let fixture: ComponentFixture<HeaderComponent>;
-  let filters: TaskFiltersStore;
+  let board: BoardStateService;
 
   beforeEach(async () => {
     vi.useFakeTimers();
@@ -25,7 +25,7 @@ describe('HeaderComponent', () => {
       ],
     }).compileComponents();
     fixture = TestBed.createComponent(HeaderComponent);
-    filters = TestBed.inject(TaskFiltersStore);
+    board = TestBed.inject(BoardStateService);
     fixture.detectChanges();
   });
 
@@ -40,9 +40,9 @@ describe('HeaderComponent', () => {
   it('updates the search filter after the debounce, only with the last value', () => {
     type('d');
     type('design');
-    expect(filters.filters().search).toBe('');
+    expect(board.filters().search).toBe('');
     vi.advanceTimersByTime(SEARCH_DEBOUNCE_MS);
-    expect(filters.filters().search).toBe('design');
+    expect(board.filters().search).toBe('design');
   });
 
   it('emits menuToggle from the mobile menu button', () => {

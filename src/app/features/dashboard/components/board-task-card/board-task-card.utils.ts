@@ -1,7 +1,6 @@
-import { TaskStatus } from '../dto/enum.dto';
-import { TaskDto } from '../dto/task.dto';
-import { DueLabel, DueTone } from '../models/due-label.model';
-import { daysBetween, parseDateOnly } from './date.utils';
+import { TaskDto, TaskStatus } from '../../../../core/dto';
+import { daysBetween, parseDateOnly } from '../../../../core/utils';
+import { DueLabel, DueTone } from './board-task-card.model';
 
 export const DUE_SOON_DAYS: number = 2;
 

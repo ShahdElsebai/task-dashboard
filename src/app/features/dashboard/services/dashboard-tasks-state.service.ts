@@ -2,34 +2,27 @@ import { HttpResourceRef } from '@angular/common/http';
 import { Service, Signal, computed, inject } from '@angular/core';
 import { Observable, firstValueFrom, forkJoin } from 'rxjs';
 
-import { ActivityType, CreateTaskDto, TaskStatus, TaskDto, UpdateTaskDto, UserDto } from '../../dto';
-import { TaskFormValue } from '../../models';
+import { ActivityType, CreateTaskDto, TaskDto, TaskStatus, UpdateTaskDto, UserDto } from '../../../core/dto';
+import { NotificationService } from '../../../core/services/notification.service';
+import { ActivityStore, UsersStore } from '../../../core/services/store';
+import { patchById, removeById, replaceById, restoreById, tempId } from '../../../core/utils';
+import { TaskFormValue, TaskUpdate } from '../dashboard.model';
 import {
-  TaskUpdate,
   buildCreateTaskDto,
   buildUpdateTaskDto,
   byPosition,
-  patchById,
   planTaskMove,
   positionAfterLast,
-  removeById,
-  replaceById,
-  restoreById,
-  tempId,
-} from '../../utils';
-import { TasksApiService } from '../api';
-import { NotificationService } from '../notification.service';
-import { ActivityStore } from './activity.store';
-import { UsersStore } from './users.store';
+} from '../dashboard.utils';
+import { DashboardApiService } from './dashboard-api.service';
 
-// Writes are optimistic; on failure only the affected tasks roll back (errorInterceptor already toasts).
 @Service()
-export class TasksStore {
-  private readonly api: TasksApiService = inject(TasksApiService);
+export class DashboardTasksStateService {
+  private readonly api: DashboardApiService = inject(DashboardApiService);
   private readonly users: UsersStore = inject(UsersStore);
   private readonly activity: ActivityStore = inject(ActivityStore);
   private readonly notifications: NotificationService = inject(NotificationService);
-  private readonly resource: HttpResourceRef<TaskDto[]> = this.api.listResource();
+  private readonly resource: HttpResourceRef<TaskDto[]> = this.api.tasksResource();
 
   readonly tasks: Signal<TaskDto[]> = computed(() => this.resource.value());
   readonly isLoading: Signal<boolean> = computed(() => this.resource.isLoading());
@@ -59,7 +52,7 @@ export class TasksStore {
     this.resource.value.update((tasks: TaskDto[]) => [...tasks, { ...body, id }]);
 
     try {
-      const saved: TaskDto = await firstValueFrom(this.api.create(body));
+      const saved: TaskDto = await firstValueFrom(this.api.createTask(body));
       this.resource.value.update((tasks: TaskDto[]) => replaceById(tasks, id, saved));
       this.activity.log(ActivityType.Created, saved);
       this.notifications.success('notifications.taskCreated');
@@ -81,7 +74,7 @@ export class TasksStore {
 
     this.apply([{ id, changes: dto }]);
     try {
-      const saved: TaskDto = await firstValueFrom(this.api.update(id, dto));
+      const saved: TaskDto = await firstValueFrom(this.api.updateTask(id, dto));
       this.resource.value.update((tasks: TaskDto[]) => replaceById(tasks, id, saved));
       this.activity.log(activityFor(current.status, saved.status), saved);
       this.notifications.success('notifications.taskUpdated');
@@ -98,7 +91,7 @@ export class TasksStore {
 
     this.resource.value.update((tasks: TaskDto[]) => removeById(tasks, id));
     try {
-      await firstValueFrom(this.api.delete(id));
+      await firstValueFrom(this.api.deleteTask(id));
       this.activity.log(ActivityType.Deleted, current);
       this.notifications.success('notifications.taskDeleted');
       return true;
@@ -108,7 +101,6 @@ export class TasksStore {
     }
   }
 
-  // `index` is in the full column, not a filtered view (BoardStore maps it).
   async move(taskId: string, toStatus: TaskStatus, index: number): Promise<boolean> {
     const task: TaskDto | undefined = this.find(taskId);
     if (!task) return false;
@@ -122,7 +114,7 @@ export class TasksStore {
 
     try {
       await firstValueFrom(
-        forkJoin(updates.map((u: TaskUpdate): Observable<TaskDto> => this.api.update(u.id, u.changes)))
+        forkJoin(updates.map((u: TaskUpdate): Observable<TaskDto> => this.api.updateTask(u.id, u.changes)))
       );
       if (task.status !== toStatus)
         this.activity.log(activityFor(task.status, toStatus), { ...task, status: toStatus });
