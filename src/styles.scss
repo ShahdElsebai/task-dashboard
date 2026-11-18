@@ -10,6 +10,10 @@ body {
   background: var(--p-surface-50);
 }
 
+app-layout {
+  display: block;
+}
+
 app-sidebar {
   .p-menu {
     width: 100%;
