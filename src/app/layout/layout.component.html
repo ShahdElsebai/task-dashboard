@@ -5,10 +5,12 @@
   {{ 'common.skipToContent' | translate }}
 </a>
 
-<app-header (menuToggle)="menuOpen.set(true)" />
+<app-header class="sticky top-0 z-20 block" (menuToggle)="menuOpen.set(true)" />
 
-<div class="flex min-h-[calc(100vh-4rem)]">
-  <aside class="hidden w-60 shrink-0 border-e border-surface-200 bg-surface-0 lg:block">
+<div class="flex min-h-[calc(100dvh-4rem)]">
+  <aside
+    class="sticky top-16 hidden h-[calc(100dvh-4rem)] w-60 shrink-0 self-start overflow-y-auto border-e border-surface-200 bg-surface-0 lg:block"
+  >
     <app-sidebar />
   </aside>
 

@@ -1,11 +1,44 @@
-html,
-body {
+html {
   height: 100%;
 }
 
 body {
+  min-height: 100%;
   margin: 0;
   font-family: 'Inter Variable', system-ui, sans-serif;
   color: var(--p-text-color);
   background: var(--p-surface-50);
+}
+
+app-sidebar {
+  .p-menu {
+    width: 100%;
+    border: 0;
+    background: transparent;
+    font-size: 0.875rem;
+  }
+
+  .p-menu-list {
+    gap: 0.25rem;
+    padding: 0;
+  }
+
+  .p-menu-item-content,
+  .p-menu-item-link {
+    border-radius: var(--p-border-radius-md);
+  }
+
+  .p-menu-item-link {
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .p-menu-item-link-active {
+    background: var(--p-primary-color);
+
+    .p-menu-item-icon,
+    .p-menu-item-label {
+      color: var(--p-primary-contrast-color);
+    }
+  }
 }
