@@ -21,7 +21,6 @@ export class ActivityStore {
     this.resource.reload();
   }
 
-  // Non-critical feed: a failed save is ignored, no toast or rollback.
   log(type: ActivityType, task: TaskDto): void {
     const entry: CreateActivityDto = {
       type,

@@ -4,11 +4,7 @@ import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { environment } from '../../../environments/environment';
 import { AppLanguage } from '../../../environments/environment.model';
-
-export interface LanguageOption {
-  label: string;
-  dir: 'ltr' | 'rtl';
-}
+import { LanguageOption } from '../models/language.model';
 
 export const LANGUAGES: Readonly<Record<AppLanguage, LanguageOption>> = {
   en: { label: 'English', dir: 'ltr' },

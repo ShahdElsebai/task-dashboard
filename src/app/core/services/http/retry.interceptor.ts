@@ -8,7 +8,6 @@ export function isRetryable(error: unknown): boolean {
   return error instanceof HttpErrorResponse && (error.status === 0 || error.status >= 500);
 }
 
-// Only GETs are retried: repeating a POST could create duplicates.
 export const retryInterceptor: HttpInterceptorFn = (
   req: HttpRequest<unknown>,
   next: HttpHandlerFn

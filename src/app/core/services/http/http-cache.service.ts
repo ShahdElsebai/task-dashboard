@@ -38,7 +38,6 @@ export class HttpCacheService {
   }
 }
 
-/** `/api/tasks/task-1?x=1` → `/api/tasks` */
 export function collectionOf(url: string): string {
   const path: string = url.split('?')[0].replace(/\/+$/, '');
   const match: RegExpMatchArray | null = path.match(/^(.*?\/api\/[^/]+)/);

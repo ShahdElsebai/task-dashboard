@@ -23,9 +23,7 @@ export class LanguageService {
       html.dir = LANGUAGES[lang].dir;
       try {
         localStorage.setItem(STORAGE_KEY, lang);
-      } catch {
-        /* storage unavailable (private mode, SSR) */
-      }
+      } catch {}
     });
   }
 
@@ -37,9 +35,7 @@ export class LanguageService {
     try {
       const stored: string | null = localStorage.getItem(STORAGE_KEY);
       if (stored === 'en' || stored === 'ar') return stored;
-    } catch {
-      /* ignore */
-    }
+    } catch {}
     return environment.defaultLang;
   }
 }

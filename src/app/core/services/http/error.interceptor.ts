@@ -3,7 +3,8 @@ import { inject } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 
 import { NotificationService } from '../notification.service';
-import { AppError, toAppError } from './app-error';
+import { AppError } from '../../models';
+import { toAppError } from './app-error';
 import { SKIP_ERROR_TOAST } from './http-context.tokens';
 
 export const errorInterceptor: HttpInterceptorFn = (
