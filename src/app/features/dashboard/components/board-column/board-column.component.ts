@@ -24,8 +24,4 @@ export class BoardColumnComponent {
     if (event.previousContainer === event.container && event.previousIndex === event.currentIndex) return;
     this.move.emit({ taskId: event.item.data.id, toStatus: event.container.data, index: event.currentIndex });
   }
-
-  protected moveTo(task: TaskDto, status: TaskStatus): void {
-    this.move.emit({ taskId: task.id, toStatus: status, index: Number.MAX_SAFE_INTEGER });
-  }
 }

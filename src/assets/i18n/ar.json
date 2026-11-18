@@ -52,7 +52,6 @@
     "actions": "إجراءات المهمة",
     "edit": "تعديل",
     "delete": "حذف",
-    "moveTo": "نقل إلى",
     "deleteTitle": "حذف المهمة؟",
     "deleteMessage": "سيتم حذف \"{{title}}\" نهائيًا."
   },
