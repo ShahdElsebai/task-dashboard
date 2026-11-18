@@ -6,7 +6,8 @@
     "switchLanguage": "العربية",
     "retry": "Retry",
     "skipToContent": "Skip to content",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "close": "Close"
   },
   "notifications": {
     "success": "Done",
@@ -92,5 +93,34 @@
     "all": "All",
     "priority": "Priority",
     "assignee": "Assignee"
+  },
+  "taskForm": {
+    "createTitle": "New task",
+    "editTitle": "Edit task",
+    "title": "Title",
+    "titlePlaceholder": "What needs to be done?",
+    "description": "Description",
+    "status": "Status",
+    "priority": "Priority",
+    "dueDate": "Due date",
+    "assignee": "Assignee",
+    "assigneePlaceholder": "Select a person",
+    "tags": "Tags",
+    "tagLabel": "Tag {{n}}",
+    "tagPlaceholder": "e.g. Frontend",
+    "addTag": "Add tag",
+    "removeTag": "Remove tag {{n}}",
+    "save": "Save changes",
+    "create": "Create task",
+    "discardTitle": "Discard changes?",
+    "discardMessage": "You have unsaved changes. They will be lost.",
+    "discard": "Discard",
+    "keepEditing": "Keep editing",
+    "errors": {
+      "required": "This field is required.",
+      "maxLength": "Use {{max}} characters or fewer.",
+      "pastDate": "The due date can't be in the past.",
+      "duplicateTags": "Each tag can only be added once."
+    }
   }
 }

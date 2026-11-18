@@ -1,0 +1,196 @@
+<p-dialog
+  styleClass="w-[min(40rem,calc(100vw-2rem))]"
+  [ariaLabelledBy]="titleId"
+  [closable]="false"
+  [closeOnEscape]="false"
+  [draggable]="false"
+  [modal]="true"
+  [resizable]="false"
+  [visible]="open()"
+  (onShow)="focusTitle()"
+>
+  <ng-template #header>
+    <div class="flex w-full items-center justify-between gap-4">
+      <h2 class="text-lg font-semibold text-surface-900" [id]="titleId">
+        {{ (isEdit() ? 'taskForm.editTitle' : 'taskForm.createTitle') | translate }}
+      </h2>
+      <p-button
+        icon="pi pi-times"
+        severity="secondary"
+        [ariaLabel]="'common.close' | translate"
+        [rounded]="true"
+        [text]="true"
+        (onClick)="requestClose()"
+      />
+    </div>
+  </ng-template>
+
+  <form
+    class="task-form flex flex-col gap-4"
+    novalidate
+    [formGroup]="form"
+    (keydown.escape)="requestClose()"
+    (ngSubmit)="submit()"
+  >
+    <div class="flex flex-col gap-1">
+      <label class="text-sm font-medium text-surface-700" for="task-title">{{ 'taskForm.title' | translate }} *</label>
+      <input
+        id="task-title"
+        formControlName="title"
+        pInputText
+        [attr.aria-describedby]="errors().title ? 'task-title-error' : null"
+        [attr.aria-invalid]="!!errors().title"
+        [attr.maxlength]="limits['title']"
+        [placeholder]="'taskForm.titlePlaceholder' | translate"
+      />
+      @if (errors().title; as e) {
+        <small class="text-red-600" id="task-title-error">{{ e.key | translate: e.params }}</small>
+      }
+    </div>
+
+    <div class="flex flex-col gap-1">
+      <label class="text-sm font-medium text-surface-700" for="task-description">
+        {{ 'taskForm.description' | translate }}
+      </label>
+      <textarea
+        id="task-description"
+        formControlName="description"
+        pTextarea
+        rows="3"
+        [attr.aria-describedby]="errors().description ? 'task-description-error' : null"
+        [attr.aria-invalid]="!!errors().description"
+        [attr.maxlength]="limits['description']"
+      ></textarea>
+      @if (errors().description; as e) {
+        <small class="text-red-600" id="task-description-error">{{ e.key | translate: e.params }}</small>
+      }
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div class="flex flex-col gap-1">
+        <label class="text-sm font-medium text-surface-700" for="task-status">
+          {{ 'taskForm.status' | translate }}
+        </label>
+        <p-select
+          inputId="task-status"
+          formControlName="status"
+          optionLabel="label"
+          optionValue="value"
+          [options]="statusOptions()"
+        />
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label class="text-sm font-medium text-surface-700" for="task-priority">
+          {{ 'taskForm.priority' | translate }}
+        </label>
+        <p-select
+          inputId="task-priority"
+          formControlName="priority"
+          optionLabel="label"
+          optionValue="value"
+          [options]="priorityOptions()"
+        />
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label class="text-sm font-medium text-surface-700" for="task-due-date">
+          {{ 'taskForm.dueDate' | translate }} *
+        </label>
+        <input
+          id="task-due-date"
+          formControlName="dueDate"
+          pInputText
+          type="date"
+          [attr.aria-describedby]="errors().dueDate ? 'task-due-date-error' : null"
+          [attr.aria-invalid]="!!errors().dueDate"
+          [attr.data-invalid]="!!errors().dueDate"
+          [attr.min]="isEdit() ? null : today"
+          [invalid]="!!errors().dueDate"
+        />
+        @if (errors().dueDate; as e) {
+          <small class="text-red-600" id="task-due-date-error">{{ e.key | translate: e.params }}</small>
+        }
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label class="text-sm font-medium text-surface-700" for="task-assignee">
+          {{ 'taskForm.assignee' | translate }} *
+        </label>
+        <p-select
+          inputId="task-assignee"
+          formControlName="assigneeId"
+          optionLabel="name"
+          optionValue="id"
+          [options]="users()"
+          [placeholder]="'taskForm.assigneePlaceholder' | translate"
+        />
+        @if (errors().assigneeId; as e) {
+          <small class="text-red-600" id="task-assignee-error">{{ e.key | translate: e.params }}</small>
+        }
+      </div>
+    </div>
+
+    <fieldset class="flex flex-col gap-2" formArrayName="tags">
+      <legend class="mb-1 text-sm font-medium text-surface-700">
+        {{ 'taskForm.tags' | translate }}
+        <span class="font-normal text-surface-500">({{ form.controls.tags.length }}/{{ limits['tags'] }})</span>
+      </legend>
+      @for (tag of form.controls.tags.controls; track tag) {
+        <div class="flex items-start gap-2">
+          <div class="flex flex-1 flex-col gap-1">
+            <input
+              pInputText
+              [attr.aria-invalid]="!!tagError(tag)"
+              [attr.aria-label]="'taskForm.tagLabel' | translate: { n: $index + 1 }"
+              [attr.maxlength]="limits['tag']"
+              [formControlName]="$index"
+              [placeholder]="'taskForm.tagPlaceholder' | translate"
+            />
+            @if (tagError(tag); as e) {
+              <small class="text-red-600">{{ e.key | translate: e.params }}</small>
+            }
+          </div>
+          <p-button
+            icon="pi pi-trash"
+            severity="secondary"
+            [ariaLabel]="'taskForm.removeTag' | translate: { n: $index + 1 }"
+            [text]="true"
+            (onClick)="removeTag($index)"
+          />
+        </div>
+      }
+      @if (errors().tags; as e) {
+        <small class="text-red-600" role="alert">{{ e.key | translate: e.params }}</small>
+      }
+      @if (canAddTag()) {
+        <p-button
+          class="self-start"
+          icon="pi pi-plus"
+          size="small"
+          [label]="'taskForm.addTag' | translate"
+          [text]="true"
+          (onClick)="addTag()"
+        />
+      }
+    </fieldset>
+    <button class="hidden" tabindex="-1" type="submit" aria-hidden="true"></button>
+  </form>
+
+  <ng-template #footer>
+    <div class="flex justify-end gap-2">
+      <p-button
+        severity="secondary"
+        [disabled]="saving()"
+        [label]="'common.cancel' | translate"
+        [text]="true"
+        (onClick)="requestClose()"
+      />
+      <p-button
+        [label]="(isEdit() ? 'taskForm.save' : 'taskForm.create') | translate"
+        [loading]="saving()"
+        (onClick)="submit()"
+      />
+    </div>
+  </ng-template>
+</p-dialog>
