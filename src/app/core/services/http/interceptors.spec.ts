@@ -99,14 +99,13 @@ describe('HTTP interceptors', () => {
       expect(notifications.error).not.toHaveBeenCalled();
     });
 
-    it('does not retry 4xx or writes, and toasts once', () => {
+    it('does not retry 4xx or writes', () => {
       const { http, ctrl } = setup();
       http.get('tasks/missing').subscribe({ error: () => undefined });
       ctrl.expectOne('/api/tasks/missing').flush(null, { status: 404, statusText: 'Not Found' });
       http.post('tasks', {}).subscribe({ error: () => undefined });
       ctrl.expectOne('/api/tasks').flush(null, { status: 500, statusText: 'Error' });
-      expect(notifications.error).toHaveBeenNthCalledWith(1, 'errors.notFound');
-      expect(notifications.error).toHaveBeenNthCalledWith(2, 'errors.server');
+      ctrl.expectNone('/api/tasks');
     });
   });
 
@@ -118,6 +117,20 @@ describe('HTTP interceptors', () => {
       ctrl.expectOne('/api/tasks/1').flush(null, { status: 400, statusText: 'Bad' });
       expect(caught).toBeInstanceOf(HttpErrorResponse);
       expect(notifications.error).toHaveBeenCalledWith('errors.validation');
+    });
+
+    it('does not toast failed reads; the section shows <app-error-state> instead', () => {
+      const { http, ctrl } = setup();
+      http.get('users').subscribe({ error: () => undefined });
+      ctrl.expectOne('/api/users').flush(null, { status: 404, statusText: 'Not Found' });
+      expect(notifications.error).not.toHaveBeenCalled();
+    });
+
+    it('toasts failed writes, because the user needs to know their change was not saved', () => {
+      const { http, ctrl } = setup();
+      http.post('tasks', {}).subscribe({ error: () => undefined });
+      ctrl.expectOne('/api/tasks').flush(null, { status: 500, statusText: 'Error' });
+      expect(notifications.error).toHaveBeenCalledWith('errors.server');
     });
 
     it('stays quiet with SKIP_ERROR_TOAST', () => {

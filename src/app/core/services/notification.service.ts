@@ -2,11 +2,14 @@ import { Injector, Service, inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from '@openng/optimus-ui/api';
 
+export const DEDUPE_WINDOW_MS: number = 3000;
+
 @Service()
 export class NotificationService {
   private readonly messages: MessageService = inject(MessageService);
   // Resolved lazily: TranslateService loads via HttpClient → errorInterceptor → this service (NG0200).
   private readonly injector: Injector = inject(Injector);
+  private readonly lastShown: Map<string, number> = new Map<string, number>();
 
   success(detailKey: string, params?: Record<string, unknown>): void {
     this.show('success', 'notifications.success', detailKey, params);
@@ -17,6 +20,11 @@ export class NotificationService {
   }
 
   private show(severity: string, summaryKey: string, detailKey: string, params?: Record<string, unknown>): void {
+    const id: string = `${severity}:${detailKey}`;
+    const now: number = Date.now();
+    if (now - (this.lastShown.get(id) ?? -Infinity) < DEDUPE_WINDOW_MS) return;
+    this.lastShown.set(id, now);
+
     const translate: TranslateService = this.injector.get(TranslateService);
     this.messages.add({
       severity,
