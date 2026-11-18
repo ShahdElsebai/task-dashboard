@@ -1,0 +1,36 @@
+<div class="flex flex-col gap-6">
+  <app-board-filters
+    [assigneeId]="board.filters().assigneeId"
+    [priority]="board.filters().priority"
+    [status]="statusFilter()"
+    [users]="users.users()"
+    (assigneeIdChange)="board.setFilters({ assigneeId: $event })"
+    (newTask)="openTask('new')"
+    (priorityChange)="board.setFilters({ priority: $event })"
+    (statusChange)="onStatusChange($event)"
+  />
+
+  @if (tasks.error()) {
+    <app-error-state (retry)="tasks.reload()" />
+  } @else if (isFirstLoad()) {
+    <app-dashboard-skeleton variant="columns" />
+  } @else {
+    <div
+      class="grid grid-cols-1 items-start gap-4 lg:grid-cols-3"
+      cdkDropListGroup
+      [class.lg:grid-cols-1]="board.visibleColumns().length === 1"
+    >
+      @for (column of board.visibleColumns(); track column.status) {
+        <app-board-column
+          [column]="column"
+          [labels]="menuLabels()"
+          (edit)="openTask($event.id)"
+          (move)="onMove($event)"
+          (remove)="confirmDelete($event)"
+        />
+      }
+    </div>
+  }
+</div>
+
+<p-confirmdialog />

@@ -5,7 +5,8 @@
   "common": {
     "switchLanguage": "English",
     "retry": "إعادة المحاولة",
-    "skipToContent": "تخطَّ إلى المحتوى"
+    "skipToContent": "تخطَّ إلى المحتوى",
+    "cancel": "إلغاء"
   },
   "notifications": {
     "success": "تم",
@@ -28,7 +29,8 @@
       "todo": "للتنفيذ",
       "inProgress": "قيد التنفيذ",
       "done": "مكتملة"
-    }
+    },
+    "emptyColumn": "لا توجد مهام هنا"
   },
   "header": {
     "searchPlaceholder": "ابحث في المهام...",
@@ -45,7 +47,13 @@
     "settings": "الإعدادات"
   },
   "tasks": {
-    "new": "مهمة جديدة"
+    "new": "مهمة جديدة",
+    "actions": "إجراءات المهمة",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "moveTo": "نقل إلى",
+    "deleteTitle": "حذف المهمة؟",
+    "deleteMessage": "سيتم حذف \"{{title}}\" نهائيًا."
   },
   "priority": {
     "high": "عالية",
@@ -71,5 +79,18 @@
   "comingSoon": {
     "title": "قريبًا",
     "message": "هذه الصفحة قيد الإنشاء."
+  },
+  "stats": {
+    "label": "إحصائيات المهام",
+    "total": "إجمالي المهام",
+    "completed": "مكتملة",
+    "inProgress": "قيد التنفيذ",
+    "overdue": "متأخرة"
+  },
+  "filters": {
+    "status": "التصفية حسب الحالة",
+    "all": "الكل",
+    "priority": "الأولوية",
+    "assignee": "المسؤول"
   }
 }

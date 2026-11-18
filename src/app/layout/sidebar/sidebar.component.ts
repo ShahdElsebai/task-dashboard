@@ -1,5 +1,6 @@
 import { Component, Signal, computed, inject, output, OutputEmitterRef } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { Router } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { MenuItem } from '@openng/optimus-ui/api';
 import { ButtonModule } from '@openng/optimus-ui/button';
@@ -15,6 +16,7 @@ import { NavItem } from '../../core/models';
 })
 export class SidebarComponent {
   private readonly translate: TranslateService = inject(TranslateService);
+  private readonly router: Router = inject(Router);
   private readonly labels: Signal<Record<string, string>> = toSignal(
     this.translate.stream(NAV_ITEMS.map((item: NavItem) => item.labelKey)),
     { initialValue: {} }
@@ -32,6 +34,7 @@ export class SidebarComponent {
   );
 
   protected newTask(): void {
+    void this.router.navigate(['/dashboard'], { queryParams: { task: 'new' }, queryParamsHandling: 'merge' });
     this.navigate.emit();
   }
 }
