@@ -3,7 +3,7 @@ import { Service, Signal, computed, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
 import { ActivityDto, ActivityType, CreateActivityDto, TaskDto } from '../../dto';
-import { replaceById, tempId } from '../../utils';
+import { replaceById, tempId, valueOr } from '../../utils';
 import { ActivitiesApiService } from '../api';
 import { ACTIVITY_LIMIT } from '../../config/activity.config';
 
@@ -12,7 +12,7 @@ export class ActivityStore {
   private readonly api: ActivitiesApiService = inject(ActivitiesApiService);
   private readonly resource: HttpResourceRef<ActivityDto[]> = this.api.listResource();
 
-  readonly activities: Signal<ActivityDto[]> = computed(() => this.resource.value().slice(0, ACTIVITY_LIMIT));
+  readonly activities: Signal<ActivityDto[]> = computed(() => valueOr(this.resource, []).slice(0, ACTIVITY_LIMIT));
   readonly isLoading: Signal<boolean> = computed(() => this.resource.isLoading());
   readonly error: Signal<unknown> = computed(() => this.resource.error() ?? null);
 
@@ -29,9 +29,13 @@ export class ActivityStore {
       timestamp: new Date().toISOString(),
     };
     const id: string = tempId();
-    this.resource.value.update((items: ActivityDto[]) => [{ ...entry, id }, ...items]);
+    this.mutate((items: ActivityDto[]) => [{ ...entry, id }, ...items]);
     firstValueFrom(this.api.create(entry))
-      .then((saved: ActivityDto) => this.resource.value.update((items: ActivityDto[]) => replaceById(items, id, saved)))
+      .then((saved: ActivityDto) => this.mutate((items: ActivityDto[]) => replaceById(items, id, saved)))
       .catch(() => undefined);
+  }
+
+  private mutate(fn: (items: ActivityDto[]) => ActivityDto[]): void {
+    this.resource.value.set(fn(valueOr(this.resource, [])));
   }
 }

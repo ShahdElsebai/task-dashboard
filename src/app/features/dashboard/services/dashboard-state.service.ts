@@ -2,6 +2,7 @@ import { HttpResourceRef } from '@angular/common/http';
 import { Service, Signal, computed, inject } from '@angular/core';
 
 import { ChangeType, StatisticDto } from '../../../core/dto';
+import { valueOr } from '../../../core/utils';
 import { STAT_CARDS } from '../components/dashboard-stat-card/dashboard-stat-card.config';
 import { StatCardConfig, StatCardView } from '../components/dashboard-stat-card/dashboard-stat-card.model';
 import { TaskStats } from '../dashboard.model';
@@ -18,7 +19,7 @@ export class DashboardStateService {
 
   readonly statCards: Signal<StatCardView[]> = computed(() => {
     const stats: TaskStats = this.stats();
-    const meta: StatisticDto[] = this.statistics.value();
+    const meta: StatisticDto[] = valueOr(this.statistics, []);
     return STAT_CARDS.map((card: StatCardConfig) => {
       const m: StatisticDto | undefined = meta.find((s: StatisticDto) => s.id === card.id);
       return {
