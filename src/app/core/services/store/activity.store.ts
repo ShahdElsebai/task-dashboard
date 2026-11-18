@@ -5,8 +5,7 @@ import { firstValueFrom } from 'rxjs';
 import { ActivityDto, ActivityType, CreateActivityDto, TaskDto } from '../../dto';
 import { replaceById, tempId } from '../../utils';
 import { ActivitiesApiService } from '../api';
-
-export const ACTIVITY_LIMIT: number = 20;
+import { ACTIVITY_LIMIT } from '../../config/activity.config';
 
 @Service()
 export class ActivityStore {

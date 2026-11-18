@@ -1,12 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { Service } from '@angular/core';
-
-interface CacheEntry {
-  response: HttpResponse<unknown>;
-  expiresAt: number;
-}
-
-export const CACHE_TTL_MS: number = 30_000;
+import { CACHE_TTL_MS } from '../../config/http.config';
+import { CacheEntry } from '../../models/http-cache.model';
 
 @Service()
 export class HttpCacheService {

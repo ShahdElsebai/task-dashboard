@@ -3,9 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { environment } from '../../../environments/environment';
 import { AppLanguage } from '../../../environments/environment.model';
-import { LANGUAGES } from '../config/i18n.config';
-
-const STORAGE_KEY: string = 'app.lang';
+import { LANGUAGES, LANGUAGE_STORAGE_KEY } from '../config/i18n.config';
 
 @Service()
 export class LanguageService {
@@ -22,7 +20,7 @@ export class LanguageService {
       html.lang = lang;
       html.dir = LANGUAGES[lang].dir;
       try {
-        localStorage.setItem(STORAGE_KEY, lang);
+        localStorage.setItem(LANGUAGE_STORAGE_KEY, lang);
       } catch {}
     });
   }
@@ -33,7 +31,7 @@ export class LanguageService {
 
   private readStoredLang(): AppLanguage {
     try {
-      const stored: string | null = localStorage.getItem(STORAGE_KEY);
+      const stored: string | null = localStorage.getItem(LANGUAGE_STORAGE_KEY);
       if (stored === 'en' || stored === 'ar') return stored;
     } catch {}
     return environment.defaultLang;

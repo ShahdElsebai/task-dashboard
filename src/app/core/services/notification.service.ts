@@ -1,8 +1,7 @@
 import { Injector, Service, inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from '@openng/optimus-ui/api';
-
-export const DEDUPE_WINDOW_MS: number = 3000;
+import { DEDUPE_WINDOW_MS } from '../config/notification.config';
 
 @Service()
 export class NotificationService {

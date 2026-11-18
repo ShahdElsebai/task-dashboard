@@ -8,6 +8,8 @@ import {
   TaskUpdate,
   UpdateTaskContext,
 } from './dashboard.model';
+import { POSITION_GAP } from './dashboard.config';
+import { Positioned, Sortable } from './dashboard.model';
 
 export function isTaskStatus(value: unknown): value is TaskStatus {
   return (Object.values(TaskStatus) as unknown[]).includes(value);
@@ -39,11 +41,6 @@ export function matchesSearch(task: Pick<TaskDto, 'title' | 'description' | 'tag
     task.tags.some((tag: string) => tag.toLowerCase().includes(term))
   );
 }
-
-export const POSITION_GAP: number = 1000;
-
-type Sortable = Pick<TaskDto, 'id' | 'position'>;
-type Positioned = Pick<TaskDto, 'position'>;
 
 export function positionBetween(before: number | null, after: number | null): number | null {
   if (after === null) return (before ?? 0) + POSITION_GAP;

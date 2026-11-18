@@ -6,7 +6,8 @@ import { provideTranslateService } from '@ngx-translate/core';
 import { MessageService } from '@openng/optimus-ui/api';
 
 import { BoardStateService } from '../../features/dashboard/services/board-state.service';
-import { HeaderComponent, SEARCH_DEBOUNCE_MS } from './header.component';
+import { HeaderComponent } from './header.component';
+import { SEARCH_DEBOUNCE_MS } from './header.config';
 
 describe('HeaderComponent', () => {
   let fixture: ComponentFixture<HeaderComponent>;

@@ -2,12 +2,12 @@ import { Route, Routes } from '@angular/router';
 
 import { LayoutComponent } from './layout.component';
 
-type ComingSoonModule = typeof import('../features/coming-soon/coming-soon.component');
-
 const comingSoon: (titleKey: string, icon: string) => Route = (titleKey: string, icon: string): Route => ({
   data: { titleKey, icon },
   loadComponent: () =>
-    import('../features/coming-soon/coming-soon.component').then((m: ComingSoonModule) => m.ComingSoonComponent),
+    import('../features/coming-soon/coming-soon.component').then(
+      (m: typeof import('../features/coming-soon/coming-soon.component')) => m.ComingSoonComponent
+    ),
 });
 
 export const LayoutRoutes: Routes = [
