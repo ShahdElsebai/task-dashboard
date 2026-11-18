@@ -9,8 +9,7 @@ import { ConfirmDialogModule } from '@openng/optimus-ui/confirmdialog';
 import { TaskDto } from '../../../../core/dto';
 import { UsersStore } from '../../../../core/services/store';
 import { ErrorStateComponent } from '../../../../shared';
-import { BOARD_COLUMNS } from '../../dashboard.config';
-import { BoardColumnConfig, TaskFilters, TaskMoveRequest } from '../../dashboard.model';
+import { TaskFilters, TaskMoveRequest } from '../../dashboard.model';
 import { isTaskPriority, isTaskStatus } from '../../dashboard.utils';
 import { BoardStateService } from '../../services/board-state.service';
 import { DashboardTasksStateService } from '../../services/dashboard-tasks-state.service';
@@ -18,13 +17,7 @@ import { BoardColumnComponent } from '../board-column/board-column.component';
 import { BoardFiltersComponent } from '../board-filters/board-filters.component';
 import { StatusFilter } from '../board-filters/board-filters.model';
 import { DashboardSkeletonComponent } from '../dashboard-skeleton/dashboard-skeleton.component';
-
-const CARD_MENU_LABEL_KEYS: string[] = [
-  'tasks.edit',
-  'tasks.delete',
-  'tasks.moveTo',
-  ...BOARD_COLUMNS.map((c: BoardColumnConfig) => c.titleKey),
-];
+import { CARD_MENU_LABEL_KEYS } from './board.config';
 
 @Component({
   selector: 'app-board',

@@ -18,3 +18,5 @@ export function provideI18n(): Provider[] {
     lang: environment.defaultLang,
   });
 }
+
+export const LANGUAGE_STORAGE_KEY: string = 'app.lang';

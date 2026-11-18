@@ -1,7 +1,6 @@
 import { TaskPriority, TaskStatus, TaskDto, UserDto } from '../../core/dto';
 import { EMPTY_FILTERS } from './dashboard.config';
 import {
-  POSITION_GAP,
   buildCreateTaskDto,
   buildUpdateTaskDto,
   byPosition,
@@ -18,6 +17,7 @@ import {
   rebalance,
   toFullIndex,
 } from './dashboard.utils';
+import { POSITION_GAP } from './dashboard.config';
 
 describe('board utils: task rules', () => {
   describe('isTaskOverdue', () => {

@@ -55,3 +55,7 @@ export interface UpdateTaskContext {
   endPosition: (status: TaskStatus) => number;
   now?: string;
 }
+
+export type Sortable = Pick<TaskDto, 'id' | 'position'>;
+
+export type Positioned = Pick<TaskDto, 'position'>;

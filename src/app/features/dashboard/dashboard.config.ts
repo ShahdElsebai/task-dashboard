@@ -8,3 +8,7 @@ export const BOARD_COLUMNS: readonly BoardColumnConfig[] = [
 ];
 
 export const EMPTY_FILTERS: TaskFilters = { search: '', status: null, priority: null, assigneeId: null };
+
+export const POSITION_GAP: number = 1000;
+
+export const TASKS_API_PATH: string = 'tasks';

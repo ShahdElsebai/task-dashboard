@@ -1,5 +1,4 @@
-const MS_PER_DAY: number = 24 * 60 * 60 * 1000;
-
+import { MS_PER_DAY } from '../config/date.config';
 export function parseDateOnly(value: string): Date {
   const [year, month, day]: number[] = value.split('-').map(Number);
   return new Date(year, month - 1, day);
