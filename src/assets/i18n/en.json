@@ -136,5 +136,14 @@
     "statusChanged": "changed status",
     "completed": "completed",
     "deleted": "deleted"
+  },
+  "team": {
+    "title": "Team",
+    "count": "{{count}} members",
+    "open": "Open",
+    "completed": "Done",
+    "overdue": "Overdue",
+    "completion": "Completion",
+    "viewTasks": "View tasks ({{count}})"
   }
 }
