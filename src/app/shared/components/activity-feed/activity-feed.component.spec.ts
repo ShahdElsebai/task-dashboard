@@ -3,13 +3,14 @@ import { provideRouter } from '@angular/router';
 
 import { provideTranslateService } from '@ngx-translate/core';
 
-import { ActivityDto, ActivityType } from '@core/dto';
-import { TEST_USER } from '@testing';
+import { ActivityDto, ActivityType, UserDto } from '@core/dto';
 
-import { AnalyticsActivityFeedComponent } from './analytics-activity-feed.component';
+import { ActivityFeedComponent } from './activity-feed.component';
 
-describe('AnalyticsActivityFeedComponent', () => {
-  let fixture: ComponentFixture<AnalyticsActivityFeedComponent>;
+const TEST_USER: UserDto = { id: 'user-001', name: 'Sarah Smith', avatar: 'SS', email: 'sarah@company.com' };
+
+describe('ActivityFeedComponent', () => {
+  let fixture: ComponentFixture<ActivityFeedComponent>;
   const activity = (id: string, type: ActivityType, title: string): ActivityDto => ({
     id,
     type,
@@ -21,10 +22,10 @@ describe('AnalyticsActivityFeedComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AnalyticsActivityFeedComponent],
+      imports: [ActivityFeedComponent],
       providers: [provideRouter([]), provideTranslateService()],
     }).compileComponents();
-    fixture = TestBed.createComponent(AnalyticsActivityFeedComponent);
+    fixture = TestBed.createComponent(ActivityFeedComponent);
   });
 
   it('links each task to its edit dialog, except deleted ones', async () => {
