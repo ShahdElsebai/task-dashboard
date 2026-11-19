@@ -1,6 +1,6 @@
 import { ActivityType } from '@core/dto';
 
-import { ActivityMeta } from './analytics-activity-feed.model';
+import { ActivityMeta } from './activity-feed.model';
 
 export const BADGE_BASE_CLASS: string = 'flex size-8 shrink-0 items-center justify-center rounded-full text-sm';
 

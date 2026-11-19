@@ -80,7 +80,7 @@ describe('AnalyticsComponent', () => {
 
   it('shows the 10 most recent activities', async () => {
     const host: HTMLElement = await render();
-    expect(host.querySelectorAll('app-analytics-activity-feed li')).toHaveLength(10);
+    expect(host.querySelectorAll('app-activity-feed li')).toHaveLength(10);
   });
 
   it('shows the error state when tasks fail to load', async () => {

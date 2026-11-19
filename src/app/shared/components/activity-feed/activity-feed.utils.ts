@@ -1,7 +1,7 @@
 import { ActivityDto, ActivityType } from '@core/dto';
 
-import { ACTIVITY_META, BADGE_BASE_CLASS, TIME_UNITS } from './analytics-activity-feed.config';
-import { ActivityItem } from './analytics-activity-feed.model';
+import { ACTIVITY_META, BADGE_BASE_CLASS, TIME_UNITS } from './activity-feed.config';
+import { ActivityItem } from './activity-feed.model';
 
 export function timeAgo(timestamp: string, now: Date, locale: string): string {
   const format: Intl.RelativeTimeFormat = new Intl.RelativeTimeFormat(locale, { numeric: 'auto' });

@@ -20,6 +20,6 @@
   } @else if (activityLoading()) {
     <p-skeleton borderRadius="0.75rem" height="20rem" />
   } @else {
-    <app-analytics-activity-feed [activities]="state.activities()" />
+    <app-activity-feed [activities]="state.activities()" />
   }
 </div>

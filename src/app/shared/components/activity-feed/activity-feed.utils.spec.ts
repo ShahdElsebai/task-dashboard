@@ -1,7 +1,8 @@
-import { ActivityDto, ActivityType } from '@core/dto';
-import { TEST_USER } from '@testing';
+import { ActivityDto, ActivityType, UserDto } from '@core/dto';
 
-import { timeAgo, toActivityItem } from './analytics-activity-feed.utils';
+import { timeAgo, toActivityItem } from './activity-feed.utils';
+
+const TEST_USER: UserDto = { id: 'user-001', name: 'Sarah Smith', avatar: 'SS', email: 'sarah@company.com' };
 
 describe('activity feed utils', () => {
   const now: Date = new Date('2026-11-18T12:00:00Z');

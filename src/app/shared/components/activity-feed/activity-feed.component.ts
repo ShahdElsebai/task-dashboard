@@ -8,16 +8,16 @@ import { interval, map } from 'rxjs';
 import { ActivityDto } from '@core/dto';
 import { LanguageService } from '@core/services/language.service';
 
-import { ACTIVITY_FEED_REFRESH_MS } from './analytics-activity-feed.config';
-import { ActivityItem } from './analytics-activity-feed.model';
-import { toActivityItem } from './analytics-activity-feed.utils';
+import { ACTIVITY_FEED_REFRESH_MS } from './activity-feed.config';
+import { ActivityItem } from './activity-feed.model';
+import { toActivityItem } from './activity-feed.utils';
 
 @Component({
-  selector: 'app-analytics-activity-feed',
+  selector: 'app-activity-feed',
   imports: [RouterLink, TranslatePipe],
-  templateUrl: './analytics-activity-feed.component.html',
+  templateUrl: './activity-feed.component.html',
 })
-export class AnalyticsActivityFeedComponent {
+export class ActivityFeedComponent {
   private readonly language: LanguageService = inject(LanguageService);
 
   readonly activities: InputSignal<ActivityDto[]> = input.required<ActivityDto[]>();
