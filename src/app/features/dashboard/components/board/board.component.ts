@@ -1,5 +1,5 @@
 import { CdkDropListGroup } from '@angular/cdk/drag-drop';
-import { Component, computed, effect, inject, OnInit, Signal, signal, untracked, WritableSignal } from '@angular/core';
+import { Component, computed, effect, inject, Signal, signal, untracked, WritableSignal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
@@ -13,7 +13,7 @@ import { UsersStore } from '@core/services/store';
 import { ErrorStateComponent } from '@shared';
 
 import { TaskFilters, TaskFormValue, TaskMoveRequest } from '../../dashboard.model';
-import { isTaskPriority, isTaskStatus } from '../../dashboard.utils';
+import { filtersFromQueryParams, filtersToQueryParams, sameFilters } from '../../dashboard.utils';
 import { BoardStateService } from '../../services/board-state.service';
 import { DashboardTasksStateService } from '../../services/dashboard-tasks-state.service';
 import { BoardColumnComponent } from '../board-column/board-column.component';
@@ -37,7 +37,7 @@ import { CARD_MENU_LABEL_KEYS } from './board.config';
   providers: [ConfirmationService],
   templateUrl: './board.component.html',
 })
-export class BoardComponent implements OnInit {
+export class BoardComponent {
   private readonly router: Router = inject(Router);
   private readonly route: ActivatedRoute = inject(ActivatedRoute);
   private readonly translate: TranslateService = inject(TranslateService);
@@ -81,27 +81,32 @@ export class BoardComponent implements OnInit {
       });
     });
 
-    effect(() => {
-      const f: TaskFilters = this.board.filters();
-      untracked(() =>
-        this.router.navigate([], {
-          queryParams: { status: f.status, priority: f.priority, assignee: f.assigneeId, q: f.search || null },
-          queryParamsHandling: 'merge',
-          replaceUrl: true,
-        })
-      );
-    });
+    this.syncFiltersWithUrl();
   }
 
-  ngOnInit(): void {
-    const params: ParamMap = this.route.snapshot.queryParamMap;
-    const status: string | null = params.get('status');
-    const priority: string | null = params.get('priority');
-    this.board.setFilters({
-      status: isTaskStatus(status) ? status : null,
-      priority: isTaskPriority(priority) ? priority : null,
-      assigneeId: params.get('assignee'),
-      search: params.get('q') ?? '',
+  private syncFiltersWithUrl(): void {
+    let lastUrl: TaskFilters | null = null;
+    let lastState: TaskFilters | null = null;
+    effect(() => {
+      const fromUrl: TaskFilters = filtersFromQueryParams(this.queryParams());
+      const state: TaskFilters = this.board.filters();
+      untracked(() => {
+        if (!lastUrl || !sameFilters(fromUrl, lastUrl)) {
+          lastUrl = fromUrl;
+          lastState = fromUrl;
+          if (!sameFilters(fromUrl, state)) this.board.setFilters(fromUrl);
+          return;
+        }
+        if (lastState && sameFilters(state, lastState)) return;
+        lastState = state;
+        if (!sameFilters(state, fromUrl)) {
+          void this.router.navigate([], {
+            queryParams: filtersToQueryParams(state),
+            queryParamsHandling: 'merge',
+            replaceUrl: true,
+          });
+        }
+      });
     });
   }
 

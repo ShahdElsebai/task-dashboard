@@ -1,16 +1,19 @@
+import { ParamMap, Params } from '@angular/router';
+
 import { CreateTaskDto, Identifiable, TaskDto, TaskPriority, TaskStatus, UpdateTaskDto, UserDto } from '@core/dto';
 import { isTaskOverdue } from '@core/utils';
 
 import { POSITION_GAP } from './dashboard.config';
 import {
+  Positioned,
   PositionUpdate,
+  Sortable,
   TaskFilters,
   TaskFormValue,
   TaskStats,
   TaskUpdate,
   UpdateTaskContext,
 } from './dashboard.model';
-import { Positioned, Sortable } from './dashboard.model';
 
 export function isTaskStatus(value: unknown): value is TaskStatus {
   return (Object.values(TaskStatus) as unknown[]).includes(value);
@@ -187,4 +190,28 @@ export function computeStats(tasks: readonly TaskDto[], today: Date = new Date()
     if (isTaskOverdue(task, today)) stats.overdue++;
   }
   return stats;
+}
+
+export function filtersFromQueryParams(params: ParamMap): TaskFilters {
+  const status: string | null = params.get('status');
+  const priority: string | null = params.get('priority');
+  return {
+    status: isTaskStatus(status) ? status : null,
+    priority: isTaskPriority(priority) ? priority : null,
+    assigneeId: params.get('assignee'),
+    search: params.get('q') ?? '',
+  };
+}
+
+export function filtersToQueryParams(filters: TaskFilters): Params {
+  return {
+    status: filters.status,
+    priority: filters.priority,
+    assignee: filters.assigneeId,
+    q: filters.search || null,
+  };
+}
+
+export function sameFilters(a: TaskFilters, b: TaskFilters): boolean {
+  return a.status === b.status && a.priority === b.priority && a.assigneeId === b.assigneeId && a.search === b.search;
 }

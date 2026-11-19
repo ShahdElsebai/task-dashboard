@@ -99,6 +99,16 @@ describe('DashboardComponent', () => {
     expect(TestBed.inject(Router).url).toContain('status=done');
   });
 
+  it('follows the URL when it changes later (Back/Forward, sidebar link, Team page link)', async () => {
+    await open('/dashboard?priority=high&assignee=user-001');
+    await harness.navigateByUrl('/dashboard');
+    expect(TestBed.inject(BoardStateService).filters()).toMatchObject({ priority: null, assigneeId: null });
+
+    await harness.navigateByUrl('/dashboard?status=done');
+    expect(TestBed.inject(BoardStateService).filters().status).toBe(TaskStatus.Done);
+    expect(TestBed.inject(Router).url).toBe('/dashboard?status=done');
+  });
+
   it('asks for confirmation before deleting', async () => {
     const host: HTMLElement = await open('/dashboard');
     const board: DebugElement = harness.routeDebugElement!.query(By.directive(BoardComponent));
