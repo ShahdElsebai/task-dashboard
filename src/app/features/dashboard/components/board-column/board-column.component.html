@@ -23,7 +23,6 @@
           [labels]="labels()"
           [task]="task"
           (edit)="edit.emit($event)"
-          (moveTo)="moveTo(task, $event)"
           (remove)="remove.emit($event)"
         />
         <div *cdkDragPlaceholder class="min-h-24 rounded-lg border-2 border-dashed border-primary bg-primary-50"></div>

@@ -16,8 +16,8 @@
       [ariaLabel]="'tasks.actions' | translate"
       (onClick)="menu.toggle($event)"
     />
-    <p-menu #menu appendTo="body" [model]="menuItems()" [popup]="true" />
   </div>
+  <p-menu #menu appendTo="body" [model]="menuItems()" [popup]="true" />
 
   <div>
     <h4 class="m-0 text-base font-semibold text-text-default">{{ task().title }}</h4>

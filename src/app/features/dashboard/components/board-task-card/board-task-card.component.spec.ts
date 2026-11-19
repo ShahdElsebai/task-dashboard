@@ -53,16 +53,9 @@ describe('BoardTaskCardComponent', () => {
     expect(host.querySelector('article')?.classList).not.toContain('!bg-status-overdue-bg');
   });
 
-  it('menu is flat and offers moves only to the other columns', async () => {
+  it('menu offers edit and delete only', async () => {
     await render(makeTask('a', TaskStatus.Todo, 1000));
-    expect(menu().map((i: MenuItem) => i.label ?? '---')).toEqual([
-      'Edit',
-      'Move to In Progress',
-      'Move to Done',
-      '---',
-      'Delete',
-    ]);
-    expect(menu().some((i: MenuItem) => i.items)).toBe(false);
+    expect(menu().map((i: MenuItem) => i.label ?? '---')).toEqual(['Edit', '---', 'Delete']);
   });
 
   it('menu commands emit the matching outputs', async () => {
@@ -70,10 +63,9 @@ describe('BoardTaskCardComponent', () => {
     await render(task);
     const events: string[] = [];
     fixture.componentInstance.edit.subscribe(() => events.push('edit'));
-    fixture.componentInstance.moveTo.subscribe((s: TaskStatus) => events.push(`move:${s}`));
     fixture.componentInstance.remove.subscribe(() => events.push('remove'));
 
     menu().forEach((item: MenuItem) => item.command?.({ item } as never));
-    expect(events).toEqual(['edit', 'move:in_progress', 'move:done', 'remove']);
+    expect(events).toEqual(['edit', 'remove']);
   });
 });

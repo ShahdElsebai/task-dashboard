@@ -52,7 +52,6 @@
     "actions": "Task actions",
     "edit": "Edit",
     "delete": "Delete",
-    "moveTo": "Move to",
     "deleteTitle": "Delete task?",
     "deleteMessage": "\"{{title}}\" will be permanently deleted."
   },
