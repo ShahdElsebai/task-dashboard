@@ -24,6 +24,13 @@ export const CHART_OPTIONS: Readonly<{ doughnut: ChartOptions<'doughnut'>; bar: 
   bar: BAR,
 };
 
+/**
+ * Chart.js options for a chart kind.
+ *
+ * @param kind Doughnut or bar.
+ * @param rtl True in Arabic: bars then run right-to-left, with the value axis on the right.
+ * @return The options to pass to p-chart.
+ */
 export function chartOptions(kind: 'doughnut' | 'bar', rtl: boolean): ChartKindOptions {
   if (kind === 'doughnut' || !rtl) return CHART_OPTIONS[kind];
   return {

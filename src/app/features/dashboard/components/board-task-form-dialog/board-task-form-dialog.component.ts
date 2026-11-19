@@ -47,6 +47,12 @@ import {
   uniqueTags,
 } from './board-task-form-dialog.utils';
 
+/**
+ * Create/edit task form in a dialog (presentational).
+ *
+ * The parent decides when it is open (from `?task=`) and does the saving; this component owns
+ * the form, its validation and the "discard unsaved changes?" check.
+ */
 @Component({
   selector: 'app-board-task-form-dialog',
   imports: [
@@ -93,6 +99,10 @@ export class BoardTaskFormDialogComponent {
     tags: this.fb.array<FormControl<string>>([], uniqueTags),
   });
 
+  /**
+   * Counts form events so the computeds below re-run, since reactive forms aren't signals.
+   * A counter rather than a timestamp: two events in the same millisecond must still notify.
+   */
   private readonly formTick: Signal<number> = toSignal(this.form.events.pipe(scan((n: number) => n + 1, 0)), {
     initialValue: 0,
   });
@@ -101,6 +111,10 @@ export class BoardTaskFormDialogComponent {
   private readonly taskId: Signal<string | null> = computed(() => this.task()?.id ?? null);
   protected readonly today: string = toDateInput(new Date());
 
+  /**
+   * The message to show under each field, once the user has touched it (or tried to submit).
+   * The due date also shows the group-level "past date" error from `dueDateValidator`.
+   */
   protected readonly errors: Signal<Record<FieldName, FieldError | null>> = computed(() => {
     this.formTick();
     const c: TaskFormGroup['controls'] = this.form.controls;
@@ -139,6 +153,8 @@ export class BoardTaskFormDialogComponent {
   });
 
   constructor() {
+    // Refill the form when the dialog opens or switches task. Tracks the id, not the task
+    // object, so a background refresh of the same task doesn't wipe what the user is typing.
     effect(() => {
       if (!this.open()) return;
       this.taskId();
@@ -163,6 +179,7 @@ export class BoardTaskFormDialogComponent {
     return control.invalid && (control.touched || control.dirty) ? fieldError(control.errors) : null;
   }
 
+  /** Emits the value when valid; otherwise reveals every error and focuses the first invalid field. */
   protected submit(): void {
     if (this.saving()) return;
     if (this.form.invalid) {
@@ -173,6 +190,7 @@ export class BoardTaskFormDialogComponent {
     this.save.emit(this.form.getRawValue());
   }
 
+  /** Cancel, Escape and ×: closes straight away, or asks first if there are unsaved changes. */
   protected requestClose(): void {
     if (this.saving()) return;
     if (!this.form.dirty) {
@@ -191,10 +209,12 @@ export class BoardTaskFormDialogComponent {
     });
   }
 
+  /** p-dialog would focus its first button (×) on open; the title field is more useful. */
   protected focusTitle(): void {
     this.host.nativeElement.ownerDocument.getElementById('task-title')?.focus();
   }
 
+  /** Makes the browser ask before leaving the page while the form has unsaved changes. */
   protected onBeforeUnload(event: BeforeUnloadEvent): void {
     if (this.open() && this.form.dirty) event.preventDefault();
   }

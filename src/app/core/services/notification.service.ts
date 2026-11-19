@@ -5,6 +5,16 @@ import { MessageService } from '@openng/optimus-ui/api';
 
 import { DEDUPE_WINDOW_MS } from '../config/notification.config';
 
+/**
+ * Shows translated toasts.
+ *
+ * Two details matter here:
+ * - `TranslateService` is resolved lazily through the `Injector`. Injecting it directly creates
+ *   a cycle (TranslateService → HttpClient → errorInterceptor → NotificationService →
+ *   TranslateService), which fails with NG0200 and leaves the UI untranslated.
+ * - The same message is shown once per `DEDUPE_WINDOW_MS`, so one failure seen by several
+ *   requests (e.g. the API is down) doesn't stack identical toasts.
+ */
 @Service()
 export class NotificationService {
   private readonly messages: MessageService = inject(MessageService);

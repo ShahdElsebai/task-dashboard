@@ -34,6 +34,12 @@ export class HttpCacheService {
   }
 }
 
+/**
+ * The collection a URL belongs to, used to invalidate related cache entries.
+ *
+ * @param url A request URL, e.g. `/api/tasks/task-1?x=1`.
+ * @return The collection URL, e.g. `/api/tasks`.
+ */
 export function collectionOf(url: string): string {
   const path: string = url.split('?')[0].replace(/\/+$/, '');
   const match: RegExpMatchArray | null = path.match(/^(.*?\/api\/[^/]+)/);

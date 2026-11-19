@@ -18,6 +18,12 @@ export class DashboardStateService {
 
   readonly stats: Signal<TaskStats> = computed(() => computeStats(this.tasks.tasks()));
 
+  /**
+   * The four cards: live numbers computed from the tasks, plus icon and change text from /statistics.
+   *
+   * The API's own numbers are ignored because they go stale as soon as a task changes.
+   * When the tasks failed to load the values are null, so the cards show a dash rather than 0.
+   */
   readonly statCards: Signal<StatCardView[]> = computed(() => {
     const stats: TaskStats = this.stats();
     const failed: boolean = !!this.tasks.error();

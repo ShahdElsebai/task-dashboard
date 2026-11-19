@@ -28,10 +28,19 @@ export class BoardColumnComponent {
     this.move.emit({ taskId: event.item.data.id, toStatus: event.container.data, index: event.currentIndex });
   }
 
+  /** Keyboard alternative to dragging into another column: the task goes to the bottom of it. */
   protected moveTo(task: TaskDto, status: TaskStatus): void {
     this.move.emit({ taskId: task.id, toStatus: status, index: Number.MAX_SAFE_INTEGER });
   }
 
+  /**
+   * Keyboard alternative to dragging within the column.
+   *
+   * @param task The card being moved.
+   * @param index Its index among the visible cards.
+   * @param step -1 for up, 1 for down. The index is among the cards without the moved one,
+   *     so `index + step` lands exactly one place away.
+   */
   protected reorder(task: TaskDto, index: number, step: ReorderStep): void {
     this.move.emit({ taskId: task.id, toStatus: this.column().status, index: index + step });
   }

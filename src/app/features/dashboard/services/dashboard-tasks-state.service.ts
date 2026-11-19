@@ -18,6 +18,13 @@ import {
 } from '../dashboard.utils';
 import { DashboardApiService } from './dashboard-api.service';
 
+/**
+ * The board's task data and every write to it.
+ *
+ * All writes are optimistic: the change shows immediately, then is confirmed by the server or
+ * rolled back if the request fails (the error interceptor shows the toast). Methods resolve to
+ * true on success so callers, like the task dialog, can decide whether to close.
+ */
 @Service()
 export class DashboardTasksStateService {
   private readonly api: DashboardApiService = inject(DashboardApiService);
@@ -38,10 +45,17 @@ export class DashboardTasksStateService {
     return this.tasks().find((task: TaskDto) => task.id === id);
   }
 
+  /** A column's tasks in board order. */
   column(status: TaskStatus): TaskDto[] {
     return byPosition(this.tasks().filter((task: TaskDto) => task.status === status));
   }
 
+  /**
+   * Adds a task at the bottom of its column.
+   *
+   * @param form The form value.
+   * @return True once saved; false if the assignee is unknown or the request failed.
+   */
   async create(form: TaskFormValue): Promise<boolean> {
     const assignee: UserDto | undefined = this.users.find(form.assigneeId);
     if (!assignee) {
@@ -65,6 +79,13 @@ export class DashboardTasksStateService {
     }
   }
 
+  /**
+   * Saves edited fields. A status change also moves the task to the bottom of its new column.
+   *
+   * @param id The task to update.
+   * @param changes The edited fields.
+   * @return True once saved; false if the task is gone or the request failed.
+   */
   async update(id: string, changes: Partial<TaskFormValue>): Promise<boolean> {
     const current: TaskDto | undefined = this.find(id);
     if (!current) return false;
@@ -103,6 +124,18 @@ export class DashboardTasksStateService {
     }
   }
 
+  /**
+   * Moves a task to a column and position (drag and drop, or the card menu).
+   *
+   * Usually one PATCH for the moved task. If the column has to be rebalanced, the neighbours
+   * whose position changes are patched too, in parallel, and all of them are rolled back if
+   * any request fails.
+   *
+   * @param taskId The task to move.
+   * @param toStatus The target column.
+   * @param index The index in the full target column, counted without the moved task.
+   * @return True once saved (or when nothing had to change).
+   */
   async move(taskId: string, toStatus: TaskStatus, index: number): Promise<boolean> {
     const task: TaskDto | undefined = this.find(taskId);
     if (!task) return false;
@@ -127,6 +160,7 @@ export class DashboardTasksStateService {
     }
   }
 
+  /** Like `resource.value.update`, but also works after a failed load (where reading the value throws). */
   private mutate(fn: (tasks: TaskDto[]) => TaskDto[]): void {
     this.resource.value.set(fn(this.tasks()));
   }
@@ -143,6 +177,7 @@ export class DashboardTasksStateService {
   }
 }
 
+/** Which activity to log for a status change. */
 function activityFor(from: TaskStatus, to: TaskStatus): ActivityType {
   if (from === to) return ActivityType.Updated;
   return to === TaskStatus.Done ? ActivityType.Completed : ActivityType.StatusChanged;

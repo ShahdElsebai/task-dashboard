@@ -9,6 +9,10 @@ import { TeamMember } from '../team.model';
 import { toTeamMembers } from '../team.utils';
 import { TeamApiService } from './team-api.service';
 
+/**
+ * Provided by the page component, not in root: each visit creates a new resource, so the page
+ * reflects changes made on the board since the last visit (the HTTP cache is cleared by writes).
+ */
 @Service({ autoProvided: false })
 export class TeamStateService {
   private readonly users: UsersStore = inject(UsersStore);

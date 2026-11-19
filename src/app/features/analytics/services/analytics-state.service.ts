@@ -10,6 +10,10 @@ import { ChartSlice } from '../analytics.model';
 import { prioritySlices, statusSlices } from '../analytics.utils';
 import { AnalyticsApiService } from './analytics-api.service';
 
+/**
+ * Provided by the page component, not in root: each visit creates a new resource, so the page
+ * reflects changes made on the board since the last visit (the HTTP cache is cleared by writes).
+ */
 @Service({ autoProvided: false })
 export class AnalyticsStateService {
   private readonly activity: ActivityStore = inject(ActivityStore);

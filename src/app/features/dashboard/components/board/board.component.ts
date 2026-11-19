@@ -84,6 +84,15 @@ export class BoardComponent {
     this.syncFiltersWithUrl();
   }
 
+  /**
+   * Keeps the filters and the URL in step, in both directions.
+   *
+   * Whichever side changed since the last run wins: a new URL (deep link, Back/Forward,
+   * a link from the Team page, the sidebar's plain /dashboard) updates the filters, and a
+   * filter change updates the URL. Tracking the last value of each side is what stops the
+   * two from overwriting each other, and makes the URL win on first load.
+   * Filter changes replace the history entry so filtering doesn't flood the Back button.
+   */
   private syncFiltersWithUrl(): void {
     let lastUrl: TaskFilters | null = null;
     let lastState: TaskFilters | null = null;
