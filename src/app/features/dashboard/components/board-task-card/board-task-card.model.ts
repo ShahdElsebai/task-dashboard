@@ -6,3 +6,5 @@ export interface DueLabel {
   tone: DueTone;
   icon: string;
 }
+
+export type ReorderStep = -1 | 1;

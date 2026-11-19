@@ -1,5 +1,7 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 import { provideTranslateService } from '@ngx-translate/core';
 
@@ -7,6 +9,7 @@ import { TaskDto, TaskStatus } from '@core/dto';
 import { makeTask } from '@testing';
 
 import { BoardColumn, TaskMoveRequest } from '../../dashboard.model';
+import { BoardTaskCardComponent } from '../board-task-card/board-task-card.component';
 import { BoardColumnComponent } from './board-column.component';
 
 describe('BoardColumnComponent', () => {
@@ -71,5 +74,45 @@ describe('BoardColumnComponent', () => {
       currentIndex: 1,
     });
     expect(moves).toEqual([]);
+  });
+
+  describe('keyboard moves from the card menu', () => {
+    const tasks: TaskDto[] = [
+      makeTask('a', TaskStatus.Todo, 1),
+      makeTask('b', TaskStatus.Todo, 2),
+      makeTask('c', TaskStatus.Todo, 3),
+    ];
+
+    beforeEach(async () => {
+      fixture.componentRef.setInput('column', column(tasks));
+      await fixture.whenStable();
+    });
+
+    const cards = (): BoardTaskCardComponent[] =>
+      fixture.debugElement
+        .queryAll(By.directive(BoardTaskCardComponent))
+        .map((d: DebugElement) => d.componentInstance as BoardTaskCardComponent);
+
+    it('lets every card but the first move up and every card but the last move down', () => {
+      expect(cards().map((c: BoardTaskCardComponent) => [c.canMoveUp(), c.canMoveDown()])).toEqual([
+        [false, true],
+        [true, true],
+        [true, false],
+      ]);
+    });
+
+    it('turns move up/down into an index one place away in the same column', () => {
+      cards()[1].reorder.emit(-1);
+      cards()[1].reorder.emit(1);
+      expect(moves).toEqual([
+        { taskId: 'b', toStatus: TaskStatus.Todo, index: 0 },
+        { taskId: 'b', toStatus: TaskStatus.Todo, index: 2 },
+      ]);
+    });
+
+    it('sends "move to" to the bottom of the other column', () => {
+      cards()[0].moveTo.emit(TaskStatus.Done);
+      expect(moves).toEqual([{ taskId: 'a', toStatus: TaskStatus.Done, index: Number.MAX_SAFE_INTEGER }]);
+    });
   });
 });

@@ -18,6 +18,8 @@ describe('BoardTaskCardComponent', () => {
       'tasks.edit': 'Edit',
       'tasks.delete': 'Delete',
       'tasks.moveTo': 'Move to',
+      'tasks.moveUp': 'Move up',
+      'tasks.moveDown': 'Move down',
       'board.columns.todo': 'To Do',
       'board.columns.inProgress': 'In Progress',
       'board.columns.done': 'Done',
@@ -55,9 +57,25 @@ describe('BoardTaskCardComponent', () => {
     expect(host.querySelector('article')?.classList).not.toContain('!bg-status-overdue-bg');
   });
 
-  it('menu offers edit and delete only', async () => {
+  it('menu is flat and offers moves only to the other columns', async () => {
     await render(makeTask('a', TaskStatus.Todo, 1000));
-    expect(menu().map((i: MenuItem) => i.label ?? '---')).toEqual(['Edit', '---', 'Delete']);
+    expect(menu().map((i: MenuItem) => i.label ?? '---')).toEqual([
+      'Edit',
+      'Move to In Progress',
+      'Move to Done',
+      '---',
+      'Delete',
+    ]);
+    expect(menu().some((i: MenuItem) => i.items)).toBe(false);
+  });
+
+  it('offers move up/down only where the card can move', async () => {
+    fixture.componentRef.setInput('canMoveUp', true);
+    fixture.componentRef.setInput('canMoveDown', false);
+    await render(makeTask('a', TaskStatus.Todo, 1000));
+    const labels: (string | undefined)[] = menu().map((i: MenuItem) => i.label);
+    expect(labels).toContain('Move up');
+    expect(labels).not.toContain('Move down');
   });
 
   it('menu commands emit the matching outputs', async () => {
@@ -66,8 +84,12 @@ describe('BoardTaskCardComponent', () => {
     const events: string[] = [];
     fixture.componentInstance.edit.subscribe(() => events.push('edit'));
     fixture.componentInstance.remove.subscribe(() => events.push('remove'));
+    fixture.componentInstance.moveTo.subscribe((s: TaskStatus) => events.push(`move:${s}`));
+    fixture.componentInstance.reorder.subscribe((step: number) => events.push(`reorder:${step}`));
+    fixture.componentRef.setInput('canMoveDown', true);
+    await fixture.whenStable();
 
     menu().forEach((item: MenuItem) => item.command?.({ item } as never));
-    expect(events).toEqual(['edit', 'remove']);
+    expect(events).toEqual(['edit', 'reorder:1', 'move:in_progress', 'move:done', 'remove']);
   });
 });
