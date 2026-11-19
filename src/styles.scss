@@ -84,34 +84,10 @@ p-dialog:empty {
   transition: transform 220ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-::view-transition-old(root) {
-  animation: 120ms ease-out both page-out;
-}
-
-::view-transition-new(root) {
-  animation: 200ms ease-out both page-in;
-}
-
-@keyframes page-out {
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes page-in {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
-  *::after,
-  ::view-transition-group(*),
-  ::view-transition-old(*),
-  ::view-transition-new(*) {
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

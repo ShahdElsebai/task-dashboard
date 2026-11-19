@@ -303,7 +303,7 @@ The mobile profile emulates a slow phone (4× CPU slowdown, slow 4G). Almost all
   - Charts carry a text summary.
   - Team progress uses a native `<progress>`.
 - **Colour:** text colours meet 4.5:1, including priority and status colours on their tinted backgrounds.
-- **Motion:** card, drag and page transitions are disabled under `prefers-reduced-motion`.
+- **Motion:** card and drag animations are disabled under `prefers-reduced-motion`.
 
 **Internationalisation.** ngx-translate, with English and Arabic in `src/assets/i18n/`.
 
