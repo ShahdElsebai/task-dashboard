@@ -76,7 +76,7 @@ docker compose up --build    # http://localhost:8080
 - Doughnut chart by status and bar chart by priority (Chart.js). Each has an HTML legend with counts and percentages, which also serves as the text alternative.
 - Recent activity feed with relative times ("3 hours ago" / "منذ 3 ساعات"). Entries link to the task.
 
-> The Figma dashboard has room only for the stat cards and the board, so the charts and the activity feed (listed under _Dashboard features_ in the requirements) are on their own page, linked from the sidebar.
+> The dashboard has room only for the stat cards and the board, so the charts and the activity feed (listed under _Dashboard features_ in the requirements) are on their own page, linked from the sidebar.
 
 **Team** (`/team`): each user's open, completed and overdue tasks and completion rate. _View tasks_ opens the board filtered by that person.
 
@@ -320,6 +320,6 @@ The mobile profile emulates a slow phone (4× CPU slowdown, slow 4G). Almost all
 - **Mock backend.** json-server has no authentication, validation or concurrency control. Two people moving tasks at the same moment could both win; a real API would need versioning (ETags) or server-side ordering.
 - **Mobile performance (65–70).** The next step would be server-side rendering or prerendering of the shell, so the first paint doesn't wait for the main bundle. Another option is trimming Optimus's runtime styling.
 - **Static columns.** User-defined columns would need a `columns` resource and a `columnId` on tasks.
-- **Placeholder pages.** _Tasks_, _Calendar_ and _Settings_ are placeholders ("Coming soon"). They are in the design's navigation but outside the assignment's scope.
+- **Placeholder pages.** _Tasks_, _Calendar_ and _Settings_ are placeholders ("Coming soon").
 - **No end-to-end suite in CI.** Browser flows were verified manually with Playwright during development. Adding them as a Playwright suite in CI would protect the drag-and-drop and URL flows.
 - **Other ideas:** dark mode (the theme already has a dark-mode selector), real-time updates (WebSocket or SSE), and undo for delete.
