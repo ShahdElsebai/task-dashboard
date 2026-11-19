@@ -2,7 +2,7 @@
 
 A task management dashboard built with **Angular 22** and **Optimus UI**: a kanban board with drag and drop, task filtering and search, a create/edit form, analytics charts, an activity feed and a team overview, in **English and Arabic (RTL)**.
 
-![CI](https://github.com/OWNER/REPO/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/ShahdElsebai/task-dashboard/actions/workflows/ci.yml/badge.svg)
 
 |                          |                                                                      |
 | ------------------------ | -------------------------------------------------------------------- |
@@ -55,7 +55,7 @@ docker compose up --build    # http://localhost:8080
 
 ## Features
 
-**Dashboard** (`/dashboard`, as in the Figma design)
+**Dashboard** (`/dashboard`)
 
 - Stat cards: total, completed, in progress and overdue. They are computed live from the tasks, so they update immediately after every change.
 - Kanban board with three fixed columns (To Do, In Progress, Done):
