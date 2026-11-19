@@ -121,5 +121,20 @@
       "pastDate": "The due date can't be in the past.",
       "duplicateTags": "Each tag can only be added once."
     }
+  },
+  "analytics": {
+    "title": "Analytics",
+    "byStatus": "Tasks by status",
+    "byPriority": "Tasks by priority",
+    "noData": "No tasks yet"
+  },
+  "activity": {
+    "title": "Recent activity",
+    "empty": "No activity yet",
+    "created": "created",
+    "updated": "updated",
+    "statusChanged": "changed status",
+    "completed": "completed",
+    "deleted": "deleted"
   }
 }

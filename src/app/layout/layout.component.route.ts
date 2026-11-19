@@ -25,7 +25,13 @@ export const LayoutRoutes: Routes = [
       },
       { path: 'tasks', ...comingSoon('nav.tasks', 'pi pi-check-square') },
       { path: 'calendar', ...comingSoon('nav.calendar', 'pi pi-calendar') },
-      { path: 'analytics', ...comingSoon('nav.analytics', 'pi pi-chart-bar') },
+      {
+        path: 'analytics',
+        loadComponent: () =>
+          import('../features/analytics/analytics.component').then(
+            (m: typeof import('../features/analytics/analytics.component')) => m.AnalyticsComponent
+          ),
+      },
       { path: 'team', ...comingSoon('nav.team', 'pi pi-users') },
       { path: 'settings', ...comingSoon('nav.settings', 'pi pi-cog') },
       {

@@ -1,0 +1,34 @@
+<section class="rounded-xl bg-surface-0 p-5 shadow-sm" aria-labelledby="activity-title">
+  <h2 class="mb-4 text-base font-semibold text-surface-900" id="activity-title">{{ 'activity.title' | translate }}</h2>
+
+  @if (items().length) {
+    <ol class="flex flex-col">
+      @for (item of items(); track item.id) {
+        <li class="flex items-start gap-3 border-b border-surface-100 py-3 last:border-b-0">
+          <span aria-hidden="true" [class]="item.badgeClass">
+            <i [class]="item.icon"></i>
+          </span>
+          <div class="min-w-0 flex-1">
+            @if (item.taskId; as id) {
+              <a
+                class="block truncate font-medium text-surface-900 hover:text-primary hover:underline"
+                routerLink="/dashboard"
+                [queryParams]="{ task: id }"
+              >
+                {{ item.taskTitle }}
+              </a>
+            } @else {
+              <span class="block truncate font-medium text-surface-500 line-through">{{ item.taskTitle }}</span>
+            }
+            <p class="text-sm text-surface-600">
+              {{ item.userName }} · {{ item.labelKey | translate }} ·
+              <time class="text-surface-500" [attr.datetime]="item.timestamp">{{ item.timeAgo }}</time>
+            </p>
+          </div>
+        </li>
+      }
+    </ol>
+  } @else {
+    <p class="py-8 text-center text-sm text-surface-500">{{ 'activity.empty' | translate }}</p>
+  }
+</section>
