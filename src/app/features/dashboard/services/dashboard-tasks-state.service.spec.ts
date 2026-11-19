@@ -1,3 +1,4 @@
+import { ApplicationRef } from '@angular/core';
 import { HttpTestingController, TestRequest } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
@@ -46,6 +47,23 @@ describe('DashboardTasksStateService', () => {
   afterEach(() => {
     http.verify();
     vi.clearAllMocks();
+  });
+
+  describe('when loading fails', () => {
+    beforeEach(async () => {
+      store = TestBed.inject(DashboardTasksStateService);
+      TestBed.tick();
+      http.expectOne('/api/tasks').flush('down', { status: 500, statusText: 'Error' });
+      http.match('/api/users').forEach((r: TestRequest) => r.flush([]));
+      http.match('/api/activities?_sort=-timestamp').forEach((r: TestRequest) => r.flush([]));
+      await TestBed.inject(ApplicationRef).whenStable();
+    });
+
+    it('exposes the error and an empty list instead of throwing', () => {
+      expect(store.error()).toBeTruthy();
+      expect(store.tasks()).toEqual([]);
+      expect(store.column(TaskStatus.Todo)).toEqual([]);
+    });
   });
 
   describe('create', () => {

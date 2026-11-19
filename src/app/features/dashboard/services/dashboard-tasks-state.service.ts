@@ -5,7 +5,7 @@ import { Observable, firstValueFrom, forkJoin } from 'rxjs';
 import { ActivityType, CreateTaskDto, TaskDto, TaskStatus, UpdateTaskDto, UserDto } from '../../../core/dto';
 import { NotificationService } from '../../../core/services/notification.service';
 import { ActivityStore, UsersStore } from '../../../core/services/store';
-import { patchById, removeById, replaceById, restoreById, tempId } from '../../../core/utils';
+import { patchById, removeById, replaceById, restoreById, tempId, valueOr } from '../../../core/utils';
 import { TaskFormValue, TaskUpdate } from '../dashboard.model';
 import {
   buildCreateTaskDto,
@@ -24,7 +24,7 @@ export class DashboardTasksStateService {
   private readonly notifications: NotificationService = inject(NotificationService);
   private readonly resource: HttpResourceRef<TaskDto[]> = this.api.tasksResource();
 
-  readonly tasks: Signal<TaskDto[]> = computed(() => this.resource.value());
+  readonly tasks: Signal<TaskDto[]> = computed(() => valueOr(this.resource, []));
   readonly isLoading: Signal<boolean> = computed(() => this.resource.isLoading());
   readonly error: Signal<unknown> = computed(() => this.resource.error() ?? null);
 
@@ -49,16 +49,16 @@ export class DashboardTasksStateService {
 
     const body: CreateTaskDto = buildCreateTaskDto(form, assignee, positionAfterLast(this.column(form.status)));
     const id: string = tempId();
-    this.resource.value.update((tasks: TaskDto[]) => [...tasks, { ...body, id }]);
+    this.mutate((tasks: TaskDto[]) => [...tasks, { ...body, id }]);
 
     try {
       const saved: TaskDto = await firstValueFrom(this.api.createTask(body));
-      this.resource.value.update((tasks: TaskDto[]) => replaceById(tasks, id, saved));
+      this.mutate((tasks: TaskDto[]) => replaceById(tasks, id, saved));
       this.activity.log(ActivityType.Created, saved);
       this.notifications.success('notifications.taskCreated');
       return true;
     } catch {
-      this.resource.value.update((tasks: TaskDto[]) => removeById(tasks, id));
+      this.mutate((tasks: TaskDto[]) => removeById(tasks, id));
       return false;
     }
   }
@@ -75,7 +75,7 @@ export class DashboardTasksStateService {
     this.apply([{ id, changes: dto }]);
     try {
       const saved: TaskDto = await firstValueFrom(this.api.updateTask(id, dto));
-      this.resource.value.update((tasks: TaskDto[]) => replaceById(tasks, id, saved));
+      this.mutate((tasks: TaskDto[]) => replaceById(tasks, id, saved));
       this.activity.log(activityFor(current.status, saved.status), saved);
       this.notifications.success('notifications.taskUpdated');
       return true;
@@ -89,7 +89,7 @@ export class DashboardTasksStateService {
     const current: TaskDto | undefined = this.find(id);
     if (!current) return false;
 
-    this.resource.value.update((tasks: TaskDto[]) => removeById(tasks, id));
+    this.mutate((tasks: TaskDto[]) => removeById(tasks, id));
     try {
       await firstValueFrom(this.api.deleteTask(id));
       this.activity.log(ActivityType.Deleted, current);
@@ -125,15 +125,19 @@ export class DashboardTasksStateService {
     }
   }
 
+  private mutate(fn: (tasks: TaskDto[]) => TaskDto[]): void {
+    this.resource.value.set(fn(this.tasks()));
+  }
+
   private apply(updates: readonly TaskUpdate[]): void {
     const changes: Map<string, Partial<TaskDto>> = new Map<string, Partial<TaskDto>>(
       updates.map((u: TaskUpdate) => [u.id, u.changes])
     );
-    this.resource.value.update((tasks: TaskDto[]) => patchById<TaskDto>(tasks, changes));
+    this.mutate((tasks: TaskDto[]) => patchById<TaskDto>(tasks, changes));
   }
 
   private rollback(previous: readonly TaskDto[]): void {
-    this.resource.value.update((tasks: TaskDto[]) => restoreById(tasks, previous));
+    this.mutate((tasks: TaskDto[]) => restoreById(tasks, previous));
   }
 }
 
