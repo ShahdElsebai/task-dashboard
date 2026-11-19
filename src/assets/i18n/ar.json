@@ -136,5 +136,14 @@
     "statusChanged": "تغيير الحالة",
     "completed": "إكمال",
     "deleted": "حذف"
+  },
+  "team": {
+    "title": "الفريق",
+    "count": "عدد الأعضاء: {{count}}",
+    "open": "مفتوحة",
+    "completed": "مكتملة",
+    "overdue": "متأخرة",
+    "completion": "نسبة الإنجاز",
+    "viewTasks": "عرض المهام ({{count}})"
   }
 }

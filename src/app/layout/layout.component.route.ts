@@ -32,7 +32,13 @@ export const LayoutRoutes: Routes = [
             (m: typeof import('../features/analytics/analytics.component')) => m.AnalyticsComponent
           ),
       },
-      { path: 'team', ...comingSoon('nav.team', 'pi pi-users') },
+      {
+        path: 'team',
+        loadComponent: () =>
+          import('../features/team/team.component').then(
+            (m: typeof import('../features/team/team.component')) => m.TeamComponent
+          ),
+      },
       { path: 'settings', ...comingSoon('nav.settings', 'pi pi-cog') },
       {
         path: '**',

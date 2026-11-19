@@ -1,0 +1,24 @@
+<div class="flex flex-col gap-6">
+  <div>
+    <h1 class="text-2xl font-semibold text-surface-900">{{ 'team.title' | translate }}</h1>
+    @if (state.members().length) {
+      <p class="text-sm text-surface-500">{{ 'team.count' | translate: { count: state.members().length } }}</p>
+    }
+  </div>
+
+  @if (state.error()) {
+    <app-error-state (retry)="state.reload()" />
+  } @else if (state.isLoading()) {
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4" aria-hidden="true">
+      @for (slot of placeholders; track slot) {
+        <p-skeleton borderRadius="0.75rem" height="15rem" />
+      }
+    </div>
+  } @else {
+    <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      @for (member of state.members(); track member.user.id) {
+        <li><app-team-member-card [member]="member" /></li>
+      }
+    </ul>
+  }
+</div>
