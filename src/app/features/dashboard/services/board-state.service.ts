@@ -1,26 +1,33 @@
 import { computed, inject, Service, Signal, signal, WritableSignal } from '@angular/core';
 
 import { TaskDto, TaskStatus } from '@core/dto';
+import { SearchService } from '@core/services/search.service';
 
-import { BOARD_COLUMNS, EMPTY_FILTERS } from '../dashboard.config';
-import { BoardColumn, BoardColumnConfig, TaskFilters } from '../dashboard.model';
+import { BOARD_COLUMNS, EMPTY_FIELD_FILTERS } from '../dashboard.config';
+import { BoardColumn, BoardColumnConfig, TaskFieldFilters, TaskFilters } from '../dashboard.model';
 import { byPosition, filterTasks, hasActiveFilters, toFullIndex } from '../dashboard.utils';
 import { DashboardTasksStateService } from './dashboard-tasks-state.service';
 
 @Service()
 export class BoardStateService {
   private readonly tasks: DashboardTasksStateService = inject(DashboardTasksStateService);
+  private readonly search: SearchService = inject(SearchService);
+  private readonly fieldFilters: WritableSignal<TaskFieldFilters> = signal<TaskFieldFilters>(EMPTY_FIELD_FILTERS);
 
-  readonly filters: WritableSignal<TaskFilters> = signal<TaskFilters>(EMPTY_FILTERS);
+  readonly filters: Signal<TaskFilters> = computed(() => ({ ...this.fieldFilters(), search: this.search.query() }));
   readonly isFiltered: Signal<boolean> = computed(() => hasActiveFilters(this.filters()));
   readonly filteredTasks: Signal<TaskDto[]> = computed(() => filterTasks(this.tasks.tasks(), this.filters()));
 
   setFilters(changes: Partial<TaskFilters>): void {
-    this.filters.update((current: TaskFilters) => ({ ...current, ...changes }));
+    const { search, ...fields }: Partial<TaskFilters> = changes;
+    if (search !== undefined) this.search.set(search);
+    if (Object.keys(fields).length)
+      this.fieldFilters.update((current: TaskFieldFilters) => ({ ...current, ...fields }));
   }
 
   resetFilters(): void {
-    this.filters.set(EMPTY_FILTERS);
+    this.fieldFilters.set(EMPTY_FIELD_FILTERS);
+    this.search.set('');
   }
 
   readonly columns: Signal<BoardColumn[]> = computed(() => {

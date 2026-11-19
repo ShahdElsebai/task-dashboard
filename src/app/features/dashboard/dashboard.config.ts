@@ -1,6 +1,6 @@
 import { TaskStatus } from '@core/dto';
 
-import { BoardColumnConfig, TaskFilters } from './dashboard.model';
+import { BoardColumnConfig, TaskFieldFilters, TaskFilters } from './dashboard.model';
 
 export const BOARD_COLUMNS: readonly BoardColumnConfig[] = [
   { status: TaskStatus.Todo, titleKey: 'board.columns.todo' },
@@ -8,7 +8,9 @@ export const BOARD_COLUMNS: readonly BoardColumnConfig[] = [
   { status: TaskStatus.Done, titleKey: 'board.columns.done' },
 ];
 
-export const EMPTY_FILTERS: TaskFilters = { search: '', status: null, priority: null, assigneeId: null };
+export const EMPTY_FIELD_FILTERS: TaskFieldFilters = { status: null, priority: null, assigneeId: null };
+
+export const EMPTY_FILTERS: TaskFilters = { ...EMPTY_FIELD_FILTERS, search: '' };
 
 export const POSITION_GAP: number = 1000;
 
