@@ -9,13 +9,13 @@ import { provideTranslateService } from '@ngx-translate/core';
 import { ConfirmationService, MessageService } from '@openng/optimus-ui/api';
 
 import { TaskDto, TaskPriority, TaskStatus } from '@core/dto';
+import { makeTask, NotificationsMock, storeTestProviders, TEST_USER } from '@testing';
 
 import { BoardComponent } from './components/board/board.component';
 import { BoardTaskFormDialogComponent } from './components/board-task-form-dialog/board-task-form-dialog.component';
 import { DashboardComponent } from './dashboard.component';
 import { TaskFormValue } from './dashboard.model';
 import { BoardStateService } from './services/board-state.service';
-import { makeTask, NotificationsMock, storeTestProviders, TEST_USER } from './services/dashboard.test-helpers';
 import { DashboardTasksStateService } from './services/dashboard-tasks-state.service';
 
 const TASKS: TaskDto[] = [

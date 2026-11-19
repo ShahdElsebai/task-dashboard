@@ -4,8 +4,8 @@ import { provideTranslateService } from '@ngx-translate/core';
 import { MenuItem } from '@openng/optimus-ui/api';
 
 import { TaskDto, TaskStatus } from '@core/dto';
+import { makeTask } from '@testing';
 
-import { makeTask } from '../../services/dashboard.test-helpers';
 import { BoardTaskCardComponent } from './board-task-card.component';
 
 describe('BoardTaskCardComponent', () => {

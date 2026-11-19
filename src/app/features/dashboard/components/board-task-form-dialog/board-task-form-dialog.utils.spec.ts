@@ -1,8 +1,8 @@
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
 import { TaskPriority, TaskStatus } from '@core/dto';
+import { makeTask } from '@testing';
 
-import { makeTask } from '../../services/dashboard.test-helpers';
 import {
   dueDateValidator,
   fieldError,

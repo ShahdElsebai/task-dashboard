@@ -1,5 +1,5 @@
 import { TaskPriority, TaskStatus } from '@core/dto';
-import { makeTask } from '@features/dashboard/services/dashboard.test-helpers';
+import { makeTask } from '@testing';
 
 import { ChartSlice } from './analytics.model';
 import { percentOf, prioritySlices, statusSlices } from './analytics.utils';

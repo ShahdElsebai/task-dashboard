@@ -1,5 +1,5 @@
 import { ActivityDto, ActivityType } from '@core/dto';
-import { TEST_USER } from '@features/dashboard/services/dashboard.test-helpers';
+import { TEST_USER } from '@testing';
 
 import { timeAgo, toActivityItem } from './analytics-activity-feed.utils';
 

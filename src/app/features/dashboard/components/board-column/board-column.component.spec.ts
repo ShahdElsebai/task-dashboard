@@ -4,9 +4,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideTranslateService } from '@ngx-translate/core';
 
 import { TaskDto, TaskStatus } from '@core/dto';
+import { makeTask } from '@testing';
 
 import { BoardColumn, TaskMoveRequest } from '../../dashboard.model';
-import { makeTask } from '../../services/dashboard.test-helpers';
 import { BoardColumnComponent } from './board-column.component';
 
 describe('BoardColumnComponent', () => {
