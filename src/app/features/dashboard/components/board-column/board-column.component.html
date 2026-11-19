@@ -18,7 +18,7 @@
     (cdkDropListDropped)="onDrop($event)"
   >
     @for (task of column().tasks; track task.id) {
-      <li cdkDrag [cdkDragData]="task">
+      <li animate.enter="task-enter" animate.leave="task-leave" cdkDrag [cdkDragData]="task">
         <app-board-task-card
           [canMoveDown]="!$last"
           [canMoveUp]="!$first"

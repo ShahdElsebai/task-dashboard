@@ -11,4 +11,5 @@ export class EmptyStateComponent {
   readonly icon: InputSignal<string> = input<string>('pi pi-inbox');
   readonly titleKey: InputSignal<string> = input.required<string>();
   readonly messageKey: InputSignal<string | undefined> = input<string>();
+  readonly pageTitle: InputSignal<boolean> = input<boolean>(false);
 }

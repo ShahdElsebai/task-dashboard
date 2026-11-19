@@ -1,6 +1,9 @@
 import { DOCUMENT, effect, inject, Service, signal, WritableSignal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { TranslateService } from '@ngx-translate/core';
+import { Translation } from '@openng/optimus-ui/api';
+import { Optimus } from '@openng/optimus-ui/config';
 
 import { environment } from '@env/environment';
 import { AppLanguage } from '@env/environment.model';
@@ -11,6 +14,7 @@ import { LANGUAGE_STORAGE_KEY, LANGUAGES } from '../config/i18n.config';
 export class LanguageService {
   private readonly translate: TranslateService = inject(TranslateService);
   private readonly document: Document = inject(DOCUMENT);
+  private readonly optimus: Optimus = inject(Optimus);
 
   readonly current: WritableSignal<AppLanguage> = signal<AppLanguage>(this.readStoredLang());
 
@@ -25,6 +29,11 @@ export class LanguageService {
         localStorage.setItem(LANGUAGE_STORAGE_KEY, lang);
       } catch {}
     });
+
+    this.translate
+      .stream('optimus')
+      .pipe(takeUntilDestroyed())
+      .subscribe((translation: Translation) => this.optimus.setTranslation(translation));
   }
 
   toggle(): void {

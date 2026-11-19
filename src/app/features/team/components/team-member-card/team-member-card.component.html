@@ -8,7 +8,8 @@
     <div class="min-w-0">
       <h2 class="truncate font-semibold text-surface-900" [id]="'member-' + m.user.id">{{ m.user.name }}</h2>
       <a
-        class="block truncate text-sm text-surface-500 hover:text-primary hover:underline"
+        class="block truncate text-sm text-surface-500 hover:text-primary hover:underline rtl:text-right"
+        dir="ltr"
         [href]="'mailto:' + m.user.email"
       >
         {{ m.user.email }}
@@ -42,12 +43,12 @@
       <span>{{ 'team.completion' | translate }}</span>
       <span>{{ m.completionRate }}%</span>
     </div>
-    <p-progressbar
-      styleClass="h-2"
-      [ariaLabel]="('team.completion' | translate) + ' ' + m.user.name"
-      [showValue]="false"
+    <progress
+      class="h-2 w-full overflow-hidden rounded-full [&::-moz-progress-bar]:bg-primary [&::-webkit-progress-bar]:bg-surface-200 [&::-webkit-progress-value]:bg-primary"
+      max="100"
+      [attr.aria-label]="('team.completion' | translate) + ' ' + m.user.name"
       [value]="m.completionRate"
-    />
+    ></progress>
   </div>
 
   <a

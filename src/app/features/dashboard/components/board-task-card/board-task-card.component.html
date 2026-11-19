@@ -20,7 +20,7 @@
   <p-menu #menu appendTo="body" [model]="menuItems()" [popup]="true" />
 
   <div>
-    <h4 class="m-0 text-base font-semibold text-text-default">{{ task().title }}</h4>
+    <h3 class="m-0 text-base font-semibold text-text-default">{{ task().title }}</h3>
     @if (task().description) {
       <p class="m-0 mt-1 line-clamp-2 text-sm text-text-secondary">{{ task().description }}</p>
     }

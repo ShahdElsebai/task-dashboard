@@ -21,18 +21,19 @@
    */
 
   /* Priority badges */
-  --color-priority-high: #d32f2f;
+  /* Text colours are dark enough for WCAG AA (4.5:1) on white and on their own *-bg. */
+  --color-priority-high: #c62828;
   --color-priority-high-bg: #ffebee;
-  --color-priority-medium: #ef6c00;
+  --color-priority-medium: #c2410c;
   --color-priority-medium-bg: #fff3e0;
-  --color-priority-low: #558b2f;
+  --color-priority-low: #33691e;
   --color-priority-low-bg: #fff8e1;
 
   /* Column / card status (card hover outline and glow) */
   --color-status-todo: #1976d2;
   --color-status-progress: #f57c00;
-  --color-status-done: #43a047;
-  --color-status-overdue: #d32f2f;
+  --color-status-done: #2e7d32;
+  --color-status-overdue: #c62828;
   --color-status-overdue-bg: #ffebee;
 
   /* Stat card trends ("+12 this week", "+3 today") */
