@@ -1,4 +1,6 @@
-<header class="flex h-16 items-center gap-4 border-b border-surface-200 bg-surface-0 px-4 shadow-sm lg:px-6">
+<header
+  class="flex h-16 items-center gap-2 border-b border-surface-200 bg-surface-0 px-3 shadow-sm sm:gap-4 sm:px-4 lg:px-6"
+>
   <p-button
     class="lg:hidden"
     icon="pi pi-bars"
@@ -8,14 +10,18 @@
     (onClick)="menuToggle.emit()"
   />
 
-  <a class="flex items-center gap-2 text-primary no-underline" routerLink="/dashboard">
+  <a
+    class="flex shrink-0 items-center gap-2 text-primary no-underline"
+    routerLink="/dashboard"
+    [attr.aria-label]="'app.title' | translate"
+  >
     <span class="flex size-8 items-center justify-center rounded-md bg-primary text-primary-contrast">
       <i class="pi pi-check-square" aria-hidden="true"></i>
     </span>
-    <span class="hidden text-xl font-semibold sm:inline">{{ 'app.title' | translate }}</span>
+    <span class="hidden whitespace-nowrap text-xl font-semibold md:inline">{{ 'app.title' | translate }}</span>
   </a>
 
-  <div class="mx-auto w-full max-w-md">
+  <div class="mx-auto min-w-0 max-w-md flex-1">
     <p-iconfield>
       <p-inputicon class="pi pi-search" />
       <input
@@ -31,15 +37,18 @@
     </p-iconfield>
   </div>
 
-  <div class="flex items-center gap-1">
+  <div class="flex shrink-0 items-center gap-1">
     <p-button
+      class="[&_.p-button-label]:hidden sm:[&_.p-button-label]:inline"
       icon="pi pi-globe"
       severity="secondary"
-      [text]="true"
+      [ariaLabel]="'common.switchLanguage' | translate"
       [label]="'common.switchLanguage' | translate"
+      [text]="true"
       (onClick)="language.toggle()"
     />
     <p-button
+      class="hidden sm:inline-flex"
       icon="pi pi-bell"
       severity="secondary"
       [text]="true"

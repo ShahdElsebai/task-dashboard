@@ -51,7 +51,7 @@ export class BoardTaskCardComponent {
     const moves: MenuItem[] = BOARD_COLUMNS.filter((c: BoardColumnConfig) => c.status !== this.task().status).map(
       (c: BoardColumnConfig) => ({
         label: `${t['tasks.moveTo']} ${t[c.titleKey]}`,
-        icon: 'pi pi-arrow-right',
+        icon: 'pi pi-arrow-right rtl:-scale-x-100',
         command: () => this.moveTo.emit(c.status),
       })
     );

@@ -1,8 +1,56 @@
 import { definePreset } from '@openng/optimus-ui-themes';
-import Aura from '@openng/optimus-ui-themes/aura';
+import avatar from '@openng/optimus-ui-themes/aura/avatar';
+import base from '@openng/optimus-ui-themes/aura/base';
+import button from '@openng/optimus-ui-themes/aura/button';
+import confirmdialog from '@openng/optimus-ui-themes/aura/confirmdialog';
+import auraCss from '@openng/optimus-ui-themes/aura/css';
+import dialog from '@openng/optimus-ui-themes/aura/dialog';
+import drawer from '@openng/optimus-ui-themes/aura/drawer';
+import iconfield from '@openng/optimus-ui-themes/aura/iconfield';
+import inputtext from '@openng/optimus-ui-themes/aura/inputtext';
+import menu from '@openng/optimus-ui-themes/aura/menu';
+import ripple from '@openng/optimus-ui-themes/aura/ripple';
+import select from '@openng/optimus-ui-themes/aura/select';
+import selectbutton from '@openng/optimus-ui-themes/aura/selectbutton';
+import skeleton from '@openng/optimus-ui-themes/aura/skeleton';
+import textarea from '@openng/optimus-ui-themes/aura/textarea';
+import toast from '@openng/optimus-ui-themes/aura/toast';
+import togglebutton from '@openng/optimus-ui-themes/aura/togglebutton';
 import { Preset } from '@openng/optimus-ui-themes/types';
 
-export const AppThemePreset: Preset = definePreset(Aura, {
+/**
+ * Aura with only the components this app uses.
+ *
+ * The full Aura preset bundles design tokens for ~80 components (datatable, galleria, treetable …)
+ * into the initial chunk, about 130 kB. Listing the used ones keeps the same look for a fraction
+ * of the size. A component added later needs its tokens added here, or it renders unstyled.
+ * `togglebutton` is listed because `selectbutton` is built from it.
+ */
+const AURA_CSS: string = String(auraCss);
+
+const SlimAura: Preset = {
+  ...base,
+  components: {
+    avatar,
+    button,
+    confirmdialog,
+    dialog,
+    drawer,
+    iconfield,
+    inputtext,
+    menu,
+    ripple,
+    select,
+    selectbutton,
+    skeleton,
+    textarea,
+    toast,
+    togglebutton,
+  },
+  css: AURA_CSS,
+};
+
+export const AppThemePreset: Preset = definePreset(SlimAura, {
   primitive: {
     brand: {
       50: '#e3f2fd',
@@ -24,15 +72,16 @@ export const AppThemePreset: Preset = definePreset(Aura, {
       200: '#eeeeee',
       300: '#e0e0e0',
       400: '#bdbdbd',
-      500: '#9e9e9e',
-      600: '#757575',
-      700: '#616161',
+      500: '#6b6b6b',
+      600: '#5f5f5f',
+      700: '#4a4a4a',
       800: '#424242',
       900: '#212121',
       950: '#121212',
     },
   },
   semantic: {
+    focusRing: { width: '2px', style: 'solid', color: '{primary.color}', offset: '2px' },
     primary: {
       50: '{brand.50}',
       100: '{brand.100}',

@@ -153,5 +153,17 @@
     "overdue": "Overdue",
     "completion": "Completion",
     "viewTasks": "View tasks ({{count}})"
+  },
+  "optimus": {
+    "emptyMessage": "No results found",
+    "emptyFilterMessage": "No results found",
+    "aria": {
+      "close": "Close",
+      "previous": "Previous",
+      "next": "Next",
+      "navigation": "Navigation",
+      "selectAll": "Select all",
+      "unselectAll": "Unselect all"
+    }
   }
 }

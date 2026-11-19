@@ -153,5 +153,17 @@
     "overdue": "متأخرة",
     "completion": "نسبة الإنجاز",
     "viewTasks": "عرض المهام ({{count}})"
+  },
+  "optimus": {
+    "emptyMessage": "لا توجد نتائج",
+    "emptyFilterMessage": "لا توجد نتائج",
+    "aria": {
+      "close": "إغلاق",
+      "previous": "السابق",
+      "next": "التالي",
+      "navigation": "التنقل",
+      "selectAll": "تحديد الكل",
+      "unselectAll": "إلغاء تحديد الكل"
+    }
   }
 }

@@ -40,7 +40,7 @@ describe('BoardTaskCardComponent', () => {
 
   it('renders title, description, tags and assignee', async () => {
     await render(makeTask('a', TaskStatus.Todo, 1000, { description: 'Details', tags: ['UI', 'Design'] }));
-    expect(host.querySelector('h4')?.textContent).toBe('Task a');
+    expect(host.querySelector('h3')?.textContent).toBe('Task a');
     expect(host.textContent).toContain('Details');
     expect(host.textContent).toContain('UI');
     expect(host.textContent).toContain('@John');

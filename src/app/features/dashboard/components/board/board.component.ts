@@ -3,7 +3,7 @@ import { Component, computed, effect, inject, Signal, signal, untracked, Writabl
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
-import { TranslateService } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ConfirmationService } from '@openng/optimus-ui/api';
 import { ConfirmDialogModule } from '@openng/optimus-ui/confirmdialog';
 
@@ -27,6 +27,7 @@ import { CARD_MENU_LABEL_KEYS } from './board.config';
   selector: 'app-board',
   imports: [
     CdkDropListGroup,
+    TranslatePipe,
     ConfirmDialogModule,
     ErrorStateComponent,
     DashboardSkeletonComponent,

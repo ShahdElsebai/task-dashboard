@@ -16,9 +16,9 @@
     <app-dashboard-skeleton variant="columns" />
   } @else {
     <div
-      class="grid grid-cols-1 items-start gap-4 lg:grid-cols-3"
+      class="grid grid-cols-1 items-start gap-4 md:grid-cols-3"
       cdkDropListGroup
-      [class.lg:grid-cols-1]="board.visibleColumns().length === 1"
+      [class.md:grid-cols-1]="board.visibleColumns().length === 1"
     >
       @for (column of board.visibleColumns(); track column.status) {
         <app-board-column
@@ -42,4 +42,4 @@
   (save)="saveTask($event)"
 />
 
-<p-confirmdialog />
+<p-confirmdialog [closeAriaLabel]="'common.close' | translate" />

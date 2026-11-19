@@ -1,5 +1,6 @@
 <div class="flex flex-wrap items-center gap-3 rounded-xl bg-surface-0 p-4 shadow-sm">
   <p-selectbutton
+    class="max-w-full overflow-x-auto [&_.p-togglebutton]:whitespace-nowrap"
     optionLabel="label"
     optionValue="value"
     [allowEmpty]="false"
@@ -9,8 +10,9 @@
     (ngModelChange)="status.set($event)"
   />
 
-  <div class="ms-auto flex flex-wrap items-center gap-3">
+  <div class="grid w-full grid-cols-2 items-center gap-3 sm:ms-auto sm:flex sm:w-auto">
     <p-select
+      class="min-w-0"
       optionLabel="label"
       optionValue="value"
       [ariaLabel]="'filters.priority' | translate"
@@ -21,6 +23,7 @@
       (ngModelChange)="priority.set($event ?? null)"
     />
     <p-select
+      class="min-w-0"
       optionLabel="name"
       optionValue="id"
       [ariaLabel]="'filters.assignee' | translate"
@@ -30,6 +33,12 @@
       [showClear]="true"
       (ngModelChange)="assigneeId.set($event ?? null)"
     />
-    <p-button icon="pi pi-plus" [label]="'tasks.new' | translate" (onClick)="newTask.emit()" />
+    <p-button
+      class="col-span-2"
+      icon="pi pi-plus"
+      styleClass="w-full sm:w-auto"
+      [label]="'tasks.new' | translate"
+      (onClick)="newTask.emit()"
+    />
   </div>
 </div>
