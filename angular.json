@@ -68,6 +68,18 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "demo": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.production.ts"
+                },
+                {
+                  "replace": "src/app/core/services/http/mock-backend/mock-backend.providers.ts",
+                  "with": "src/app/core/services/http/mock-backend/mock-backend.providers.demo.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"

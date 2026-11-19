@@ -13,6 +13,7 @@ import {
   cacheInterceptor,
   errorInterceptor,
   loadingInterceptor,
+  MOCK_BACKEND_INTERCEPTORS,
   retryInterceptor,
 } from '@core/services/http';
 
@@ -29,7 +30,14 @@ export const appConfig: ApplicationConfig = {
       withInMemoryScrolling({ scrollPositionRestoration: 'top' })
     ),
     provideHttpClient(
-      withInterceptors([apiUrlInterceptor, loadingInterceptor, errorInterceptor, cacheInterceptor, retryInterceptor])
+      withInterceptors([
+        apiUrlInterceptor,
+        loadingInterceptor,
+        errorInterceptor,
+        cacheInterceptor,
+        retryInterceptor,
+        ...MOCK_BACKEND_INTERCEPTORS,
+      ])
     ),
     MessageService,
     provideI18n(),
