@@ -53,7 +53,10 @@
     "edit": "تعديل",
     "delete": "حذف",
     "deleteTitle": "حذف المهمة؟",
-    "deleteMessage": "سيتم حذف \"{{title}}\" نهائيًا."
+    "deleteMessage": "سيتم حذف \"{{title}}\" نهائيًا.",
+    "moveTo": "نقل إلى",
+    "moveUp": "نقل لأعلى",
+    "moveDown": "نقل لأسفل"
   },
   "priority": {
     "high": "عالية",

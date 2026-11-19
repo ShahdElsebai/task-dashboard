@@ -20,10 +20,14 @@
     @for (task of column().tasks; track task.id) {
       <li cdkDrag [cdkDragData]="task">
         <app-board-task-card
+          [canMoveDown]="!$last"
+          [canMoveUp]="!$first"
           [labels]="labels()"
           [task]="task"
           (edit)="edit.emit($event)"
+          (moveTo)="moveTo(task, $event)"
           (remove)="remove.emit($event)"
+          (reorder)="reorder(task, $index, $event)"
         />
         <div *cdkDragPlaceholder class="min-h-24 rounded-lg border-2 border-dashed border-primary bg-primary-50"></div>
       </li>

@@ -53,7 +53,10 @@
     "edit": "Edit",
     "delete": "Delete",
     "deleteTitle": "Delete task?",
-    "deleteMessage": "\"{{title}}\" will be permanently deleted."
+    "deleteMessage": "\"{{title}}\" will be permanently deleted.",
+    "moveTo": "Move to",
+    "moveUp": "Move up",
+    "moveDown": "Move down"
   },
   "priority": {
     "high": "High",
