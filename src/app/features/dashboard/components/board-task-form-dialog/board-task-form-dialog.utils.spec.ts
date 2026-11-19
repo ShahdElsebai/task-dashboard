@@ -3,14 +3,7 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { TaskPriority, TaskStatus } from '@core/dto';
 import { makeTask } from '@testing';
 
-import {
-  dueDateValidator,
-  fieldError,
-  notBlank,
-  toDateInput,
-  toFormValue,
-  uniqueTags,
-} from './board-task-form-dialog.utils';
+import { dueDateValidator, fieldError, notBlank, toFormValue, uniqueTags } from './board-task-form-dialog.utils';
 
 describe('task form utils', () => {
   describe('notBlank', () => {
@@ -80,9 +73,5 @@ describe('task form utils', () => {
     expect(value.assigneeId).toBe(task.assignee.id);
     value.tags.push('y');
     expect(task.tags).toEqual(['x']);
-  });
-
-  it('toDateInput formats local dates as YYYY-MM-DD', () => {
-    expect(toDateInput(new Date(2026, 0, 5))).toBe('2026-01-05');
   });
 });

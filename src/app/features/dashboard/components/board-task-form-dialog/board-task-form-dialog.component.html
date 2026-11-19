@@ -72,6 +72,7 @@
           {{ 'taskForm.status' | translate }}
         </label>
         <p-select
+          appendTo="body"
           inputId="task-status"
           formControlName="status"
           optionLabel="label"
@@ -85,6 +86,7 @@
           {{ 'taskForm.priority' | translate }}
         </label>
         <p-select
+          appendTo="body"
           inputId="task-priority"
           formControlName="priority"
           optionLabel="label"
@@ -97,16 +99,16 @@
         <label class="text-sm font-medium text-surface-700" for="task-due-date">
           {{ 'taskForm.dueDate' | translate }} *
         </label>
-        <input
-          id="task-due-date"
+        <p-datepicker
+          appendTo="body"
+          dataType="string"
+          dateFormat="yy-mm-dd"
           formControlName="dueDate"
-          pInputText
-          type="date"
-          [attr.aria-describedby]="errors().dueDate ? 'task-due-date-error' : null"
-          [attr.aria-invalid]="!!errors().dueDate"
+          inputId="task-due-date"
           [attr.data-invalid]="!!errors().dueDate"
-          [attr.min]="isEdit() ? null : today"
           [invalid]="!!errors().dueDate"
+          [minDate]="isEdit() ? null : today"
+          [showIcon]="true"
         />
         @if (errors().dueDate; as e) {
           <small class="text-red-600" id="task-due-date-error">{{ e.key | translate: e.params }}</small>
@@ -118,6 +120,7 @@
           {{ 'taskForm.assignee' | translate }} *
         </label>
         <p-select
+          appendTo="body"
           inputId="task-assignee"
           formControlName="assigneeId"
           optionLabel="name"
