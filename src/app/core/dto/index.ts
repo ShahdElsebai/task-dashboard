@@ -1,4 +1,5 @@
 export * from './activity.dto';
+export * from './comment.dto';
 export * from './enum.dto';
 export * from './shared.dto';
 export * from './statistic.dto';

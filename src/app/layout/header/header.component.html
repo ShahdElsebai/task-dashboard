@@ -47,14 +47,7 @@
       [text]="true"
       (onClick)="language.toggle()"
     />
-    <p-button
-      class="hidden sm:inline-flex"
-      icon="pi pi-bell"
-      severity="secondary"
-      [text]="true"
-      [rounded]="true"
-      [ariaLabel]="'header.notifications' | translate"
-    />
+    <app-mentions-menu />
     <app-user-avatar [user]="currentUser" />
   </div>
 </header>

@@ -36,7 +36,8 @@
   "header": {
     "searchPlaceholder": "ابحث في المهام...",
     "notifications": "الإشعارات",
-    "openMenu": "فتح القائمة"
+    "openMenu": "فتح القائمة",
+    "notificationsUnread": "الإشعارات، {{count}} غير مقروءة"
   },
   "nav": {
     "label": "التنقل الرئيسي",
@@ -143,7 +144,8 @@
     "updated": "تحديث",
     "statusChanged": "تغيير الحالة",
     "completed": "إكمال",
-    "deleted": "حذف"
+    "deleted": "حذف",
+    "commented": "علّق على"
   },
   "team": {
     "title": "الفريق",
@@ -153,6 +155,21 @@
     "overdue": "متأخرة",
     "completion": "نسبة الإنجاز",
     "viewTasks": "عرض المهام ({{count}})"
+  },
+  "comments": {
+    "title": "التعليقات",
+    "empty": "لا توجد تعليقات بعد.",
+    "label": "أضف تعليقًا",
+    "placeholder": "اكتب تعليقًا. اكتب @ للإشارة إلى شخص.",
+    "hint": "Ctrl + Enter للنشر",
+    "post": "تعليق",
+    "suggestions": "أشخاص للإشارة إليهم"
+  },
+  "mentions": {
+    "title": "الإشارات",
+    "empty": "لا توجد إشارات بعد",
+    "item": "أشار إليك {{name}} في «{{task}}»",
+    "new": "جديد"
   },
   "optimus": {
     "emptyMessage": "لا توجد نتائج",

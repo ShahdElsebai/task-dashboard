@@ -1,0 +1,50 @@
+<span class="relative inline-flex">
+  <p-button
+    icon="pi pi-bell"
+    severity="secondary"
+    aria-haspopup="menu"
+    [ariaLabel]="buttonLabel()"
+    [attr.aria-controls]="menuId"
+    [rounded]="true"
+    [text]="true"
+    (onClick)="toggle(menu, $event)"
+  />
+  @if (unreadCount()) {
+    <!-- The count is in the button's label for screen readers; this badge is visual only. -->
+    <span
+      class="pointer-events-none absolute -top-0.5 end-0 flex h-4 min-w-4 items-center justify-center rounded-full bg-red-700 px-1 text-[0.625rem] font-semibold text-white"
+      aria-hidden="true"
+    >
+      {{ badge() }}
+    </span>
+  }
+</span>
+
+<p-menu
+  #menu
+  appendTo="self"
+  styleClass="w-80 max-w-[calc(100vw-1rem)]"
+  [id]="menuId"
+  [model]="model()"
+  [popup]="true"
+  (onHide)="onHide()"
+>
+  <ng-template #item let-item>
+    @if (item.state?.mention; as mention) {
+      <a class="flex items-start gap-3 px-3 py-2" tabindex="-1">
+        <!-- The text already names the person; the initials would only repeat it. -->
+        <app-user-avatar aria-hidden="true" [user]="mention.author" />
+        <span class="flex min-w-0 flex-1 flex-col">
+          <span class="text-sm text-surface-900">{{ mention.text }}</span>
+          <span class="text-xs text-surface-600">{{ mention.timeAgo }}</span>
+        </span>
+        @if (mention.unread) {
+          <span class="mt-1.5 size-2 shrink-0 rounded-full bg-primary" [title]="'mentions.new' | translate"></span>
+          <span class="sr-only">{{ 'mentions.new' | translate }}</span>
+        }
+      </a>
+    } @else {
+      <span class="block px-3 py-2 text-sm text-surface-600">{{ item.label }}</span>
+    }
+  </ng-template>
+</p-menu>

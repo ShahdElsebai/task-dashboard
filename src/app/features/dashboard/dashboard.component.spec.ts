@@ -8,7 +8,8 @@ import { RouterTestingHarness } from '@angular/router/testing';
 import { provideTranslateService } from '@ngx-translate/core';
 import { ConfirmationService, MessageService } from '@openng/optimus-ui/api';
 
-import { TaskDto, TaskPriority, TaskStatus } from '@core/dto';
+import { CommentDto, TaskDto, TaskPriority, TaskStatus } from '@core/dto';
+import { CommentsStore } from '@core/services/store';
 import { makeTask, NotificationsMock, storeTestProviders, TEST_USER } from '@testing';
 
 import { BoardComponent } from './components/board/board.component';
@@ -29,7 +30,7 @@ describe('DashboardComponent', () => {
   let harness: RouterTestingHarness;
   let http: HttpTestingController;
 
-  async function open(url: string): Promise<HTMLElement> {
+  async function open(url: string, comments: CommentDto[] = []): Promise<HTMLElement> {
     harness = await RouterTestingHarness.create();
     const navigation: Promise<unknown> = harness.navigateByUrl(url, DashboardComponent);
     const responses: Record<string, unknown> = {
@@ -37,6 +38,7 @@ describe('DashboardComponent', () => {
       '/api/users': [TEST_USER],
       '/api/activities?_sort=-timestamp': [],
       '/api/statistics': [],
+      '/api/comments?_sort=createdAt': comments,
     };
     for (let i: number = 0; i < 20 && Object.keys(responses).length; i++) {
       await new Promise<void>((resolve: () => void) => setTimeout(resolve));
@@ -187,6 +189,84 @@ describe('DashboardComponent', () => {
         .mockResolvedValue(true);
       await board().saveTask(formValue);
       expect(update).toHaveBeenCalledWith('b', formValue);
+    });
+  });
+
+  describe('comments in the task dialog', () => {
+    const dialog = (): DebugElement => harness.routeDebugElement!.query(By.directive(BoardTaskFormDialogComponent));
+    const COMMENTS: CommentDto[] = [
+      {
+        id: 'c1',
+        taskId: 'b',
+        taskTitle: 'Task b',
+        author: TEST_USER,
+        body: 'On it',
+        mentions: [],
+        createdAt: '2026-01-01T10:00:00.000Z',
+      },
+      {
+        id: 'c2',
+        taskId: 'a',
+        taskTitle: 'Task a',
+        author: TEST_USER,
+        body: 'Other task',
+        mentions: [],
+        createdAt: '2026-01-01T10:00:00.000Z',
+      },
+    ];
+    const textarea = (): HTMLTextAreaElement => document.querySelector<HTMLTextAreaElement>('#task-comment-input')!;
+    const type = async (value: string): Promise<void> => {
+      textarea().value = value;
+      textarea().dispatchEvent(new Event('input'));
+      await TestBed.inject(ApplicationRef).whenStable();
+    };
+    const postButton = (): HTMLButtonElement =>
+      Array.from(document.querySelectorAll<HTMLButtonElement>('app-board-task-comments button')).at(-1)!;
+
+    it("shows only the open task's comments, and none when creating", async () => {
+      await open('/dashboard?task=b', COMMENTS);
+      const items: string[] = Array.from(document.querySelectorAll('app-board-task-comments li')).map(
+        (li: Element) => li.textContent!
+      );
+      expect(items).toHaveLength(1);
+      expect(items[0]).toContain('On it');
+
+      await harness.navigateByUrl('/dashboard?task=new');
+      harness.detectChanges();
+      expect(document.querySelector('app-board-task-comments')).toBeNull();
+    });
+
+    it('posts as the current user with the mentions, keeping the draft until it is saved', async () => {
+      await open('/dashboard?task=b');
+      const add: ReturnType<typeof vi.spyOn> = vi
+        .spyOn(TestBed.inject(CommentsStore), 'add')
+        .mockResolvedValueOnce(false)
+        .mockResolvedValueOnce(true);
+
+      await type(`Thanks @${TEST_USER.name}`);
+      postButton().click();
+      await TestBed.inject(ApplicationRef).whenStable();
+      expect(add).toHaveBeenCalledWith(expect.objectContaining({ id: 'b' }), `Thanks @${TEST_USER.name}`, [
+        TEST_USER.id,
+      ]);
+      expect(textarea().value).toBe(`Thanks @${TEST_USER.name}`);
+
+      postButton().click();
+      await TestBed.inject(ApplicationRef).whenStable();
+      harness.detectChanges();
+      expect(add).toHaveBeenCalledTimes(2);
+      expect(textarea().value).toBe('');
+    });
+
+    it('asks before closing with an unsent comment', async () => {
+      await open('/dashboard?task=b');
+      await type('Half-written');
+      const confirmation: ConfirmationService = dialog().injector.get(ConfirmationService);
+      const confirm: ReturnType<typeof vi.spyOn> = vi.spyOn(confirmation, 'confirm');
+
+      (dialog().componentInstance as unknown as { requestClose: () => void }).requestClose();
+      expect(confirm).toHaveBeenCalled();
+      expect(TestBed.inject(Router).url).toContain('task=b');
     });
   });
 });

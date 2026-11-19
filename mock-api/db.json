@@ -670,5 +670,273 @@
       },
       "timestamp": "2026-11-15T19:35:56.842Z"
     }
+  ],
+  "comments": [
+    {
+      "id": "comment-001",
+      "taskId": "task-012",
+      "taskTitle": "Refactor payment module",
+      "author": {
+        "id": "user-004",
+        "name": "Emily Davis",
+        "avatar": "ED",
+        "email": "emily.davis@company.com"
+      },
+      "body": "Closing this, the fix is verified on staging.",
+      "mentions": [],
+      "createdAt": "2026-11-11T12:48:45.943Z"
+    },
+    {
+      "id": "comment-002",
+      "taskId": "task-005",
+      "taskTitle": "Implement user authentication",
+      "author": {
+        "id": "user-004",
+        "name": "Emily Davis",
+        "avatar": "ED",
+        "email": "emily.davis@company.com"
+      },
+      "body": "Updated the estimate to two days.",
+      "mentions": [],
+      "createdAt": "2026-11-13T14:48:45.943Z"
+    },
+    {
+      "id": "comment-003",
+      "taskId": "task-005",
+      "taskTitle": "Implement user authentication",
+      "author": {
+        "id": "user-002",
+        "name": "Sarah Smith",
+        "avatar": "SS",
+        "email": "sarah.smith@company.com"
+      },
+      "body": "Works for me.",
+      "mentions": [],
+      "createdAt": "2026-11-13T15:48:45.943Z"
+    },
+    {
+      "id": "comment-004",
+      "taskId": "task-013",
+      "taskTitle": "Security audit",
+      "author": {
+        "id": "user-001",
+        "name": "John Doe",
+        "avatar": "JD",
+        "email": "john.doe@company.com"
+      },
+      "body": "Great work on this, @Sarah Smith.",
+      "mentions": ["user-002"],
+      "createdAt": "2026-11-15T16:48:45.943Z"
+    },
+    {
+      "id": "comment-005",
+      "taskId": "task-001",
+      "taskTitle": "Design new homepage layout",
+      "author": {
+        "id": "user-001",
+        "name": "John Doe",
+        "avatar": "JD",
+        "email": "john.doe@company.com"
+      },
+      "body": "@Mike Johnson this one is yours now, ping me if you get stuck.",
+      "mentions": ["user-003"],
+      "createdAt": "2026-11-15T20:48:45.943Z"
+    },
+    {
+      "id": "comment-006",
+      "taskId": "task-001",
+      "taskTitle": "Design new homepage layout",
+      "author": {
+        "id": "user-003",
+        "name": "Mike Johnson",
+        "avatar": "MJ",
+        "email": "mike.johnson@company.com"
+      },
+      "body": "Thanks, I will start tomorrow morning.",
+      "mentions": [],
+      "createdAt": "2026-11-16T02:48:45.943Z"
+    },
+    {
+      "id": "comment-007",
+      "taskId": "task-017",
+      "taskTitle": "Update payment gateway integration",
+      "author": {
+        "id": "user-004",
+        "name": "Emily Davis",
+        "avatar": "ED",
+        "email": "emily.davis@company.com"
+      },
+      "body": "I added the test cases to the description.",
+      "mentions": [],
+      "createdAt": "2026-11-16T20:48:45.943Z"
+    },
+    {
+      "id": "comment-008",
+      "taskId": "task-014",
+      "taskTitle": "Update dependencies",
+      "author": {
+        "id": "user-003",
+        "name": "Mike Johnson",
+        "avatar": "MJ",
+        "email": "mike.johnson@company.com"
+      },
+      "body": "Merged and deployed. Thanks everyone!",
+      "mentions": [],
+      "createdAt": "2026-11-17T08:48:45.943Z"
+    },
+    {
+      "id": "comment-009",
+      "taskId": "task-007",
+      "taskTitle": "Create API endpoints",
+      "author": {
+        "id": "user-002",
+        "name": "Sarah Smith",
+        "avatar": "SS",
+        "email": "sarah.smith@company.com"
+      },
+      "body": "Blocked until the client confirms the scope.",
+      "mentions": [],
+      "createdAt": "2026-11-17T20:48:45.943Z"
+    },
+    {
+      "id": "comment-010",
+      "taskId": "task-007",
+      "taskTitle": "Create API endpoints",
+      "author": {
+        "id": "user-001",
+        "name": "John Doe",
+        "avatar": "JD",
+        "email": "john.doe@company.com"
+      },
+      "body": "@Sarah Smith I will chase them today.",
+      "mentions": ["user-002"],
+      "createdAt": "2026-11-17T22:48:45.943Z"
+    },
+    {
+      "id": "comment-011",
+      "taskId": "task-015",
+      "taskTitle": "Prepare Q4 budget report",
+      "author": {
+        "id": "user-003",
+        "name": "Mike Johnson",
+        "avatar": "MJ",
+        "email": "mike.johnson@company.com"
+      },
+      "body": "Started on this. @Emily Davis can you share the latest numbers?",
+      "mentions": ["user-004"],
+      "createdAt": "2026-11-18T14:48:45.943Z"
+    },
+    {
+      "id": "comment-012",
+      "taskId": "task-002",
+      "taskTitle": "Update documentation",
+      "author": {
+        "id": "user-002",
+        "name": "Sarah Smith",
+        "avatar": "SS",
+        "email": "sarah.smith@company.com"
+      },
+      "body": "Draft is ready for review. @Mike Johnson @John Doe",
+      "mentions": ["user-003", "user-001"],
+      "createdAt": "2026-11-18T18:48:45.943Z"
+    },
+    {
+      "id": "comment-013",
+      "taskId": "task-001",
+      "taskTitle": "Design new homepage layout",
+      "author": {
+        "id": "user-003",
+        "name": "Mike Johnson",
+        "avatar": "MJ",
+        "email": "mike.johnson@company.com"
+      },
+      "body": "Halfway there. @Sarah Smith I will need a quick design review.",
+      "mentions": ["user-002"],
+      "createdAt": "2026-11-19T00:48:45.943Z"
+    },
+    {
+      "id": "comment-014",
+      "taskId": "task-006",
+      "taskTitle": "Optimize database queries",
+      "author": {
+        "id": "user-001",
+        "name": "John Doe",
+        "avatar": "JD",
+        "email": "john.doe@company.com"
+      },
+      "body": "Let's pair on this one, @Emily Davis.",
+      "mentions": ["user-004"],
+      "createdAt": "2026-11-19T10:48:45.943Z"
+    },
+    {
+      "id": "comment-015",
+      "taskId": "task-006",
+      "taskTitle": "Optimize database queries",
+      "author": {
+        "id": "user-004",
+        "name": "Emily Davis",
+        "avatar": "ED",
+        "email": "emily.davis@company.com"
+      },
+      "body": "Sounds good, I booked 30 minutes for tomorrow.",
+      "mentions": [],
+      "createdAt": "2026-11-19T11:48:45.943Z"
+    },
+    {
+      "id": "comment-016",
+      "taskId": "task-016",
+      "taskTitle": "Review client feedback",
+      "author": {
+        "id": "user-002",
+        "name": "Sarah Smith",
+        "avatar": "SS",
+        "email": "sarah.smith@company.com"
+      },
+      "body": "@John Doe can you review this before Friday?",
+      "mentions": ["user-001"],
+      "createdAt": "2026-11-19T15:48:45.943Z"
+    },
+    {
+      "id": "comment-017",
+      "taskId": "task-016",
+      "taskTitle": "Review client feedback",
+      "author": {
+        "id": "user-001",
+        "name": "John Doe",
+        "avatar": "JD",
+        "email": "john.doe@company.com"
+      },
+      "body": "Sure, I will look at it this afternoon.",
+      "mentions": [],
+      "createdAt": "2026-11-19T16:48:45.943Z"
+    },
+    {
+      "id": "comment-018",
+      "taskId": "task-015",
+      "taskTitle": "Prepare Q4 budget report",
+      "author": {
+        "id": "user-004",
+        "name": "Emily Davis",
+        "avatar": "ED",
+        "email": "emily.davis@company.com"
+      },
+      "body": "Shared them in the team folder. @John Doe can you check the totals?",
+      "mentions": ["user-001"],
+      "createdAt": "2026-11-19T18:48:45.943Z"
+    },
+    {
+      "id": "comment-019",
+      "taskId": "task-004",
+      "taskTitle": "Fix responsive design issues",
+      "author": {
+        "id": "user-003",
+        "name": "Mike Johnson",
+        "avatar": "MJ",
+        "email": "mike.johnson@company.com"
+      },
+      "body": "@John Doe quick question: should this ship behind a feature flag?",
+      "mentions": ["user-001"],
+      "createdAt": "2026-11-19T20:18:45.943Z"
+    }
   ]
 }

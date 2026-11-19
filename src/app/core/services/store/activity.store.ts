@@ -4,7 +4,7 @@ import { computed, inject, Service, Signal } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
 import { ACTIVITY_LIMIT } from '../../config/activity.config';
-import { ActivityDto, ActivityType, CreateActivityDto, TaskDto } from '../../dto';
+import { ActivityDto, ActivityType, CreateActivityDto, TaskDto, UserDto } from '../../dto';
 import { replaceById, tempId, valueOr } from '../../utils';
 import { ActivitiesApiService } from '../api';
 
@@ -31,13 +31,14 @@ export class ActivityStore {
    *
    * @param type What happened.
    * @param task The task it happened to, as it is now.
+   * @param user Who did it. Defaults to the assignee, as in the seed data.
    */
-  log(type: ActivityType, task: TaskDto): void {
+  log(type: ActivityType, task: TaskDto, user: UserDto = task.assignee): void {
     const entry: CreateActivityDto = {
       type,
       taskId: task.id,
       taskTitle: task.title,
-      user: task.assignee,
+      user,
       timestamp: new Date().toISOString(),
     };
     const id: string = tempId();

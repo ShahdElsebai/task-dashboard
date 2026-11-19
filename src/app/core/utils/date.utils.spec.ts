@@ -1,4 +1,4 @@
-import { daysBetween, parseDateOnly, startOfDay, toDateOnlyString } from './date.utils';
+import { daysBetween, parseDateOnly, startOfDay, timeAgo, toDateOnlyString } from './date.utils';
 
 describe('date utils', () => {
   it('parseDateOnly returns local midnight of that day', () => {
@@ -23,5 +23,22 @@ describe('date utils', () => {
 
   it('daysBetween is not skewed by a daylight-saving change', () => {
     expect(daysBetween(new Date(2026, 2, 28), new Date(2026, 2, 30))).toBe(2);
+  });
+});
+
+describe('timeAgo', () => {
+  const now: Date = new Date('2026-11-18T12:00:00Z');
+  const ago = (seconds: number): string => new Date(now.getTime() - seconds * 1000).toISOString();
+
+  it('picks the largest fitting unit', () => {
+    expect(timeAgo(ago(20), now, 'en')).toBe('now');
+    expect(timeAgo(ago(5 * 60), now, 'en')).toBe('5 minutes ago');
+    expect(timeAgo(ago(3 * 3600), now, 'en')).toBe('3 hours ago');
+    expect(timeAgo(ago(24 * 3600), now, 'en')).toBe('yesterday');
+    expect(timeAgo(ago(14 * 24 * 3600), now, 'en')).toBe('2 weeks ago');
+  });
+
+  it('follows the locale', () => {
+    expect(timeAgo(ago(24 * 3600), now, 'ar')).toBe('أمس');
   });
 });

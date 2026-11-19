@@ -1,26 +1,12 @@
 import { ActivityDto, ActivityType, UserDto } from '@core/dto';
 
-import { timeAgo, toActivityItem } from './activity-feed.utils';
+import { toActivityItem } from './activity-feed.utils';
 
 const TEST_USER: UserDto = { id: 'user-001', name: 'Sarah Smith', avatar: 'SS', email: 'sarah@company.com' };
 
 describe('activity feed utils', () => {
   const now: Date = new Date('2026-11-18T12:00:00Z');
   const ago = (seconds: number): string => new Date(now.getTime() - seconds * 1000).toISOString();
-
-  describe('timeAgo', () => {
-    it('picks the largest fitting unit', () => {
-      expect(timeAgo(ago(20), now, 'en')).toBe('now');
-      expect(timeAgo(ago(5 * 60), now, 'en')).toBe('5 minutes ago');
-      expect(timeAgo(ago(3 * 3600), now, 'en')).toBe('3 hours ago');
-      expect(timeAgo(ago(24 * 3600), now, 'en')).toBe('yesterday');
-      expect(timeAgo(ago(14 * 24 * 3600), now, 'en')).toBe('2 weeks ago');
-    });
-
-    it('follows the locale', () => {
-      expect(timeAgo(ago(24 * 3600), now, 'ar')).toBe('أمس');
-    });
-  });
 
   describe('toActivityItem', () => {
     const activity = (type: ActivityType): ActivityDto => ({

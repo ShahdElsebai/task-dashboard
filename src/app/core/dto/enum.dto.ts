@@ -16,6 +16,7 @@ export enum ActivityType {
   StatusChanged = 'status_changed',
   Completed = 'completed',
   Deleted = 'deleted',
+  Commented = 'commented',
 }
 
 export enum ChangeType {

@@ -30,15 +30,11 @@ export const ACTIVITY_META: Readonly<Record<ActivityType, ActivityMeta>> = {
     iconClass: 'bg-red-50 text-status-overdue',
     labelKey: 'activity.deleted',
   },
+  [ActivityType.Commented]: {
+    icon: 'pi pi-comment',
+    iconClass: 'bg-primary-50 text-primary-700',
+    labelKey: 'activity.commented',
+  },
 };
-
-export const TIME_UNITS: readonly [Intl.RelativeTimeFormatUnit, number][] = [
-  ['year', 365 * 24 * 60 * 60],
-  ['month', 30 * 24 * 60 * 60],
-  ['week', 7 * 24 * 60 * 60],
-  ['day', 24 * 60 * 60],
-  ['hour', 60 * 60],
-  ['minute', 60],
-];
 
 export const ACTIVITY_FEED_REFRESH_MS: number = 60_000;

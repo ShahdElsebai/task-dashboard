@@ -178,6 +178,18 @@
     <button class="hidden" tabindex="-1" type="submit" aria-hidden="true"></button>
   </form>
 
+  @if (isEdit()) {
+    <app-board-task-comments
+      class="mt-6 block"
+      [comments]="comments()"
+      [currentUserId]="currentUserId()"
+      [posting]="commentPosting()"
+      [users]="users()"
+      [(draft)]="commentDraft"
+      (post)="commentPost.emit($event)"
+    />
+  }
+
   <ng-template #footer>
     <div class="flex justify-end gap-2">
       <p-button

@@ -3,7 +3,7 @@ import { HttpTestingController, provideHttpClientTesting, TestRequest } from '@a
 import { ApplicationRef, EnvironmentProviders, Provider } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
-import { TaskDto, TaskPriority, TaskStatus, UserDto } from '@core/dto';
+import { CommentDto, TaskDto, TaskPriority, TaskStatus, UserDto } from '@core/dto';
 import { apiUrlInterceptor } from '@core/services/http/api-url.interceptor';
 import { NotificationService } from '@core/services/notification.service';
 
@@ -40,12 +40,17 @@ export function storeTestProviders(notifications: NotificationsMock): (Provider 
   ];
 }
 
-export async function flushInitialLoad(http: HttpTestingController, tasks: TaskDto[]): Promise<void> {
+export async function flushInitialLoad(
+  http: HttpTestingController,
+  tasks: TaskDto[],
+  comments: CommentDto[] = []
+): Promise<void> {
   TestBed.tick();
   http.match('/api/tasks').forEach((req: TestRequest) => req.flush(tasks));
   http.match('/api/users').forEach((req: TestRequest) => req.flush([TEST_USER]));
   http.match('/api/activities?_sort=-timestamp').forEach((req: TestRequest) => req.flush([]));
   http.match('/api/statistics').forEach((req: TestRequest) => req.flush([]));
+  http.match('/api/comments?_sort=createdAt').forEach((req: TestRequest) => req.flush(comments));
   await TestBed.inject(ApplicationRef).whenStable();
 }
 

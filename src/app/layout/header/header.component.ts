@@ -9,12 +9,14 @@ import { InputIconModule } from '@openng/optimus-ui/inputicon';
 import { InputTextModule } from '@openng/optimus-ui/inputtext';
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 
+import { CURRENT_USER } from '@core/config/user.config';
 import { UserDto } from '@core/dto';
 import { LanguageService } from '@core/services/language.service';
 import { SearchService } from '@core/services/search.service';
 import { UserAvatarComponent } from '@shared';
 
-import { CURRENT_USER, SEARCH_DEBOUNCE_MS } from './header.config';
+import { SEARCH_DEBOUNCE_MS } from './header.config';
+import { MentionsMenuComponent } from './mentions-menu/mentions-menu.component';
 
 @Component({
   selector: 'app-header',
@@ -26,6 +28,7 @@ import { CURRENT_USER, SEARCH_DEBOUNCE_MS } from './header.config';
     InputIconModule,
     InputTextModule,
     UserAvatarComponent,
+    MentionsMenuComponent,
   ],
   templateUrl: './header.component.html',
 })

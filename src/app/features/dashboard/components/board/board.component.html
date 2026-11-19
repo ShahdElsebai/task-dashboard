@@ -34,11 +34,16 @@
 </div>
 
 <app-board-task-form-dialog
+  [commentPosting]="commentPosting()"
+  [comments]="taskComments()"
+  [currentUserId]="currentUserId"
   [open]="dialogOpen()"
   [saving]="saving()"
   [task]="editingTask()"
   [users]="users.users()"
+  [(commentDraft)]="commentDraft"
   (closed)="closeTask()"
+  (commentPost)="postComment($event)"
   (save)="saveTask($event)"
 />
 

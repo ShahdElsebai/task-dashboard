@@ -36,7 +36,8 @@
   "header": {
     "searchPlaceholder": "Search tasks...",
     "notifications": "Notifications",
-    "openMenu": "Open menu"
+    "openMenu": "Open menu",
+    "notificationsUnread": "Notifications, {{count}} unread"
   },
   "nav": {
     "label": "Main navigation",
@@ -143,7 +144,8 @@
     "updated": "updated",
     "statusChanged": "changed status",
     "completed": "completed",
-    "deleted": "deleted"
+    "deleted": "deleted",
+    "commented": "commented on"
   },
   "team": {
     "title": "Team",
@@ -153,6 +155,21 @@
     "overdue": "Overdue",
     "completion": "Completion",
     "viewTasks": "View tasks ({{count}})"
+  },
+  "comments": {
+    "title": "Comments",
+    "empty": "No comments yet.",
+    "label": "Add a comment",
+    "placeholder": "Write a comment. Type @ to mention someone.",
+    "hint": "Ctrl + Enter to post",
+    "post": "Comment",
+    "suggestions": "People to mention"
+  },
+  "mentions": {
+    "title": "Mentions",
+    "empty": "No mentions yet",
+    "item": "{{name}} mentioned you on “{{task}}”",
+    "new": "New"
   },
   "optimus": {
     "emptyMessage": "No results found",

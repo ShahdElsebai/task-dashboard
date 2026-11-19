@@ -8,8 +8,8 @@ A task management dashboard built with **Angular 22** and **Optimus UI**: a kanb
 
 |                          |                                                                      |
 | ------------------------ | -------------------------------------------------------------------- |
-| **Tests**                | 178 unit and integration tests, 90% statement coverage               |
-| **Bundle**               | 487 kB initial (122 kB over the network), under the 500 kB budget    |
+| **Tests**                | 209 unit and integration tests, 90% statement coverage               |
+| **Bundle**               | 488 kB initial (122 kB over the network), under the 500 kB budget    |
 | **Lighthouse (desktop)** | Performance 92–99 · Accessibility 100 · Best practices 100 · SEO 100 |
 | **Accessibility**        | 0 axe-core violations on every page, in both languages               |
 
@@ -90,6 +90,13 @@ docker compose up --build    # http://localhost:8080
   - **Failed saves:** if a save fails, the dialog stays open and keeps the input.
 - Delete with a confirmation dialog.
 
+**Comments and mentions** (beyond the assignment's scope)
+
+- Editing a task shows its comments under the form, with the author and a relative time.
+- Typing `@` suggests teammates. Arrow keys move through the list, Enter or Tab picks, Escape closes it; Ctrl/Cmd + Enter posts. Mentions are highlighted, and yours stand out.
+- The header bell lists comments that mention you, with an unread badge. Picking one opens that task and its comments. Opening the menu marks them read (remembered per browser).
+- Posting is optimistic and also logs a "commented on" entry in the activity feed. An unsent comment counts as an unsaved change when closing the dialog.
+
 **Analytics** (`/analytics`)
 
 - Doughnut chart by status and bar chart by priority (Chart.js). Each has an HTML legend with counts and percentages, which also serves as the text alternative.
@@ -158,7 +165,7 @@ src/app
 │   │   ├── api/             users and activities endpoints
 │   │   ├── http/            interceptors: api-url, loading, error, cache, retry;
 │   │   │                    mock-backend/ (demo build only)
-│   │   └── store/           UsersStore, ActivityStore (shared across features)
+│   │   └── store/           UsersStore, ActivityStore, CommentsStore (shared across features)
 │   └── utils/               dates, collections, resources, task rules
 ├── shared/                  presentational building blocks
 │   └── components/          activity-feed, empty-state, error-state, user-avatar
@@ -246,7 +253,7 @@ DashboardApiService ──httpResource──▶ DashboardTasksStateService ─�
 
 **Vitest** through the Angular CLI, running zoneless.
 
-- **178 tests in 34 files.** Coverage: **90% statements, 92% branches, 86% functions, 93% lines**.
+- **209 tests in 38 files.** Coverage: **90% statements, 91% branches, 86% functions, 93% lines**.
 
 | Layer                   | What is tested                                                                                               | How                                             |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------ | ----------------------------------------------- |
@@ -265,7 +272,7 @@ DashboardApiService ──httpResource──▶ DashboardTasksStateService ─�
 ## Performance
 
 - **Lazy loading:** the layout and every page are lazy routes. Chart.js loads only with Analytics.
-- **Bundle budget:** 500 kB warning, 550 kB error, enforced in CI. Initial bundle 487 kB.
+- **Bundle budget:** 500 kB warning, 550 kB error, enforced in CI. Initial bundle 488 kB.
   - **Theme:** a slim Aura preset with only the 15 components in use (`theme.preset.ts`). The full preset ships tokens for about 80 components, roughly 130 kB.
   - **Toast:** loads with the layout instead of the root component.
 - **Rendering:** OnPush everywhere, signals and `computed` for derived values, and `track` in every `@for`.
@@ -349,6 +356,7 @@ The mobile profile emulates a slow phone (4× CPU slowdown, slow 4G). Almost all
 - **Mobile performance (65–70).** The next step would be server-side rendering or prerendering of the shell, so the first paint doesn't wait for the main bundle. Another option is trimming Optimus's runtime styling.
 - **Static columns.** User-defined columns would need a `columns` resource and a `columnId` on tasks.
 - **Demo data is per tab.** The live demo keeps changes in memory, so a reload or a second tab starts from the seed data. Deep links on GitHub Pages also return HTTP 404 before the app takes over (a Pages limitation; the page still opens).
+- **Comments are simple.** There are no accounts, so everyone posts as the fixed current user (John Doe). Comments can't be edited or deleted, unread state is per browser, and deleting a task leaves its comments behind (a mention of a deleted task opens a "not found" message). A real backend would add authentication, cascade deletes and server-side notifications.
 - **Placeholder pages.** _Tasks_, _Calendar_ and _Settings_ are placeholders ("Coming soon").
 - **No end-to-end suite in CI.** Browser flows were verified manually with Playwright during development. Adding them as a Playwright suite in CI would protect the drag-and-drop and URL flows.
 - **Other ideas:** dark mode (the theme already has a dark-mode selector), real-time updates (WebSocket or SSE), and undo for delete.

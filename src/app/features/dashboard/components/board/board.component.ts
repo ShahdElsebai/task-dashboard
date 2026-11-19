@@ -7,9 +7,10 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ConfirmationService } from '@openng/optimus-ui/api';
 import { ConfirmDialogModule } from '@openng/optimus-ui/confirmdialog';
 
-import { TaskDto } from '@core/dto';
+import { CURRENT_USER } from '@core/config/user.config';
+import { CommentDto, TaskDto } from '@core/dto';
 import { NotificationService } from '@core/services/notification.service';
-import { UsersStore } from '@core/services/store';
+import { CommentsStore, UsersStore } from '@core/services/store';
 import { ErrorStateComponent } from '@shared';
 
 import { TaskFilters, TaskFormValue, TaskMoveRequest } from '../../dashboard.model';
@@ -19,6 +20,7 @@ import { DashboardTasksStateService } from '../../services/dashboard-tasks-state
 import { BoardColumnComponent } from '../board-column/board-column.component';
 import { BoardFiltersComponent } from '../board-filters/board-filters.component';
 import { StatusFilter } from '../board-filters/board-filters.model';
+import { CommentPost } from '../board-task-comments/board-task-comments.model';
 import { BoardTaskFormDialogComponent } from '../board-task-form-dialog/board-task-form-dialog.component';
 import { DashboardSkeletonComponent } from '../dashboard-skeleton/dashboard-skeleton.component';
 import { CARD_MENU_LABEL_KEYS } from './board.config';
@@ -48,6 +50,8 @@ export class BoardComponent {
   protected readonly board: BoardStateService = inject(BoardStateService);
   protected readonly tasks: DashboardTasksStateService = inject(DashboardTasksStateService);
   protected readonly users: UsersStore = inject(UsersStore);
+  private readonly commentsStore: CommentsStore = inject(CommentsStore);
+  protected readonly currentUserId: string = CURRENT_USER.id;
 
   protected readonly menuLabels: Signal<Record<string, string>> = toSignal(
     this.translate.stream(CARD_MENU_LABEL_KEYS),
@@ -67,6 +71,13 @@ export class BoardComponent {
   );
   protected readonly saving: WritableSignal<boolean> = signal<boolean>(false);
 
+  protected readonly taskComments: Signal<CommentDto[]> = computed(() => {
+    const task: TaskDto | null = this.editingTask();
+    return task ? this.commentsStore.forTask(task.id) : [];
+  });
+  protected readonly commentDraft: WritableSignal<string> = signal<string>('');
+  protected readonly commentPosting: WritableSignal<boolean> = signal<boolean>(false);
+
   protected readonly statusFilter: Signal<StatusFilter> = computed(() => this.board.filters().status ?? 'all');
   protected readonly isFirstLoad: Signal<boolean> = computed(
     () => this.tasks.isLoading() && !this.tasks.tasks().length
@@ -80,6 +91,12 @@ export class BoardComponent {
         this.notifications.error('errors.notFound');
         this.closeTask();
       });
+    });
+
+    // A draft belongs to one task: start empty whenever another task (or none) opens.
+    effect(() => {
+      this.taskParam();
+      untracked(() => this.commentDraft.set(''));
     });
 
     this.syncFiltersWithUrl();
@@ -142,6 +159,16 @@ export class BoardComponent {
     const ok: boolean = editing ? await this.tasks.update(editing.id, value) : await this.tasks.create(value);
     this.saving.set(false);
     if (ok) this.closeTask();
+  }
+
+  /** Posts a comment on the open task; the draft is cleared only once it is saved. */
+  protected async postComment(value: CommentPost): Promise<void> {
+    const task: TaskDto | null = this.editingTask();
+    if (!task || this.commentPosting()) return;
+    this.commentPosting.set(true);
+    const ok: boolean = await this.commentsStore.add(task, value.body, value.mentions);
+    this.commentPosting.set(false);
+    if (ok) this.commentDraft.set('');
   }
 
   protected confirmDelete(task: TaskDto): void {

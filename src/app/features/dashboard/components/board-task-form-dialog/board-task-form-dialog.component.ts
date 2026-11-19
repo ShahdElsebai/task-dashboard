@@ -6,6 +6,8 @@ import {
   inject,
   input,
   InputSignal,
+  model,
+  ModelSignal,
   output,
   OutputEmitterRef,
   Signal,
@@ -23,10 +25,12 @@ import { SelectModule } from '@openng/optimus-ui/select';
 import { TextareaModule } from '@openng/optimus-ui/textarea';
 import { scan } from 'rxjs';
 
-import { TaskDto, TaskPriority, TaskStatus, UserDto } from '@core/dto';
+import { CommentDto, TaskDto, TaskPriority, TaskStatus, UserDto } from '@core/dto';
 
 import { BOARD_COLUMNS } from '../../dashboard.config';
 import { BoardColumnConfig, TaskFormValue } from '../../dashboard.model';
+import { BoardTaskCommentsComponent } from '../board-task-comments/board-task-comments.component';
+import { CommentPost } from '../board-task-comments/board-task-comments.model';
 import {
   DEFAULT_PRIORITY,
   DEFAULT_STATUS,
@@ -51,7 +55,8 @@ import {
  * Create/edit task form in a dialog (presentational).
  *
  * The parent decides when it is open (from `?task=`) and does the saving; this component owns
- * the form, its validation and the "discard unsaved changes?" check.
+ * the form, its validation and the "discard unsaved changes?" check. When editing, it also shows
+ * the task's comments; posting one is the parent's job too.
  */
 @Component({
   selector: 'app-board-task-form-dialog',
@@ -63,6 +68,7 @@ import {
     InputTextModule,
     SelectModule,
     TextareaModule,
+    BoardTaskCommentsComponent,
   ],
   templateUrl: './board-task-form-dialog.component.html',
   host: { '(window:beforeunload)': 'onBeforeUnload($event)' },
@@ -77,9 +83,14 @@ export class BoardTaskFormDialogComponent {
   readonly task: InputSignal<TaskDto | null> = input<TaskDto | null>(null);
   readonly users: InputSignal<UserDto[]> = input<UserDto[]>([]);
   readonly saving: InputSignal<boolean> = input<boolean>(false);
+  readonly comments: InputSignal<CommentDto[]> = input<CommentDto[]>([]);
+  readonly currentUserId: InputSignal<string> = input<string>('');
+  readonly commentPosting: InputSignal<boolean> = input<boolean>(false);
+  readonly commentDraft: ModelSignal<string> = model<string>('');
 
   readonly save: OutputEmitterRef<TaskFormValue> = output<TaskFormValue>();
   readonly closed: OutputEmitterRef<void> = output<void>();
+  readonly commentPost: OutputEmitterRef<CommentPost> = output<CommentPost>();
 
   protected readonly limits: Record<string, number> = {
     title: TITLE_MAX_LENGTH,
@@ -193,7 +204,7 @@ export class BoardTaskFormDialogComponent {
   /** Cancel, Escape and ×: closes straight away, or asks first if there are unsaved changes. */
   protected requestClose(): void {
     if (this.saving()) return;
-    if (!this.form.dirty) {
+    if (!this.hasUnsavedChanges()) {
       this.closed.emit();
       return;
     }
@@ -216,7 +227,12 @@ export class BoardTaskFormDialogComponent {
 
   /** Makes the browser ask before leaving the page while the form has unsaved changes. */
   protected onBeforeUnload(event: BeforeUnloadEvent): void {
-    if (this.open() && this.form.dirty) event.preventDefault();
+    if (this.open() && this.hasUnsavedChanges()) event.preventDefault();
+  }
+
+  /** An edited form, or a comment typed but not posted. */
+  private hasUnsavedChanges(): boolean {
+    return this.form.dirty || this.commentDraft().trim().length > 0;
   }
 
   private reset(task: TaskDto | null): void {

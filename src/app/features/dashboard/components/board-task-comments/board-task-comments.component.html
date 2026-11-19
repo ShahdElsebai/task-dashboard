@@ -1,0 +1,93 @@
+<section class="flex flex-col gap-3 border-t border-surface-200 pt-4" [attr.aria-labelledby]="ids.heading">
+  <h3 class="text-sm font-semibold text-surface-900" [id]="ids.heading">
+    {{ 'comments.title' | translate }}
+    <span class="font-normal text-surface-500">({{ items().length }})</span>
+  </h3>
+
+  @if (items().length) {
+    <ul class="flex flex-col gap-4">
+      @for (item of items(); track item.id) {
+        <li class="flex gap-3" [attr.aria-busy]="item.pending">
+          <app-user-avatar [user]="item.author" />
+          <div class="min-w-0 flex-1">
+            <p class="flex flex-wrap items-baseline gap-x-2 text-sm">
+              <span class="font-medium text-surface-900">{{ item.author.name }}</span>
+              <time class="text-xs text-surface-600" [attr.datetime]="item.createdAt">{{ item.timeAgo }}</time>
+            </p>
+            <p class="whitespace-pre-line break-words text-sm text-surface-700">
+              @for (segment of item.segments; track $index) {
+                @if (segment.mention) {
+                  <bdi [class]="segment.className">{{ segment.text }}</bdi>
+                } @else {
+                  {{ segment.text }}
+                }
+              }
+            </p>
+          </div>
+        </li>
+      }
+    </ul>
+  } @else {
+    <p class="text-sm text-surface-600">{{ 'comments.empty' | translate }}</p>
+  }
+
+  <div class="relative flex flex-col gap-2">
+    <label class="sr-only" [for]="ids.input">{{ 'comments.label' | translate }}</label>
+    <textarea
+      #commentInput
+      pTextarea
+      rows="2"
+      aria-autocomplete="list"
+      [attr.aria-activedescendant]="activeOptionId()"
+      [attr.aria-controls]="suggestions().length ? ids.list : null"
+      [attr.aria-describedby]="ids.hint"
+      [attr.maxlength]="maxLength"
+      [id]="ids.input"
+      [placeholder]="'comments.placeholder' | translate"
+      [value]="draft()"
+      (blur)="closeSuggestions()"
+      (click)="updateMention(commentInput)"
+      (input)="onInput(commentInput)"
+      (keydown)="onKeydown($event)"
+      (keyup.arrowleft)="updateMention(commentInput)"
+      (keyup.arrowright)="updateMention(commentInput)"
+    ></textarea>
+
+    @if (suggestions().length) {
+      <!-- Opens upwards: the box sits at the bottom of the dialog, right above its footer. -->
+      <ul
+        class="absolute inset-x-0 bottom-full z-10 mb-1 overflow-hidden rounded-md border border-surface-200 bg-surface-0 py-1 shadow-lg"
+        role="listbox"
+        [attr.aria-label]="'comments.suggestions' | translate"
+        [id]="ids.list"
+      >
+        @for (user of suggestions(); track user.id) {
+          <!-- mousedown, not click: picking must not blur the textarea first. -->
+          <li
+            class="flex cursor-pointer items-center gap-2 px-3 py-2 text-sm"
+            role="option"
+            [attr.aria-selected]="$index === active()"
+            [class.bg-primary-50]="$index === active()"
+            [id]="optionId($index)"
+            (mousedown)="$event.preventDefault(); pick(user)"
+          >
+            <app-user-avatar [user]="user" />
+            <span class="text-surface-900">{{ user.name }}</span>
+          </li>
+        }
+      </ul>
+    }
+
+    <div class="flex items-center justify-between gap-2">
+      <small class="text-xs text-surface-600" [id]="ids.hint">{{ 'comments.hint' | translate }}</small>
+      <p-button
+        icon="pi pi-send"
+        size="small"
+        [disabled]="!canPost()"
+        [label]="'comments.post' | translate"
+        [loading]="posting()"
+        (onClick)="submit()"
+      />
+    </div>
+  </div>
+</section>

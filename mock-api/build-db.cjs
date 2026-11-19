@@ -9,6 +9,8 @@
  *   from tasks too; this endpoint is kept to match the provided API).
  * - users: unique assignees, used by the assignee filter and the Team page.
  * - activities: a seed activity feed built from task timestamps.
+ * - comments: seed comment threads on most tasks (see COMMENT_SCRIPT), timed relative to when
+ *   this script runs so they show as recent.
  *
  * Board columns are fixed (one per status). Each task gets a `position` inside
  * its column, in gaps of 1000 (1000, 2000, 3000, …), so moving a task only
@@ -33,6 +35,90 @@ function isOverdue(task) {
 
 /** Gap between neighbouring positions. Keep in sync with POSITION_GAP in the app. */
 const POSITION_GAP = 1000;
+
+/** The signed-in user in the app (CURRENT_USER in src/app/core/config/user.config.ts). */
+const CURRENT_USER_ID = 'user-001';
+
+/**
+ * Seed comment threads: [author id, body, mentioned ids, hours ago] per comment, oldest first.
+ * `open` threads go on the open tasks in board order, `done` threads on finished ones. Times
+ * range from minutes to weeks, and four comments by others mention the signed-in user, so the
+ * notifications bell has unread items on a fresh start.
+ */
+const J = CURRENT_USER_ID;
+const S = 'user-002';
+const M = 'user-003';
+const E = 'user-004';
+const COMMENT_SCRIPT = {
+  open: [
+    [
+      [S, '@John Doe can you review this before Friday?', [J], 5],
+      [J, 'Sure, I will look at it this afternoon.', [], 4],
+    ],
+    [
+      [M, 'Started on this. @Emily Davis can you share the latest numbers?', [E], 30],
+      [E, 'Shared them in the team folder. @John Doe can you check the totals?', [J], 2],
+    ],
+    [[E, 'I added the test cases to the description.', [], 72]],
+    [
+      [J, '@Mike Johnson this one is yours now, ping me if you get stuck.', [M], 96],
+      [M, 'Thanks, I will start tomorrow morning.', [], 90],
+      [M, 'Halfway there. @Sarah Smith I will need a quick design review.', [S], 20],
+    ],
+    [
+      [S, 'Blocked until the client confirms the scope.', [], 48],
+      [J, '@Sarah Smith I will chase them today.', [S], 46],
+    ],
+    [[M, '@John Doe quick question: should this ship behind a feature flag?', [J], 0.5]],
+    [
+      [E, 'Updated the estimate to two days.', [], 150],
+      [S, 'Works for me.', [], 149],
+    ],
+    [
+      [J, "Let's pair on this one, @Emily Davis.", [E], 10],
+      [E, 'Sounds good, I booked 30 minutes for tomorrow.', [], 9],
+    ],
+    [[S, 'Draft is ready for review. @Mike Johnson @John Doe', [M, J], 26]],
+  ],
+  done: [
+    [[M, 'Merged and deployed. Thanks everyone!', [], 60]],
+    [[J, 'Great work on this, @Sarah Smith.', [S], 100]],
+    [[E, 'Closing this, the fix is verified on staging.', [], 200]],
+  ],
+};
+
+function buildComments(tasks, users) {
+  const byId = new Map(users.map(u => [u.id, u]));
+  const now = Date.now();
+  const place = (threads, candidates) =>
+    threads.flatMap((thread, i) => {
+      const task = candidates[i];
+      if (!task) return [];
+      return thread
+        .filter(([authorId]) => byId.has(authorId))
+        .map(([authorId, body, mentions, hoursAgo]) => ({
+          taskId: task.id,
+          taskTitle: task.title,
+          author: byId.get(authorId),
+          body,
+          mentions: mentions.filter(id => byId.has(id)),
+          createdAt: new Date(now - hoursAgo * 3600 * 1000).toISOString(),
+        }));
+    });
+
+  return [
+    ...place(
+      COMMENT_SCRIPT.open,
+      tasks.filter(t => t.status !== 'done')
+    ),
+    ...place(
+      COMMENT_SCRIPT.done,
+      tasks.filter(t => t.status === 'done')
+    ),
+  ]
+    .sort((a, b) => a.createdAt.localeCompare(b.createdAt))
+    .map((comment, i) => ({ id: `comment-${String(i + 1).padStart(3, '0')}`, ...comment }));
+}
 
 function main() {
   const { tasks: rawTasks } = read('tasks.json');
@@ -88,9 +174,14 @@ function main() {
     .slice(0, 20)
     .map((activity, i) => ({ id: `activity-${String(i + 1).padStart(3, '0')}`, ...activity }));
 
-  const db = { tasks, statistics, users, activities };
+  const comments = buildComments(tasks, users);
+
+  const db = { tasks, statistics, users, activities, comments };
   fs.writeFileSync(path.join(__dirname, 'db.json'), JSON.stringify(db, null, 2) + '\n', 'utf8');
-  console.log(`Built db.json: ${tasks.length} tasks, ${users.length} users, ${activities.length} activities`);
+  console.log(
+    `Built db.json: ${tasks.length} tasks, ${users.length} users, ${activities.length} activities, ` +
+      `${comments.length} comments`
+  );
 }
 
 main();
