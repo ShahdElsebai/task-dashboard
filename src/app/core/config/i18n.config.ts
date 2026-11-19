@@ -13,9 +13,17 @@ export const LANGUAGES: Readonly<Record<AppLanguage, LanguageOption>> = {
   ar: { label: 'العربية', dir: 'rtl' },
 };
 
+/**
+ * Path the app is served from, read from `<base href>`: `/` locally and in Docker,
+ * `/<repo>/` on GitHub Pages. Translations are fetched relative to it.
+ */
+export function appBasePath(): string {
+  return typeof document === 'undefined' ? '/' : new URL(document.baseURI).pathname;
+}
+
 export function provideI18n(): Provider[] {
   return provideTranslateService({
-    loader: provideTranslateHttpLoader({ prefix: '/assets/i18n/', suffix: '.json' }),
+    loader: provideTranslateHttpLoader({ prefix: `${appBasePath()}assets/i18n/`, suffix: '.json' }),
     fallbackLang: 'en',
     lang: environment.defaultLang,
   });

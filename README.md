@@ -2,12 +2,14 @@
 
 A task management dashboard built with **Angular 22** and **Optimus UI**: a kanban board with drag and drop, task filtering and search, a create/edit form, analytics charts, an activity feed and a team overview, in **English and Arabic (RTL)**.
 
-![CI](https://github.com/OWNER/REPO/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/ShahdElsebai/task-dashboard/actions/workflows/ci.yml/badge.svg)
+
+**Live demo:** https://shahdelsebai.github.io/task-dashboard/ (runs entirely in the browser with a mock API; changes reset on reload)
 
 |                          |                                                                      |
 | ------------------------ | -------------------------------------------------------------------- |
-| **Tests**                | 169 unit and integration tests, 90% statement coverage               |
-| **Bundle**               | 484 kB initial (121 kB over the network), under the 500 kB budget    |
+| **Tests**                | 178 unit and integration tests, 90% statement coverage               |
+| **Bundle**               | 487 kB initial (122 kB over the network), under the 500 kB budget    |
 | **Lighthouse (desktop)** | Performance 92–99 · Accessibility 100 · Best practices 100 · SEO 100 |
 | **Accessibility**        | 0 axe-core violations on every page, in both languages               |
 
@@ -44,7 +46,7 @@ npm run dev
 
 > `npm start` runs only the app. Without the API, the pages show their error state with a Retry button.
 
-Every start of the mock API resets the data from `mock-api/db.json`, so you can experiment freely.
+Every start of the mock API resets the data from `mock-api/db.json`, so you can experiment freely. The seed dates (due dates, overdue tasks, activity times) are relative to when the data was generated; run `npm run mock:generate` to refresh them.
 
 **With Docker** (production build behind nginx):
 
@@ -72,7 +74,7 @@ docker compose up --build    # http://localhost:8080
 
 ## Features
 
-**Dashboard** (`/dashboard`, as in the Figma design)
+**Dashboard** (`/dashboard`)
 
 - Stat cards: total, completed, in progress and overdue. They are computed live from the tasks, so they update immediately after every change.
 - Kanban board with three fixed columns (To Do, In Progress, Done):
@@ -93,7 +95,7 @@ docker compose up --build    # http://localhost:8080
 - Doughnut chart by status and bar chart by priority (Chart.js). Each has an HTML legend with counts and percentages, which also serves as the text alternative.
 - Recent activity feed with relative times ("3 hours ago" / "منذ 3 ساعات"). Entries link to the task.
 
-> The Figma dashboard has room only for the stat cards and the board, so the charts and the activity feed (listed under _Dashboard features_ in the requirements) are on their own page, linked from the sidebar.
+> The dashboard has room only for the stat cards and the board, so the charts and the activity feed (listed under _Dashboard features_ in the requirements) are on their own page, linked from the sidebar.
 
 **Team** (`/team`): each user's open, completed and overdue tasks and completion rate. _View tasks_ opens the board filtered by that person.
 
@@ -107,18 +109,19 @@ docker compose up --build    # http://localhost:8080
 
 ## Scripts
 
-| Command                           | What it does                                                        |
-| --------------------------------- | ------------------------------------------------------------------- |
-| `npm run dev`                     | Mock API + app with live reload                                     |
-| `npm start`                       | App only (`ng serve`)                                               |
-| `npm run mock:api`                | Mock API only, reset from `mock-api/db.json`                        |
-| `npm run mock:generate`           | Regenerate the seed data (`generate-data.cjs`, then `build-db.cjs`) |
-| `npm run build`                   | Production build into `dist/` (fails above a 550 kB initial bundle) |
-| `npm test`                        | Unit tests in watch mode (Vitest)                                   |
-| `npm run test:ci`                 | Unit tests once                                                     |
-| `npm run test:coverage`           | Unit tests once with a coverage report in `coverage/`               |
-| `npm run lint` / `lint:fix`       | ESLint (TypeScript and templates)                                   |
-| `npm run format` / `format:check` | Prettier                                                            |
+| Command                           | What it does                                                               |
+| --------------------------------- | -------------------------------------------------------------------------- |
+| `npm run dev`                     | Mock API + app with live reload                                            |
+| `npm start`                       | App only (`ng serve`)                                                      |
+| `npm run mock:api`                | Mock API only, reset from `mock-api/db.json`                               |
+| `npm run mock:generate`           | Regenerate the seed data (`generate-data.cjs`, then `build-db.cjs`)        |
+| `npm run build`                   | Production build into `dist/` (fails above a 550 kB initial bundle)        |
+| `npm run build:demo`              | Production build with the in-browser mock API, as deployed to GitHub Pages |
+| `npm test`                        | Unit tests in watch mode (Vitest)                                          |
+| `npm run test:ci`                 | Unit tests once                                                            |
+| `npm run test:coverage`           | Unit tests once with a coverage report in `coverage/`                      |
+| `npm run lint` / `lint:fix`       | ESLint (TypeScript and templates)                                          |
+| `npm run format` / `format:check` | Prettier                                                                   |
 
 **Git hooks** (Husky):
 
@@ -153,7 +156,8 @@ src/app
 │   ├── models/
 │   ├── services/
 │   │   ├── api/             users and activities endpoints
-│   │   ├── http/            interceptors: api-url, loading, error, cache, retry
+│   │   ├── http/            interceptors: api-url, loading, error, cache, retry;
+│   │   │                    mock-backend/ (demo build only)
 │   │   └── store/           UsersStore, ActivityStore (shared across features)
 │   └── utils/               dates, collections, resources, task rules
 ├── shared/                  presentational building blocks
@@ -242,7 +246,7 @@ DashboardApiService ──httpResource──▶ DashboardTasksStateService ─�
 
 **Vitest** through the Angular CLI, running zoneless.
 
-- **169 tests in 33 files.** Coverage: **90% statements, 92% branches, 86% functions, 93% lines**.
+- **178 tests in 34 files.** Coverage: **90% statements, 92% branches, 86% functions, 93% lines**.
 
 | Layer                   | What is tested                                                                                               | How                                             |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------ | ----------------------------------------------- |
@@ -261,7 +265,7 @@ DashboardApiService ──httpResource──▶ DashboardTasksStateService ─�
 ## Performance
 
 - **Lazy loading:** the layout and every page are lazy routes. Chart.js loads only with Analytics.
-- **Bundle budget:** 500 kB warning, 550 kB error, enforced in CI. Initial bundle 484 kB.
+- **Bundle budget:** 500 kB warning, 550 kB error, enforced in CI. Initial bundle 487 kB.
   - **Theme:** a slim Aura preset with only the 15 components in use (`theme.preset.ts`). The full preset ships tokens for about 80 components, roughly 130 kB.
   - **Toast:** loads with the layout instead of the root component.
 - **Rendering:** OnPush everywhere, signals and `computed` for derived values, and `track` in every `@for`.
@@ -330,6 +334,13 @@ The mobile profile emulates a slow phone (4× CPU slowdown, slow 4G). Almost all
 5. Production build, which fails if the bundle exceeds its budget
 6. A second job builds both Docker images.
 
+**Live demo** (`.github/workflows/deploy-demo.yml`), on every push to `main`:
+
+- Builds with `npm run build:demo`, using the repository name as the base href, and publishes to GitHub Pages.
+- Pages can't run json-server, so the demo build swaps in `mock-backend.providers.demo.ts` (an Angular file replacement). An interceptor then answers the same REST routes from `mock-api/db.json`, in memory, with 250 ms of simulated latency. Every other build, Docker included, contains none of it.
+- Pages has no SPA fallback, so `index.html` is also published as `404.html`; deep links and refreshes still open the right page.
+- One-time setup: **Settings → Pages → Source: GitHub Actions**.
+
 ---
 
 ## Known limitations and future improvements
@@ -337,6 +348,7 @@ The mobile profile emulates a slow phone (4× CPU slowdown, slow 4G). Almost all
 - **Mock backend.** json-server has no authentication, validation or concurrency control. Two people moving tasks at the same moment could both win; a real API would need versioning (ETags) or server-side ordering.
 - **Mobile performance (65–70).** The next step would be server-side rendering or prerendering of the shell, so the first paint doesn't wait for the main bundle. Another option is trimming Optimus's runtime styling.
 - **Static columns.** User-defined columns would need a `columns` resource and a `columnId` on tasks.
-- **Placeholder pages.** _Tasks_, _Calendar_ and _Settings_ are placeholders ("Coming soon"). They are in the design's navigation but outside the assignment's scope.
+- **Demo data is per tab.** The live demo keeps changes in memory, so a reload or a second tab starts from the seed data. Deep links on GitHub Pages also return HTTP 404 before the app takes over (a Pages limitation; the page still opens).
+- **Placeholder pages.** _Tasks_, _Calendar_ and _Settings_ are placeholders ("Coming soon").
 - **No end-to-end suite in CI.** Browser flows were verified manually with Playwright during development. Adding them as a Playwright suite in CI would protect the drag-and-drop and URL flows.
 - **Other ideas:** dark mode (the theme already has a dark-mode selector), real-time updates (WebSocket or SSE), and undo for delete.

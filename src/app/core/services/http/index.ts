@@ -5,4 +5,5 @@ export * from './error.interceptor';
 export * from './http-cache.service';
 export * from './http-context.tokens';
 export * from './loading.interceptor';
+export * from './mock-backend/mock-backend.providers';
 export * from './retry.interceptor';
