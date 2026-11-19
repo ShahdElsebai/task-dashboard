@@ -17,6 +17,7 @@ import { FormControl, NonNullableFormBuilder, ReactiveFormsModule, Validators } 
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ConfirmationService } from '@openng/optimus-ui/api';
 import { ButtonModule } from '@openng/optimus-ui/button';
+import { DatePickerModule } from '@openng/optimus-ui/datepicker';
 import { DialogModule } from '@openng/optimus-ui/dialog';
 import { InputTextModule } from '@openng/optimus-ui/inputtext';
 import { SelectModule } from '@openng/optimus-ui/select';
@@ -38,14 +39,7 @@ import {
 import { FORM_LABEL_KEYS, PRIORITIES } from './board-task-form-dialog.config';
 import { FieldError, SelectOption, TaskFormGroup } from './board-task-form-dialog.model';
 import { FieldName } from './board-task-form-dialog.model';
-import {
-  dueDateValidator,
-  fieldError,
-  notBlank,
-  toDateInput,
-  toFormValue,
-  uniqueTags,
-} from './board-task-form-dialog.utils';
+import { dueDateValidator, fieldError, notBlank, toFormValue, uniqueTags } from './board-task-form-dialog.utils';
 
 /**
  * Create/edit task form in a dialog (presentational).
@@ -59,6 +53,7 @@ import {
     ReactiveFormsModule,
     TranslatePipe,
     ButtonModule,
+    DatePickerModule,
     DialogModule,
     InputTextModule,
     SelectModule,
@@ -109,7 +104,7 @@ export class BoardTaskFormDialogComponent {
 
   protected readonly isEdit: Signal<boolean> = computed(() => this.task() !== null);
   private readonly taskId: Signal<string | null> = computed(() => this.task()?.id ?? null);
-  protected readonly today: string = toDateInput(new Date());
+  protected readonly today: Date = new Date();
 
   /**
    * The message to show under each field, once the user has touched it (or tried to submit).

@@ -4,6 +4,7 @@ import base from '@openng/optimus-ui-themes/aura/base';
 import button from '@openng/optimus-ui-themes/aura/button';
 import confirmdialog from '@openng/optimus-ui-themes/aura/confirmdialog';
 import auraCss from '@openng/optimus-ui-themes/aura/css';
+import datepicker from '@openng/optimus-ui-themes/aura/datepicker';
 import dialog from '@openng/optimus-ui-themes/aura/dialog';
 import drawer from '@openng/optimus-ui-themes/aura/drawer';
 import iconfield from '@openng/optimus-ui-themes/aura/iconfield';
@@ -34,6 +35,7 @@ const SlimAura: Preset = {
     avatar,
     button,
     confirmdialog,
+    datepicker,
     dialog,
     drawer,
     iconfield,

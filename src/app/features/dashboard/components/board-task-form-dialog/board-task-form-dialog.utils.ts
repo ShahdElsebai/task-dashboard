@@ -77,9 +77,3 @@ export function toFormValue(task: TaskDto): TaskFormValue {
     tags: [...task.tags],
   };
 }
-
-/** `YYYY-MM-DD` in local time, the format `<input type="date">` expects. */
-export function toDateInput(date: Date): string {
-  const pad: (n: number) => string = (n: number): string => String(n).padStart(2, '0');
-  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
-}
