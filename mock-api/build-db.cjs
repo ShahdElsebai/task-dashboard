@@ -13,7 +13,7 @@
  * Board columns are fixed (one per status). Each task gets a `position` inside
  * its column, in gaps of 1000 (1000, 2000, 3000, …), so moving a task only
  * updates that task: its new position is the midpoint between its new
- * neighbours. See src/app/core/utils/position.utils.ts.
+ * neighbours. See positionBetween / planMove in src/app/features/dashboard/dashboard.utils.ts.
  */
 
 const fs = require('fs');
