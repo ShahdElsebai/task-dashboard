@@ -8,12 +8,7 @@ import { provideRouter } from '@angular/router';
 import { provideTranslateService } from '@ngx-translate/core';
 
 import { TaskPriority, TaskStatus } from '@core/dto';
-import {
-  makeTask,
-  NotificationsMock,
-  storeTestProviders,
-  TEST_USER,
-} from '@features/dashboard/services/dashboard.test-helpers';
+import { makeTask, NotificationsMock, storeTestProviders, TEST_USER } from '@testing';
 
 import { AnalyticsComponent } from './analytics.component';
 import { ChartSlice } from './analytics.model';

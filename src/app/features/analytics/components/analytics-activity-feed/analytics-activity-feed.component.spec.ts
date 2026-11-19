@@ -4,7 +4,7 @@ import { provideRouter } from '@angular/router';
 import { provideTranslateService } from '@ngx-translate/core';
 
 import { ActivityDto, ActivityType } from '@core/dto';
-import { TEST_USER } from '@features/dashboard/services/dashboard.test-helpers';
+import { TEST_USER } from '@testing';
 
 import { AnalyticsActivityFeedComponent } from './analytics-activity-feed.component';
 

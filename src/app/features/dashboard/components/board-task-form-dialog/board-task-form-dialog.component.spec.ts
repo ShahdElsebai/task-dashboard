@@ -4,9 +4,9 @@ import { provideTranslateService } from '@ngx-translate/core';
 import { Confirmation, ConfirmationService } from '@openng/optimus-ui/api';
 
 import { TaskDto, TaskPriority, TaskStatus } from '@core/dto';
+import { makeTask, TEST_USER } from '@testing';
 
 import { TaskFormValue } from '../../dashboard.model';
-import { makeTask, TEST_USER } from '../../services/dashboard.test-helpers';
 import { BoardTaskFormDialogComponent } from './board-task-form-dialog.component';
 import { FieldError, TaskFormGroup } from './board-task-form-dialog.model';
 

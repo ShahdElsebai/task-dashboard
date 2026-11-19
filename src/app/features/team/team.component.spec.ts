@@ -6,12 +6,7 @@ import { provideRouter } from '@angular/router';
 import { provideTranslateService } from '@ngx-translate/core';
 
 import { TaskStatus } from '@core/dto';
-import {
-  makeTask,
-  NotificationsMock,
-  storeTestProviders,
-  TEST_USER,
-} from '@features/dashboard/services/dashboard.test-helpers';
+import { makeTask, NotificationsMock, storeTestProviders, TEST_USER } from '@testing';
 
 import { TeamComponent } from './team.component';
 

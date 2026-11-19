@@ -4,15 +4,9 @@ import { TestBed } from '@angular/core/testing';
 
 import { TaskDto, TaskPriority, TaskStatus } from '@core/dto';
 import { UsersStore } from '@core/services/store';
+import { flushActivities, flushInitialLoad, makeTask, NotificationsMock, storeTestProviders } from '@testing';
 
 import { TaskFormValue } from '../dashboard.model';
-import {
-  flushActivities,
-  flushInitialLoad,
-  makeTask,
-  NotificationsMock,
-  storeTestProviders,
-} from './dashboard.test-helpers';
 import { DashboardTasksStateService } from './dashboard-tasks-state.service';
 
 const { Todo, InProgress, Done } = TaskStatus;
