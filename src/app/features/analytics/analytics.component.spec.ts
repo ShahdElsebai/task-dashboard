@@ -1,18 +1,20 @@
-import { Component, DebugElement, input, InputSignal } from '@angular/core';
 import { HttpTestingController, TestRequest } from '@angular/common/http/testing';
+import { Component, DebugElement, input, InputSignal } from '@angular/core';
 import { ApplicationRef } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
+
 import { provideTranslateService } from '@ngx-translate/core';
 
-import { TaskPriority, TaskStatus } from '../../core/dto';
+import { TaskPriority, TaskStatus } from '@core/dto';
 import {
-  NotificationsMock,
-  TEST_USER,
   makeTask,
+  NotificationsMock,
   storeTestProviders,
-} from '../dashboard/services/dashboard.test-helpers';
+  TEST_USER,
+} from '@features/dashboard/services/dashboard.test-helpers';
+
 import { AnalyticsComponent } from './analytics.component';
 import { ChartSlice } from './analytics.model';
 import { AnalyticsChartCardComponent } from './components/analytics-chart-card/analytics-chart-card.component';

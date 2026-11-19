@@ -1,4 +1,5 @@
-import { TaskStatus } from '../../../../core/dto';
+import { TaskStatus } from '@core/dto';
+
 import { dueLabel } from './board-task-card.utils';
 
 const today: Date = new Date(2026, 10, 17, 15, 0);

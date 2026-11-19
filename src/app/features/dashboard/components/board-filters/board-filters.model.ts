@@ -1,4 +1,4 @@
-import { TaskPriority, TaskStatus } from '../../../../core/dto';
+import { TaskPriority, TaskStatus } from '@core/dto';
 
 export type StatusFilter = TaskStatus | 'all';
 export type PriorityFilter = TaskPriority | null;

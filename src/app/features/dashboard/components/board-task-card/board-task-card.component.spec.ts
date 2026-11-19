@@ -1,8 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { provideTranslateService } from '@ngx-translate/core';
 import { MenuItem } from '@openng/optimus-ui/api';
 
-import { TaskStatus, TaskDto } from '../../../../core/dto';
+import { TaskDto, TaskStatus } from '@core/dto';
+
 import { makeTask } from '../../services/dashboard.test-helpers';
 import { BoardTaskCardComponent } from './board-task-card.component';
 

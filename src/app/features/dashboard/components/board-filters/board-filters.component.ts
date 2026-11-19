@@ -3,21 +3,23 @@ import {
   computed,
   inject,
   input,
-  model,
-  output,
   InputSignal,
+  model,
   ModelSignal,
+  output,
   OutputEmitterRef,
   Signal,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
+
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ButtonModule } from '@openng/optimus-ui/button';
 import { SelectModule } from '@openng/optimus-ui/select';
 import { SelectButtonModule } from '@openng/optimus-ui/selectbutton';
 
-import { UserDto } from '../../../../core/dto';
+import { UserDto } from '@core/dto';
+
 import { PRIORITY_FILTER_OPTIONS, STATUS_FILTER_OPTIONS } from './board-filters.config';
 import { FilterOption, FilterSelectOption, PriorityFilter, StatusFilter } from './board-filters.model';
 

@@ -1,4 +1,4 @@
-import { UserDto } from '../../core/dto';
+import { UserDto } from '@core/dto';
 
 export const SEARCH_DEBOUNCE_MS: number = 250;
 

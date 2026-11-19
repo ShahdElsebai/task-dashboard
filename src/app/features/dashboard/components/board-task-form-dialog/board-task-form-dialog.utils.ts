@@ -1,7 +1,8 @@
 import { AbstractControl, FormArray, ValidationErrors, ValidatorFn } from '@angular/forms';
 
-import { TaskDto, TaskStatus } from '../../../../core/dto';
-import { daysBetween, parseDateOnly } from '../../../../core/utils';
+import { TaskDto, TaskStatus } from '@core/dto';
+import { daysBetween, parseDateOnly } from '@core/utils';
+
 import { TaskFormValue } from '../../dashboard.model';
 import { FORM_ERROR_KEYS } from './board-task-form-dialog.config';
 import { FieldError } from './board-task-form-dialog.model';

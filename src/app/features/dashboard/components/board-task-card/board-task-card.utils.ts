@@ -1,7 +1,8 @@
-import { TaskDto, TaskStatus } from '../../../../core/dto';
-import { daysBetween, parseDateOnly } from '../../../../core/utils';
-import { DueLabel, DueTone } from './board-task-card.model';
+import { TaskDto, TaskStatus } from '@core/dto';
+import { daysBetween, parseDateOnly } from '@core/utils';
+
 import { DUE_SOON_DAYS } from './board-task-card.config';
+import { DueLabel, DueTone } from './board-task-card.model';
 
 export function dueLabel(
   task: Pick<TaskDto, 'status' | 'dueDate' | 'completedAt'>,

@@ -1,4 +1,4 @@
-import { TaskPriority, TaskStatus, TaskDto, UpdateTaskDto, UserDto } from '../../core/dto';
+import { TaskDto, TaskPriority, TaskStatus, UpdateTaskDto, UserDto } from '@core/dto';
 
 export interface BoardColumnConfig {
   status: TaskStatus;

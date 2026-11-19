@@ -1,9 +1,10 @@
 import { HttpEvent, HttpHandlerFn, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
 
-import { NotificationService } from '../notification.service';
+import { catchError, Observable, throwError } from 'rxjs';
+
 import { AppError } from '../../models';
+import { NotificationService } from '../notification.service';
 import { toAppError } from './app-error';
 import { SKIP_ERROR_TOAST } from './http-context.tokens';
 

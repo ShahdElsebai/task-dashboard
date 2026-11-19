@@ -1,4 +1,5 @@
-import { TaskPriority } from '../../../../core/dto';
+import { TaskPriority } from '@core/dto';
+
 import { BOARD_COLUMNS } from '../../dashboard.config';
 import { BoardColumnConfig } from '../../dashboard.model';
 import { FilterOption, PriorityFilter, StatusFilter } from './board-filters.model';

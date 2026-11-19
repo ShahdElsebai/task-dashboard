@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+
 import { TranslatePipe } from '@ngx-translate/core';
 import { ButtonModule } from '@openng/optimus-ui/button';
 
-import { EmptyStateComponent } from '../../shared';
+import { EmptyStateComponent } from '@shared';
 
 @Component({
   selector: 'app-not-found',

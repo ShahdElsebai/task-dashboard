@@ -1,4 +1,4 @@
-import { UserDto } from '../../core/dto';
+import { UserDto } from '@core/dto';
 
 export interface TeamMember {
   user: UserDto;

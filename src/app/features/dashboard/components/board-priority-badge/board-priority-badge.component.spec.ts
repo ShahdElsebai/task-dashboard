@@ -1,7 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { provideTranslateService } from '@ngx-translate/core';
 
-import { TaskPriority } from '../../../../core/dto';
+import { TaskPriority } from '@core/dto';
+
 import { BoardPriorityBadgeComponent } from './board-priority-badge.component';
 
 describe('BoardPriorityBadgeComponent', () => {

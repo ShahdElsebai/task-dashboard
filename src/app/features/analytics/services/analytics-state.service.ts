@@ -1,9 +1,10 @@
 import { HttpResourceRef } from '@angular/common/http';
-import { Service, Signal, computed, inject } from '@angular/core';
+import { computed, inject, Service, Signal } from '@angular/core';
 
-import { ActivityDto, TaskDto } from '../../../core/dto';
-import { ActivityStore } from '../../../core/services/store';
-import { valueOr } from '../../../core/utils';
+import { ActivityDto, TaskDto } from '@core/dto';
+import { ActivityStore } from '@core/services/store';
+import { valueOr } from '@core/utils';
+
 import { FEED_SIZE } from '../analytics.config';
 import { ChartSlice } from '../analytics.model';
 import { prioritySlices, statusSlices } from '../analytics.utils';

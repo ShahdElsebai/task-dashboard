@@ -1,9 +1,10 @@
 import { HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
-import { TaskStatus, TaskDto } from '../../../core/dto';
+import { TaskDto, TaskStatus } from '@core/dto';
+
+import { flushInitialLoad, makeTask, NotificationsMock, storeTestProviders } from './dashboard.test-helpers';
 import { DashboardStateService } from './dashboard-state.service';
-import { NotificationsMock, flushInitialLoad, makeTask, storeTestProviders } from './dashboard.test-helpers';
 
 const { Todo, InProgress } = TaskStatus;
 

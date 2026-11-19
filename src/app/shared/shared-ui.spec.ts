@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { provideTranslateService } from '@ngx-translate/core';
 
-import { UserDto } from '../core/dto';
+import { UserDto } from '@core/dto';
+
 import { EmptyStateComponent, UserAvatarComponent } from '.';
 
 const user: UserDto = { id: 'u1', name: 'Sarah Smith', avatar: 'SS', email: 's@x.com' };

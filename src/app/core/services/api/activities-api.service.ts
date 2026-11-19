@@ -1,10 +1,11 @@
-import { HttpClient, HttpContext, HttpResourceRef, httpResource } from '@angular/common/http';
-import { Service, inject } from '@angular/core';
+import { HttpClient, HttpContext, httpResource, HttpResourceRef } from '@angular/common/http';
+import { inject, Service } from '@angular/core';
+
 import { Observable } from 'rxjs';
 
+import { ACTIVITIES_API_PATH } from '../../config/activity.config';
 import { ActivityDto, CreateActivityDto } from '../../dto';
 import { SKIP_ERROR_TOAST, SKIP_LOADING } from '../http/http-context.tokens';
-import { ACTIVITIES_API_PATH } from '../../config/activity.config';
 
 @Service()
 export class ActivitiesApiService {

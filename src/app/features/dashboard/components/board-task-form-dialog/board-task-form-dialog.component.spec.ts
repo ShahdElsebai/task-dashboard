@@ -1,10 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { provideTranslateService } from '@ngx-translate/core';
 import { Confirmation, ConfirmationService } from '@openng/optimus-ui/api';
 
-import { TaskPriority, TaskStatus, TaskDto } from '../../../../core/dto';
+import { TaskDto, TaskPriority, TaskStatus } from '@core/dto';
+
 import { TaskFormValue } from '../../dashboard.model';
-import { TEST_USER, makeTask } from '../../services/dashboard.test-helpers';
+import { makeTask, TEST_USER } from '../../services/dashboard.test-helpers';
 import { BoardTaskFormDialogComponent } from './board-task-form-dialog.component';
 import { FieldError, TaskFormGroup } from './board-task-form-dialog.model';
 

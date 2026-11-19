@@ -1,4 +1,4 @@
-import { HttpResourceRef, httpResource, provideHttpClient } from '@angular/common/http';
+import { httpResource, HttpResourceRef, provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { ApplicationRef, Injector, runInInjectionContext } from '@angular/core';
 import { TestBed } from '@angular/core/testing';

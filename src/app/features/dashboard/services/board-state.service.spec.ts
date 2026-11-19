@@ -1,17 +1,18 @@
 import { HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
-import { TaskPriority, TaskStatus, TaskDto } from '../../../core/dto';
+import { TaskDto, TaskPriority, TaskStatus } from '@core/dto';
+
 import { BoardColumn } from '../dashboard.model';
 import { BoardStateService } from './board-state.service';
-import { DashboardTasksStateService } from './dashboard-tasks-state.service';
 import {
-  NotificationsMock,
   flushActivities,
   flushInitialLoad,
   makeTask,
+  NotificationsMock,
   storeTestProviders,
 } from './dashboard.test-helpers';
+import { DashboardTasksStateService } from './dashboard-tasks-state.service';
 
 const { Todo, InProgress, Done } = TaskStatus;
 

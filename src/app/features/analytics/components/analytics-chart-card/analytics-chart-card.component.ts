@@ -1,12 +1,14 @@
 import { Component, computed, inject, input, InputSignal, Signal } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ChartModule } from '@openng/optimus-ui/chart';
 import { ChartData } from 'chart.js';
 import { Observable, switchMap } from 'rxjs';
 
-import { LANGUAGES } from '../../../../core/config/i18n.config';
-import { LanguageService } from '../../../../core/services/language.service';
+import { LANGUAGES } from '@core/config/i18n.config';
+import { LanguageService } from '@core/services/language.service';
+
 import { ChartSlice } from '../../analytics.model';
 import { percentOf } from '../../analytics.utils';
 import { chartOptions } from './analytics-chart-card.config';

@@ -1,6 +1,6 @@
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
-import { TaskPriority, TaskStatus } from '../../../../core/dto';
+import { TaskPriority, TaskStatus } from '@core/dto';
 
 export interface TaskFormControls {
   title: FormControl<string>;

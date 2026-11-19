@@ -1,5 +1,6 @@
-import { ActivityDto, ActivityType } from '../../../../core/dto';
-import { TEST_USER } from '../../../dashboard/services/dashboard.test-helpers';
+import { ActivityDto, ActivityType } from '@core/dto';
+import { TEST_USER } from '@features/dashboard/services/dashboard.test-helpers';
+
 import { timeAgo, toActivityItem } from './analytics-activity-feed.utils';
 
 describe('activity feed utils', () => {

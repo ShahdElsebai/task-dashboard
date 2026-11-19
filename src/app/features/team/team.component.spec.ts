@@ -2,15 +2,17 @@ import { HttpTestingController, TestRequest } from '@angular/common/http/testing
 import { ApplicationRef } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
+
 import { provideTranslateService } from '@ngx-translate/core';
 
-import { TaskStatus } from '../../core/dto';
+import { TaskStatus } from '@core/dto';
 import {
-  NotificationsMock,
-  TEST_USER,
   makeTask,
+  NotificationsMock,
   storeTestProviders,
-} from '../dashboard/services/dashboard.test-helpers';
+  TEST_USER,
+} from '@features/dashboard/services/dashboard.test-helpers';
+
 import { TeamComponent } from './team.component';
 
 describe('TeamComponent', () => {

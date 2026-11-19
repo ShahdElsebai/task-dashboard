@@ -1,6 +1,6 @@
 import { ActivityType } from './enum.dto';
-import { UserDto } from './user.dto';
 import { Identifiable } from './shared.dto';
+import { UserDto } from './user.dto';
 
 export interface ActivityDto extends Identifiable {
   type: ActivityType;

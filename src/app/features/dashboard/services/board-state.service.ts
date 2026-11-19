@@ -1,6 +1,7 @@
-import { Service, Signal, WritableSignal, computed, inject, signal } from '@angular/core';
+import { computed, inject, Service, Signal, signal, WritableSignal } from '@angular/core';
 
-import { TaskDto, TaskStatus } from '../../../core/dto';
+import { TaskDto, TaskStatus } from '@core/dto';
+
 import { BOARD_COLUMNS, EMPTY_FILTERS } from '../dashboard.config';
 import { BoardColumn, BoardColumnConfig, TaskFilters } from '../dashboard.model';
 import { byPosition, filterTasks, hasActiveFilters, toFullIndex } from '../dashboard.utils';

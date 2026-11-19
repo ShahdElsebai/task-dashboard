@@ -1,11 +1,12 @@
 import { HttpResourceRef } from '@angular/common/http';
-import { Service, Signal, computed, inject } from '@angular/core';
+import { computed, inject, Service, Signal } from '@angular/core';
+
 import { firstValueFrom } from 'rxjs';
 
+import { ACTIVITY_LIMIT } from '../../config/activity.config';
 import { ActivityDto, ActivityType, CreateActivityDto, TaskDto } from '../../dto';
 import { replaceById, tempId, valueOr } from '../../utils';
 import { ActivitiesApiService } from '../api';
-import { ACTIVITY_LIMIT } from '../../config/activity.config';
 
 @Service()
 export class ActivityStore {

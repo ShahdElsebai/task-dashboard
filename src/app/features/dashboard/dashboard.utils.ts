@@ -1,5 +1,7 @@
-import { CreateTaskDto, Identifiable, TaskDto, TaskPriority, TaskStatus, UpdateTaskDto, UserDto } from '../../core/dto';
-import { isTaskOverdue } from '../../core/utils';
+import { CreateTaskDto, Identifiable, TaskDto, TaskPriority, TaskStatus, UpdateTaskDto, UserDto } from '@core/dto';
+import { isTaskOverdue } from '@core/utils';
+
+import { POSITION_GAP } from './dashboard.config';
 import {
   PositionUpdate,
   TaskFilters,
@@ -8,7 +10,6 @@ import {
   TaskUpdate,
   UpdateTaskContext,
 } from './dashboard.model';
-import { POSITION_GAP } from './dashboard.config';
 import { Positioned, Sortable } from './dashboard.model';
 
 export function isTaskStatus(value: unknown): value is TaskStatus {

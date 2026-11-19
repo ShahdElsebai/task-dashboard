@@ -13,6 +13,7 @@ import {
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ConfirmationService } from '@openng/optimus-ui/api';
 import { ButtonModule } from '@openng/optimus-ui/button';
@@ -22,7 +23,8 @@ import { SelectModule } from '@openng/optimus-ui/select';
 import { TextareaModule } from '@openng/optimus-ui/textarea';
 import { scan } from 'rxjs';
 
-import { TaskDto, TaskPriority, TaskStatus, UserDto } from '../../../../core/dto';
+import { TaskDto, TaskPriority, TaskStatus, UserDto } from '@core/dto';
+
 import { BOARD_COLUMNS } from '../../dashboard.config';
 import { BoardColumnConfig, TaskFormValue } from '../../dashboard.model';
 import {
@@ -33,7 +35,9 @@ import {
   TAG_MAX_LENGTH,
   TITLE_MAX_LENGTH,
 } from './board-task-form-dialog.config';
+import { FORM_LABEL_KEYS, PRIORITIES } from './board-task-form-dialog.config';
 import { FieldError, SelectOption, TaskFormGroup } from './board-task-form-dialog.model';
+import { FieldName } from './board-task-form-dialog.model';
 import {
   dueDateValidator,
   fieldError,
@@ -42,8 +46,6 @@ import {
   toFormValue,
   uniqueTags,
 } from './board-task-form-dialog.utils';
-import { FORM_LABEL_KEYS, PRIORITIES } from './board-task-form-dialog.config';
-import { FieldName } from './board-task-form-dialog.model';
 
 @Component({
   selector: 'app-board-task-form-dialog',

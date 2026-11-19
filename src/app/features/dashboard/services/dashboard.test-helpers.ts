@@ -1,11 +1,11 @@
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { HttpTestingController, TestRequest, provideHttpClientTesting } from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting, TestRequest } from '@angular/common/http/testing';
 import { ApplicationRef, EnvironmentProviders, Provider } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
-import { TaskPriority, TaskStatus, TaskDto, UserDto } from '../../../core/dto';
-import { apiUrlInterceptor } from '../../../core/services/http/api-url.interceptor';
-import { NotificationService } from '../../../core/services/notification.service';
+import { TaskDto, TaskPriority, TaskStatus, UserDto } from '@core/dto';
+import { apiUrlInterceptor } from '@core/services/http/api-url.interceptor';
+import { NotificationService } from '@core/services/notification.service';
 
 export const TEST_USER: UserDto = { id: 'user-1', name: 'John Doe', avatar: 'JD', email: 'j@x.com' };
 
