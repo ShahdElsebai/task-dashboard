@@ -33,6 +33,11 @@ export class BoardTaskCardComponent {
   protected readonly due: Signal<DueLabel> = computed(() => dueLabel(this.task()));
   protected readonly overdue: Signal<boolean> = computed(() => this.due().tone === 'overdue');
 
+  /**
+   * Card actions. Besides edit and delete, the move items are the keyboard
+   * alternative to drag and drop: change column, or move up/down within it.
+   * Kept flat because p-menu renders items that have children as group headers.
+   */
   protected readonly menuItems: Signal<MenuItem[]> = computed(() => {
     const t: Record<string, string> = this.labels();
     const reorder: MenuItem[] = [

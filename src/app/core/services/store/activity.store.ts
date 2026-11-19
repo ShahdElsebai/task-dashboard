@@ -8,6 +8,7 @@ import { ActivityDto, ActivityType, CreateActivityDto, TaskDto } from '../../dto
 import { replaceById, tempId, valueOr } from '../../utils';
 import { ActivitiesApiService } from '../api';
 
+/** The recent activity feed, shared by the dashboard and the Analytics page. */
 @Service()
 export class ActivityStore {
   private readonly api: ActivitiesApiService = inject(ActivitiesApiService);
@@ -21,6 +22,16 @@ export class ActivityStore {
     this.resource.reload();
   }
 
+  /**
+   * Records something that happened to a task.
+   *
+   * The entry appears in the feed immediately with a temporary id, then is swapped for the
+   * saved one. A failure is ignored: the task change itself already succeeded, and a missing
+   * feed entry isn't worth an error toast.
+   *
+   * @param type What happened.
+   * @param task The task it happened to, as it is now.
+   */
   log(type: ActivityType, task: TaskDto): void {
     const entry: CreateActivityDto = {
       type,
@@ -36,6 +47,7 @@ export class ActivityStore {
       .catch(() => undefined);
   }
 
+  /** Like `resource.value.update`, but also works after a failed load (where reading the value throws). */
   private mutate(fn: (items: ActivityDto[]) => ActivityDto[]): void {
     this.resource.value.set(fn(valueOr(this.resource, [])));
   }

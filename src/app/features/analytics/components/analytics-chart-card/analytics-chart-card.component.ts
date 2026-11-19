@@ -29,6 +29,7 @@ export class AnalyticsChartCardComponent {
   readonly slices: InputSignal<ChartSlice[]> = input.required<ChartSlice[]>();
 
   private readonly labelKeys: Signal<string[]> = computed(() => this.slices().map((s: ChartSlice) => s.labelKey));
+  // Chart.js needs plain strings, so labels are translated here; re-runs when the slices or language change.
   private readonly labels: Signal<Record<string, string>> = toSignal(
     toObservable(this.labelKeys).pipe(
       switchMap((keys: string[]): Observable<Record<string, string>> => this.translate.stream(keys))
@@ -67,6 +68,7 @@ export class AnalyticsChartCardComponent {
     chartOptions(this.kind(), LANGUAGES[this.language.current()].dir === 'rtl')
   );
 
+  /** Accessible name for the canvas, e.g. "To Do: 6, In Progress: 5, Done: 6". */
   protected readonly summary: Signal<string> = computed(() =>
     this.legend()
       .map((item: LegendItem) => `${item.label}: ${item.value}`)

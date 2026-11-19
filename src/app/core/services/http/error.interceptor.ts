@@ -8,6 +8,13 @@ import { NotificationService } from '../notification.service';
 import { toAppError } from './app-error';
 import { SKIP_ERROR_TOAST } from './http-context.tokens';
 
+/**
+ * Shows a toast when a write (POST, PATCH, DELETE) fails, unless the request opts out with
+ * `SKIP_ERROR_TOAST`.
+ *
+ * Failed GETs don't toast: the page that made them shows an error state with a Retry button,
+ * and a toast on top of it would say the same thing twice.
+ */
 export const errorInterceptor: HttpInterceptorFn = (
   req: HttpRequest<unknown>,
   next: HttpHandlerFn

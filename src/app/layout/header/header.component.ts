@@ -49,6 +49,7 @@ export class HeaderComponent {
     this.search$.next(value);
   }
 
+  /** Search only filters the board, so searching from another page opens the dashboard with it. */
   private applySearch(query: string): void {
     this.search.set(query);
     if (query && !this.router.url.startsWith('/dashboard')) {

@@ -3,6 +3,14 @@ import { isTaskOverdue } from '@core/utils';
 
 import { TeamMember } from './team.model';
 
+/**
+ * Each user's workload: open, completed and overdue tasks and completion rate.
+ *
+ * @param users Everyone who can be assigned tasks; users without tasks are kept with zeros.
+ * @param tasks All tasks.
+ * @param today The date overdue is measured against; injectable for tests.
+ * @return One entry per user, busiest (most open tasks) first, then by name.
+ */
 export function toTeamMembers(
   users: readonly UserDto[],
   tasks: readonly TaskDto[],

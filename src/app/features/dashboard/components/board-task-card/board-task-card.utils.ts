@@ -4,6 +4,14 @@ import { daysBetween, parseDateOnly } from '@core/utils';
 import { DUE_SOON_DAYS } from './board-task-card.config';
 import { DueLabel, DueTone } from './board-task-card.model';
 
+/**
+ * The due-date text and colour for a task card: overdue, due soon (within `DUE_SOON_DAYS`),
+ * a normal date, or done.
+ *
+ * @param task The task.
+ * @param today The date to compare with; injectable for tests.
+ * @return A translation key with its params, plus the tone and icon to use.
+ */
 export function dueLabel(
   task: Pick<TaskDto, 'status' | 'dueDate' | 'completedAt'>,
   today: Date = new Date()

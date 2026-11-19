@@ -8,16 +8,19 @@ import { BoardColumn, BoardColumnConfig, TaskFieldFilters, TaskFilters } from '.
 import { byPosition, filterTasks, hasActiveFilters, toFullIndex } from '../dashboard.utils';
 import { DashboardTasksStateService } from './dashboard-tasks-state.service';
 
+/** What the board shows: the filters and the fixed status columns. Task data lives in DashboardTasksStateService. */
 @Service()
 export class BoardStateService {
   private readonly tasks: DashboardTasksStateService = inject(DashboardTasksStateService);
   private readonly search: SearchService = inject(SearchService);
   private readonly fieldFilters: WritableSignal<TaskFieldFilters> = signal<TaskFieldFilters>(EMPTY_FIELD_FILTERS);
 
+  /** Status, priority and assignee from the filter bar, plus the header's search text. */
   readonly filters: Signal<TaskFilters> = computed(() => ({ ...this.fieldFilters(), search: this.search.query() }));
   readonly isFiltered: Signal<boolean> = computed(() => hasActiveFilters(this.filters()));
   readonly filteredTasks: Signal<TaskDto[]> = computed(() => filterTasks(this.tasks.tasks(), this.filters()));
 
+  /** Updates some filters; `search` is forwarded to the shared SearchService so the header shows it too. */
   setFilters(changes: Partial<TaskFilters>): void {
     const { search, ...fields }: Partial<TaskFilters> = changes;
     if (search !== undefined) this.search.set(search);
@@ -43,6 +46,15 @@ export class BoardStateService {
     return this.columns().filter((column: BoardColumn) => status === null || column.status === status);
   });
 
+  /**
+   * Handles a move from the board (drag and drop or the card menu).
+   *
+   * @param taskId The task being moved.
+   * @param toStatus The target column.
+   * @param visibleIndex Where it was dropped among the tasks the user can see. Filters may hide
+   *     some, so this is mapped to the full column first (see `toFullIndex`).
+   * @return True once saved.
+   */
   moveTask(taskId: string, toStatus: TaskStatus, visibleIndex: number): Promise<boolean> {
     const withoutMoved: (list: TaskDto[]) => TaskDto[] = (list: TaskDto[]): TaskDto[] =>
       list.filter((task: TaskDto) => task.id !== taskId);

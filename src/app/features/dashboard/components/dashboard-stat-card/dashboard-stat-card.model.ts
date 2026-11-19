@@ -14,6 +14,7 @@ export interface StatCardView {
   titleKey: string;
   icon: string;
   iconClass: string;
+  /** Null when the tasks couldn't be loaded, so the card shows a dash instead of a misleading 0. */
   value: number | null;
   change: string;
   changeLabel: string;

@@ -7,6 +7,7 @@ export const STAT_CARDS: readonly StatCardConfig[] = [
   { id: 'stat-004', titleKey: 'stats.overdue', stat: 'overdue', iconClass: 'text-status-overdue' },
 ];
 
+/** The API sends English change labels; these map them to translation keys. Unknown labels are shown as-is. */
 export const CHANGE_LABEL_KEYS: Readonly<Record<string, string>> = {
   'this week': 'stats.change.thisWeek',
   today: 'stats.change.today',
