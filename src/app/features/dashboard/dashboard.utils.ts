@@ -1,5 +1,5 @@
 import { CreateTaskDto, Identifiable, TaskDto, TaskPriority, TaskStatus, UpdateTaskDto, UserDto } from '../../core/dto';
-import { daysBetween, parseDateOnly } from '../../core/utils';
+import { isTaskOverdue } from '../../core/utils';
 import {
   PositionUpdate,
   TaskFilters,
@@ -17,10 +17,6 @@ export function isTaskStatus(value: unknown): value is TaskStatus {
 
 export function isTaskPriority(value: unknown): value is TaskPriority {
   return (Object.values(TaskPriority) as unknown[]).includes(value);
-}
-
-export function isTaskOverdue(task: Pick<TaskDto, 'status' | 'dueDate'>, today: Date = new Date()): boolean {
-  return task.status !== TaskStatus.Done && daysBetween(today, parseDateOnly(task.dueDate)) < 0;
 }
 
 export function completedAtFor(
