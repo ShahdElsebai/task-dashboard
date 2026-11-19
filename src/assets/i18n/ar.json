@@ -6,7 +6,8 @@
     "switchLanguage": "English",
     "retry": "إعادة المحاولة",
     "skipToContent": "تخطَّ إلى المحتوى",
-    "cancel": "إلغاء"
+    "cancel": "إلغاء",
+    "close": "إغلاق"
   },
   "notifications": {
     "success": "تم",
@@ -92,5 +93,34 @@
     "all": "الكل",
     "priority": "الأولوية",
     "assignee": "المسؤول"
+  },
+  "taskForm": {
+    "createTitle": "مهمة جديدة",
+    "editTitle": "تعديل المهمة",
+    "title": "العنوان",
+    "titlePlaceholder": "ما المطلوب إنجازه؟",
+    "description": "الوصف",
+    "status": "الحالة",
+    "priority": "الأولوية",
+    "dueDate": "تاريخ الاستحقاق",
+    "assignee": "المسؤول",
+    "assigneePlaceholder": "اختر شخصًا",
+    "tags": "الوسوم",
+    "tagLabel": "الوسم {{n}}",
+    "tagPlaceholder": "مثال: الواجهة الأمامية",
+    "addTag": "إضافة وسم",
+    "removeTag": "حذف الوسم {{n}}",
+    "save": "حفظ التغييرات",
+    "create": "إنشاء المهمة",
+    "discardTitle": "تجاهل التغييرات؟",
+    "discardMessage": "لديك تغييرات غير محفوظة وستُفقد.",
+    "discard": "تجاهل",
+    "keepEditing": "متابعة التعديل",
+    "errors": {
+      "required": "هذا الحقل مطلوب.",
+      "maxLength": "استخدم {{max}} حرفًا أو أقل.",
+      "pastDate": "لا يمكن أن يكون تاريخ الاستحقاق في الماضي.",
+      "duplicateTags": "لا يمكن إضافة الوسم نفسه مرتين."
+    }
   }
 }

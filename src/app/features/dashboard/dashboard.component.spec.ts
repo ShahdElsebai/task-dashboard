@@ -12,6 +12,8 @@ import { BoardStateService } from './services/board-state.service';
 import { DashboardTasksStateService } from './services/dashboard-tasks-state.service';
 import { NotificationsMock, TEST_USER, makeTask, storeTestProviders } from './services/dashboard.test-helpers';
 import { BoardComponent } from './components/board/board.component';
+import { BoardTaskFormDialogComponent } from './components/board-task-form-dialog/board-task-form-dialog.component';
+import { TaskFormValue } from './dashboard.model';
 import { DashboardComponent } from './dashboard.component';
 
 const TASKS: TaskDto[] = [
@@ -110,5 +112,69 @@ describe('DashboardComponent', () => {
     (confirm.mock.calls[0][0] as { accept: () => void }).accept();
     expect(remove).toHaveBeenCalledWith('a');
     expect(host).toBeTruthy();
+  });
+
+  describe('task dialog (driven by ?task=)', () => {
+    const dialog = (): DebugElement => harness.routeDebugElement!.query(By.directive(BoardTaskFormDialogComponent));
+    const board = (): { saveTask: (v: TaskFormValue) => Promise<void> } =>
+      harness.routeDebugElement!.query(By.directive(BoardComponent)).componentInstance as {
+        saveTask: (v: TaskFormValue) => Promise<void>;
+      };
+    const formValue: TaskFormValue = {
+      title: 'New one',
+      description: '',
+      status: TaskStatus.Todo,
+      priority: TaskPriority.Low,
+      dueDate: '2099-01-01',
+      assigneeId: TEST_USER.id,
+      tags: [],
+    };
+
+    it('opens empty for ?task=new', async () => {
+      await open('/dashboard?task=new');
+      const instance: BoardTaskFormDialogComponent = dialog().componentInstance as BoardTaskFormDialogComponent;
+      expect(instance.open()).toBe(true);
+      expect(instance.task()).toBeNull();
+    });
+
+    it('opens with the task for ?task=<id>', async () => {
+      await open('/dashboard?task=b');
+      const instance: BoardTaskFormDialogComponent = dialog().componentInstance as BoardTaskFormDialogComponent;
+      expect(instance.open()).toBe(true);
+      expect(instance.task()?.id).toBe('b');
+    });
+
+    it('reports an unknown id and clears it from the URL', async () => {
+      await open('/dashboard?task=missing');
+      await TestBed.inject(ApplicationRef).whenStable();
+      expect(notifications.error).toHaveBeenCalledWith('errors.notFound');
+      expect(TestBed.inject(Router).url).not.toContain('task=');
+    });
+
+    it('closes after a successful save and stays open when it fails', async () => {
+      await open('/dashboard?task=new');
+      const create: ReturnType<typeof vi.spyOn> = vi
+        .spyOn(TestBed.inject(DashboardTasksStateService), 'create')
+        .mockResolvedValueOnce(false)
+        .mockResolvedValueOnce(true);
+
+      await board().saveTask(formValue);
+      await TestBed.inject(ApplicationRef).whenStable();
+      expect(TestBed.inject(Router).url).toContain('task=new');
+
+      await board().saveTask(formValue);
+      await TestBed.inject(ApplicationRef).whenStable();
+      expect(create).toHaveBeenCalledTimes(2);
+      expect(TestBed.inject(Router).url).not.toContain('task=');
+    });
+
+    it('updates when editing', async () => {
+      await open('/dashboard?task=b');
+      const update: ReturnType<typeof vi.spyOn> = vi
+        .spyOn(TestBed.inject(DashboardTasksStateService), 'update')
+        .mockResolvedValue(true);
+      await board().saveTask(formValue);
+      expect(update).toHaveBeenCalledWith('b', formValue);
+    });
   });
 });

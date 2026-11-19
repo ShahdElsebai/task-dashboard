@@ -33,4 +33,13 @@
   }
 </div>
 
+<app-board-task-form-dialog
+  [open]="dialogOpen()"
+  [saving]="saving()"
+  [task]="editingTask()"
+  [users]="users.users()"
+  (closed)="closeTask()"
+  (save)="saveTask($event)"
+/>
+
 <p-confirmdialog />
