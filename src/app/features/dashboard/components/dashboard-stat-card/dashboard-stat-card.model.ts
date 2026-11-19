@@ -14,7 +14,7 @@ export interface StatCardView {
   titleKey: string;
   icon: string;
   iconClass: string;
-  value: number;
+  value: number | null;
   change: string;
   changeLabel: string;
   changeType: ChangeType;

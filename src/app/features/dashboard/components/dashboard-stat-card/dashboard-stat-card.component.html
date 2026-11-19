@@ -3,15 +3,17 @@
     <i aria-hidden="true" [class]="stat().icon + ' ' + stat().iconClass"></i>
     {{ stat().titleKey | translate }}
   </h3>
-  <p class="m-0 text-3xl font-bold text-text-default">{{ stat().value }}</p>
-  <p
-    class="m-0 text-xs text-text-secondary"
-    [class.text-trend-up]="stat().changeType === Change.Positive"
-    [class.text-trend-down]="stat().changeType === Change.Negative"
-  >
-    @if (stat().change !== '0') {
-      {{ stat().change }}
-    }
-    {{ stat().changeLabel }}
-  </p>
+  <p class="m-0 text-3xl font-bold text-text-default">{{ stat().value ?? '—' }}</p>
+  @if (stat().value !== null) {
+    <p
+      class="m-0 text-xs text-text-secondary"
+      [class.text-trend-up]="stat().changeType === Change.Positive"
+      [class.text-trend-down]="stat().changeType === Change.Negative"
+    >
+      @if (stat().change !== '0') {
+        {{ stat().change }}
+      }
+      {{ stat().changeLabel | translate }}
+    </p>
+  }
 </article>

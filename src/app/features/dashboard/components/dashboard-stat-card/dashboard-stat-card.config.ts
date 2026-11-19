@@ -6,3 +6,9 @@ export const STAT_CARDS: readonly StatCardConfig[] = [
   { id: 'stat-003', titleKey: 'stats.inProgress', stat: 'inProgress', iconClass: 'text-status-progress' },
   { id: 'stat-004', titleKey: 'stats.overdue', stat: 'overdue', iconClass: 'text-status-overdue' },
 ];
+
+export const CHANGE_LABEL_KEYS: Readonly<Record<string, string>> = {
+  'this week': 'stats.change.thisWeek',
+  today: 'stats.change.today',
+  'Same as yesterday': 'stats.change.sameAsYesterday',
+};

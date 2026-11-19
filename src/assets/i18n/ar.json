@@ -88,7 +88,12 @@
     "total": "إجمالي المهام",
     "completed": "مكتملة",
     "inProgress": "قيد التنفيذ",
-    "overdue": "متأخرة"
+    "overdue": "متأخرة",
+    "change": {
+      "thisWeek": "هذا الأسبوع",
+      "today": "اليوم",
+      "sameAsYesterday": "مثل أمس"
+    }
   },
   "filters": {
     "status": "التصفية حسب الحالة",
