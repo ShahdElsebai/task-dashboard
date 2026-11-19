@@ -88,7 +88,12 @@
     "total": "Total Tasks",
     "completed": "Completed",
     "inProgress": "In Progress",
-    "overdue": "Overdue"
+    "overdue": "Overdue",
+    "change": {
+      "thisWeek": "this week",
+      "today": "today",
+      "sameAsYesterday": "Same as yesterday"
+    }
   },
   "filters": {
     "status": "Filter by status",
