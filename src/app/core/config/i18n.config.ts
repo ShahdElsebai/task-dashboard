@@ -1,9 +1,11 @@
 import { Provider } from '@angular/core';
+
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { environment } from '../../../environments/environment';
-import { AppLanguage } from '../../../environments/environment.model';
+import { environment } from '@env/environment';
+import { AppLanguage } from '@env/environment.model';
+
 import { LanguageOption } from '../models/language.model';
 
 export const LANGUAGES: Readonly<Record<AppLanguage, LanguageOption>> = {

@@ -3,9 +3,33 @@ import eslint from '@eslint/js';
 import angular from 'angular-eslint';
 import { defineConfig } from 'eslint/config';
 import eslintConfigPrettier from 'eslint-config-prettier';
+import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import tseslint from 'typescript-eslint';
 
 export default defineConfig([
+  // ── Import order (all TS files, specs included) ───────────────────────────
+  // Angular, then packages, then app aliases (@core, @shared, @features, @env, @testing), then relative.
+  {
+    files: ['**/*.ts'],
+    languageOptions: { parser: tseslint.parser },
+    plugins: { 'simple-import-sort': simpleImportSort },
+    rules: {
+      'simple-import-sort/imports': [
+        'error',
+        {
+          groups: [
+            ['^\\u0000'],
+            ['^@angular(/|$)'],
+            ['^@?\\w'],
+            ['^@(core|shared|features|env|testing)(/|$)'],
+            ['^\\.'],
+          ],
+        },
+      ],
+      'simple-import-sort/exports': 'error',
+    },
+  },
+
   // ── TypeScript files ──────────────────────────────────────────────────────
   {
     files: ['**/*.ts'],

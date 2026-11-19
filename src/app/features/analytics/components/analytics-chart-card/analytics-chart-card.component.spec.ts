@@ -1,7 +1,9 @@
 import { TestBed } from '@angular/core/testing';
+
 import { provideTranslateService } from '@ngx-translate/core';
 
-import { LanguageService } from '../../../../core/services/language.service';
+import { LanguageService } from '@core/services/language.service';
+
 import { ChartSlice } from '../../analytics.model';
 import { AnalyticsChartCardComponent } from './analytics-chart-card.component';
 import { LegendItem } from './analytics-chart-card.model';

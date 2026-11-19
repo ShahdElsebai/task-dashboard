@@ -1,4 +1,5 @@
-import { TaskStatus } from '../../core/dto';
+import { TaskStatus } from '@core/dto';
+
 import { BoardColumnConfig, TaskFilters } from './dashboard.model';
 
 export const BOARD_COLUMNS: readonly BoardColumnConfig[] = [

@@ -2,10 +2,12 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
+
 import { provideTranslateService } from '@ngx-translate/core';
 import { MessageService } from '@openng/optimus-ui/api';
 
-import { BoardStateService } from '../../features/dashboard/services/board-state.service';
+import { BoardStateService } from '@features/dashboard/services/board-state.service';
+
 import { HeaderComponent } from './header.component';
 import { SEARCH_DEBOUNCE_MS } from './header.config';
 

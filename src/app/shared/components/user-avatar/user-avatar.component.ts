@@ -1,7 +1,8 @@
 import { Component, input, InputSignal } from '@angular/core';
+
 import { AvatarModule } from '@openng/optimus-ui/avatar';
 
-import { UserDto } from '../../../core/dto';
+import { UserDto } from '@core/dto';
 
 @Component({
   selector: 'app-user-avatar',

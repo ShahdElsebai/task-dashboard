@@ -1,13 +1,14 @@
-import { Component, Signal, computed, inject, output, OutputEmitterRef } from '@angular/core';
+import { Component, computed, inject, output, OutputEmitterRef, Signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
+
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { MenuItem } from '@openng/optimus-ui/api';
 import { ButtonModule } from '@openng/optimus-ui/button';
 import { MenuModule } from '@openng/optimus-ui/menu';
 
-import { NAV_ITEMS } from '../../core/config/navigation.config';
-import { NavItem } from '../../core/models';
+import { NAV_ITEMS } from '@core/config/navigation.config';
+import { NavItem } from '@core/models';
 
 @Component({
   selector: 'app-sidebar',

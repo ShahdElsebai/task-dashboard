@@ -1,5 +1,6 @@
-import { TaskDto, TaskStatus, UserDto } from '../../core/dto';
-import { isTaskOverdue } from '../../core/utils';
+import { TaskDto, TaskStatus, UserDto } from '@core/dto';
+import { isTaskOverdue } from '@core/utils';
+
 import { TeamMember } from './team.model';
 
 export function toTeamMembers(

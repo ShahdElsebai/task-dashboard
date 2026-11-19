@@ -1,5 +1,6 @@
-import { TaskStatus, UserDto } from '../../core/dto';
-import { TEST_USER, makeTask } from '../dashboard/services/dashboard.test-helpers';
+import { TaskStatus, UserDto } from '@core/dto';
+import { makeTask, TEST_USER } from '@features/dashboard/services/dashboard.test-helpers';
+
 import { TeamMember } from './team.model';
 import { toTeamMembers } from './team.utils';
 

@@ -1,4 +1,4 @@
-import { HttpResourceRef, httpResource } from '@angular/common/http';
+import { httpResource, HttpResourceRef } from '@angular/common/http';
 import { Service } from '@angular/core';
 
 import { UserDto } from '../../dto';

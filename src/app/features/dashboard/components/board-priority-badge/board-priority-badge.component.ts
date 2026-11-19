@@ -1,7 +1,8 @@
 import { Component, input, InputSignal } from '@angular/core';
+
 import { TranslatePipe } from '@ngx-translate/core';
 
-import { TaskPriority } from '../../../../core/dto';
+import { TaskPriority } from '@core/dto';
 
 @Component({
   selector: 'app-board-priority-badge',

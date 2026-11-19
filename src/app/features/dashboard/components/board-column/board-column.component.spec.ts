@@ -1,8 +1,10 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { provideTranslateService } from '@ngx-translate/core';
 
-import { TaskStatus, TaskDto } from '../../../../core/dto';
+import { TaskDto, TaskStatus } from '@core/dto';
+
 import { BoardColumn, TaskMoveRequest } from '../../dashboard.model';
 import { makeTask } from '../../services/dashboard.test-helpers';
 import { BoardColumnComponent } from './board-column.component';

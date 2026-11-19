@@ -1,4 +1,5 @@
-import { TaskPriority, TaskStatus } from '../../core/dto';
+import { TaskPriority, TaskStatus } from '@core/dto';
+
 import { PrioritySliceConfig, StatusSliceConfig } from './analytics.model';
 
 export const STATUS_SLICES: readonly StatusSliceConfig[] = [

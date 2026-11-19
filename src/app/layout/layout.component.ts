@@ -1,5 +1,6 @@
-import { Component, WritableSignal, signal } from '@angular/core';
+import { Component, signal, WritableSignal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+
 import { TranslatePipe } from '@ngx-translate/core';
 import { DrawerModule } from '@openng/optimus-ui/drawer';
 

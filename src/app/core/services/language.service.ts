@@ -1,9 +1,11 @@
-import { DOCUMENT, Service, WritableSignal, effect, inject, signal } from '@angular/core';
+import { DOCUMENT, effect, inject, Service, signal, WritableSignal } from '@angular/core';
+
 import { TranslateService } from '@ngx-translate/core';
 
-import { environment } from '../../../environments/environment';
-import { AppLanguage } from '../../../environments/environment.model';
-import { LANGUAGES, LANGUAGE_STORAGE_KEY } from '../config/i18n.config';
+import { environment } from '@env/environment';
+import { AppLanguage } from '@env/environment.model';
+
+import { LANGUAGE_STORAGE_KEY, LANGUAGES } from '../config/i18n.config';
 
 @Service()
 export class LanguageService {

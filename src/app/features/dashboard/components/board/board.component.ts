@@ -1,15 +1,17 @@
 import { CdkDropListGroup } from '@angular/cdk/drag-drop';
-import { Component, computed, effect, inject, OnInit, signal, Signal, untracked, WritableSignal } from '@angular/core';
+import { Component, computed, effect, inject, OnInit, Signal, signal, untracked, WritableSignal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+
 import { TranslateService } from '@ngx-translate/core';
 import { ConfirmationService } from '@openng/optimus-ui/api';
 import { ConfirmDialogModule } from '@openng/optimus-ui/confirmdialog';
 
-import { TaskDto } from '../../../../core/dto';
-import { NotificationService } from '../../../../core/services/notification.service';
-import { UsersStore } from '../../../../core/services/store';
-import { ErrorStateComponent } from '../../../../shared';
+import { TaskDto } from '@core/dto';
+import { NotificationService } from '@core/services/notification.service';
+import { UsersStore } from '@core/services/store';
+import { ErrorStateComponent } from '@shared';
+
 import { TaskFilters, TaskFormValue, TaskMoveRequest } from '../../dashboard.model';
 import { isTaskPriority, isTaskStatus } from '../../dashboard.utils';
 import { BoardStateService } from '../../services/board-state.service';

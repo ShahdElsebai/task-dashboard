@@ -1,5 +1,5 @@
-import { ErrorHandler, ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { ApplicationConfig, ErrorHandler, provideBrowserGlobalErrorListeners } from '@angular/core';
 import {
   PreloadAllModules,
   provideRouter,
@@ -8,20 +8,22 @@ import {
   withPreloading,
   withViewTransitions,
 } from '@angular/router';
+
 import { MessageService } from '@openng/optimus-ui/api';
 import { provideOptimus } from '@openng/optimus-ui/config';
 
-import { routes } from './app.routes';
-import { AppThemePreset } from './core/config/theme.preset';
-import { provideI18n } from './core/config/i18n.config';
-import { GlobalErrorHandler } from './core/services/global-error-handler';
+import { provideI18n } from '@core/config/i18n.config';
+import { AppThemePreset } from '@core/config/theme.preset';
+import { GlobalErrorHandler } from '@core/services/global-error-handler';
 import {
   apiUrlInterceptor,
   cacheInterceptor,
   errorInterceptor,
   loadingInterceptor,
   retryInterceptor,
-} from './core/services/http';
+} from '@core/services/http';
+
+import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [

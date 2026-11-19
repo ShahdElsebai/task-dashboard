@@ -1,9 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
+
 import { provideTranslateService } from '@ngx-translate/core';
 
-import { ActivityDto, ActivityType } from '../../../../core/dto';
-import { TEST_USER } from '../../../dashboard/services/dashboard.test-helpers';
+import { ActivityDto, ActivityType } from '@core/dto';
+import { TEST_USER } from '@features/dashboard/services/dashboard.test-helpers';
+
 import { AnalyticsActivityFeedComponent } from './analytics-activity-feed.component';
 
 describe('AnalyticsActivityFeedComponent', () => {

@@ -1,4 +1,5 @@
 import { ChartOptions } from 'chart.js';
+
 import { ChartKindOptions } from './analytics-chart-card.model';
 
 const DOUGHNUT: ChartOptions<'doughnut'> = {

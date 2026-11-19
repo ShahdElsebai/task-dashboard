@@ -1,5 +1,5 @@
 import { HttpResourceRef } from '@angular/common/http';
-import { Service, Signal, computed, inject } from '@angular/core';
+import { computed, inject, Service, Signal } from '@angular/core';
 
 import { UserDto } from '../../dto';
 import { valueOr } from '../../utils';

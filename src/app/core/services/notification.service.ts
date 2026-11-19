@@ -1,6 +1,8 @@
-import { Injector, Service, inject } from '@angular/core';
+import { inject, Injector, Service } from '@angular/core';
+
 import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from '@openng/optimus-ui/api';
+
 import { DEDUPE_WINDOW_MS } from '../config/notification.config';
 
 @Service()

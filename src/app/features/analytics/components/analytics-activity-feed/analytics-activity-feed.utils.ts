@@ -1,4 +1,5 @@
-import { ActivityDto, ActivityType } from '../../../../core/dto';
+import { ActivityDto, ActivityType } from '@core/dto';
+
 import { ACTIVITY_META, BADGE_BASE_CLASS, TIME_UNITS } from './analytics-activity-feed.config';
 import { ActivityItem } from './analytics-activity-feed.model';
 

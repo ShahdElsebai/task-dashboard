@@ -1,8 +1,10 @@
 import { Component, inject } from '@angular/core';
+
 import { TranslatePipe } from '@ngx-translate/core';
 import { SkeletonModule } from '@openng/optimus-ui/skeleton';
 
-import { ErrorStateComponent } from '../../shared';
+import { ErrorStateComponent } from '@shared';
+
 import { TeamMemberCardComponent } from './components/team-member-card/team-member-card.component';
 import { TeamStateService } from './services/team-state.service';
 

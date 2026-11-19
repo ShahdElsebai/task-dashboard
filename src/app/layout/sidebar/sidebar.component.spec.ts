@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Router, provideRouter } from '@angular/router';
+import { provideRouter, Router } from '@angular/router';
+
 import { provideTranslateService } from '@ngx-translate/core';
 
-import { NAV_ITEMS } from '../../core/config/navigation.config';
+import { NAV_ITEMS } from '@core/config/navigation.config';
+
 import { SidebarComponent } from './sidebar.component';
 
 @Component({ selector: 'app-blank', template: '' })

@@ -1,8 +1,9 @@
 import { HttpResourceRef } from '@angular/common/http';
-import { Service, Signal, computed, inject } from '@angular/core';
+import { computed, inject, Service, Signal } from '@angular/core';
 
-import { ChangeType, StatisticDto } from '../../../core/dto';
-import { valueOr } from '../../../core/utils';
+import { ChangeType, StatisticDto } from '@core/dto';
+import { valueOr } from '@core/utils';
+
 import { STAT_CARDS } from '../components/dashboard-stat-card/dashboard-stat-card.config';
 import { StatCardConfig, StatCardView } from '../components/dashboard-stat-card/dashboard-stat-card.model';
 import { TaskStats } from '../dashboard.model';

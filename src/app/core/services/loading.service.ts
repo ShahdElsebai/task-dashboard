@@ -1,4 +1,4 @@
-import { Signal, Service, WritableSignal, computed, signal } from '@angular/core';
+import { computed, Service, Signal, signal, WritableSignal } from '@angular/core';
 
 @Service()
 export class LoadingService {

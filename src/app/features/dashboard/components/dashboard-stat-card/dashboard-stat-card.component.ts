@@ -1,7 +1,9 @@
 import { Component, input, InputSignal } from '@angular/core';
+
 import { TranslatePipe } from '@ngx-translate/core';
 
-import { ChangeType } from '../../../../core/dto';
+import { ChangeType } from '@core/dto';
+
 import { StatCardView } from './dashboard-stat-card.model';
 
 @Component({

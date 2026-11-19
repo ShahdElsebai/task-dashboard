@@ -1,4 +1,5 @@
 import { Component, computed, inject, Signal } from '@angular/core';
+
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { BoardComponent } from './components/board/board.component';

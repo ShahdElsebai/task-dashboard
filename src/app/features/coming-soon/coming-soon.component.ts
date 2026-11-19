@@ -1,6 +1,6 @@
 import { Component, input, InputSignal } from '@angular/core';
 
-import { EmptyStateComponent } from '../../shared';
+import { EmptyStateComponent } from '@shared';
 
 @Component({
   selector: 'app-coming-soon',

@@ -1,17 +1,19 @@
 import { Component, DestroyRef, inject, output, OutputEmitterRef } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
+
 import { TranslatePipe } from '@ngx-translate/core';
 import { ButtonModule } from '@openng/optimus-ui/button';
 import { IconFieldModule } from '@openng/optimus-ui/iconfield';
 import { InputIconModule } from '@openng/optimus-ui/inputicon';
 import { InputTextModule } from '@openng/optimus-ui/inputtext';
-import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
+import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 
-import { UserDto } from '../../core/dto';
-import { LanguageService } from '../../core/services/language.service';
-import { BoardStateService } from '../../features/dashboard/services/board-state.service';
-import { UserAvatarComponent } from '../../shared';
+import { UserDto } from '@core/dto';
+import { LanguageService } from '@core/services/language.service';
+import { BoardStateService } from '@features/dashboard/services/board-state.service';
+import { UserAvatarComponent } from '@shared';
+
 import { CURRENT_USER, SEARCH_DEBOUNCE_MS } from './header.config';
 
 @Component({

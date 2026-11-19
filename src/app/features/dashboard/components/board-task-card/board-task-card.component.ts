@@ -1,11 +1,13 @@
-import { Component, computed, input, output, InputSignal, OutputEmitterRef, Signal } from '@angular/core';
+import { Component, computed, input, InputSignal, output, OutputEmitterRef, Signal } from '@angular/core';
+
 import { TranslatePipe } from '@ngx-translate/core';
 import { MenuItem } from '@openng/optimus-ui/api';
 import { ButtonModule } from '@openng/optimus-ui/button';
 import { MenuModule } from '@openng/optimus-ui/menu';
 
-import { TaskDto } from '../../../../core/dto';
-import { UserAvatarComponent } from '../../../../shared';
+import { TaskDto } from '@core/dto';
+import { UserAvatarComponent } from '@shared';
+
 import { BoardPriorityBadgeComponent } from '../board-priority-badge/board-priority-badge.component';
 import { DueLabel } from './board-task-card.model';
 import { dueLabel } from './board-task-card.utils';

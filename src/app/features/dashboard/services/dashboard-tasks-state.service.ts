@@ -1,11 +1,13 @@
 import { HttpResourceRef } from '@angular/common/http';
-import { Service, Signal, computed, inject } from '@angular/core';
-import { Observable, firstValueFrom, forkJoin } from 'rxjs';
+import { computed, inject, Service, Signal } from '@angular/core';
 
-import { ActivityType, CreateTaskDto, TaskDto, TaskStatus, UpdateTaskDto, UserDto } from '../../../core/dto';
-import { NotificationService } from '../../../core/services/notification.service';
-import { ActivityStore, UsersStore } from '../../../core/services/store';
-import { patchById, removeById, replaceById, restoreById, tempId, valueOr } from '../../../core/utils';
+import { firstValueFrom, forkJoin, Observable } from 'rxjs';
+
+import { ActivityType, CreateTaskDto, TaskDto, TaskStatus, UpdateTaskDto, UserDto } from '@core/dto';
+import { NotificationService } from '@core/services/notification.service';
+import { ActivityStore, UsersStore } from '@core/services/store';
+import { patchById, removeById, replaceById, restoreById, tempId, valueOr } from '@core/utils';
+
 import { TaskFormValue, TaskUpdate } from '../dashboard.model';
 import {
   buildCreateTaskDto,

@@ -1,4 +1,5 @@
-import { TaskPriority, TaskStatus } from '../../../../core/dto';
+import { TaskPriority, TaskStatus } from '@core/dto';
+
 import { BOARD_COLUMNS } from '../../dashboard.config';
 import { BoardColumnConfig } from '../../dashboard.model';
 

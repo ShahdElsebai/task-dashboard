@@ -1,9 +1,10 @@
 import { HttpResourceRef } from '@angular/common/http';
-import { Service, Signal, computed, inject } from '@angular/core';
+import { computed, inject, Service, Signal } from '@angular/core';
 
-import { TaskDto } from '../../../core/dto';
-import { UsersStore } from '../../../core/services/store';
-import { valueOr } from '../../../core/utils';
+import { TaskDto } from '@core/dto';
+import { UsersStore } from '@core/services/store';
+import { valueOr } from '@core/utils';
+
 import { TeamMember } from '../team.model';
 import { toTeamMembers } from '../team.utils';
 import { TeamApiService } from './team-api.service';

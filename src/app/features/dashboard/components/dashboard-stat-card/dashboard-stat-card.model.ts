@@ -1,4 +1,5 @@
-import { ChangeType } from '../../../../core/dto';
+import { ChangeType } from '@core/dto';
+
 import { TaskStats } from '../../dashboard.model';
 
 export interface StatCardConfig {

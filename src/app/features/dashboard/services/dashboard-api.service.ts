@@ -1,8 +1,10 @@
-import { HttpClient, HttpResourceRef, httpResource } from '@angular/common/http';
-import { Service, inject } from '@angular/core';
+import { HttpClient, httpResource, HttpResourceRef } from '@angular/common/http';
+import { inject, Service } from '@angular/core';
+
 import { Observable } from 'rxjs';
 
-import { CreateTaskDto, StatisticDto, TaskDto, UpdateTaskDto } from '../../../core/dto';
+import { CreateTaskDto, StatisticDto, TaskDto, UpdateTaskDto } from '@core/dto';
+
 import { TASKS_API_PATH } from '../dashboard.config';
 
 @Service()

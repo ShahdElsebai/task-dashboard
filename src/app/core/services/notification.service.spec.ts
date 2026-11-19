@@ -1,9 +1,10 @@
 import { TestBed } from '@angular/core/testing';
+
 import { provideTranslateService } from '@ngx-translate/core';
 import { MessageService } from '@openng/optimus-ui/api';
 
-import { NotificationService } from './notification.service';
 import { DEDUPE_WINDOW_MS } from '../config/notification.config';
+import { NotificationService } from './notification.service';
 
 describe('NotificationService', () => {
   let service: NotificationService;

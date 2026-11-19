@@ -1,9 +1,11 @@
 import { CdkDrag, CdkDragDrop, CdkDragPlaceholder, CdkDropList } from '@angular/cdk/drag-drop';
-import { Component, input, output, InputSignal, OutputEmitterRef } from '@angular/core';
+import { Component, input, InputSignal, output, OutputEmitterRef } from '@angular/core';
+
 import { TranslatePipe } from '@ngx-translate/core';
 
-import { TaskDto, TaskStatus } from '../../../../core/dto';
-import { EmptyStateComponent } from '../../../../shared';
+import { TaskDto, TaskStatus } from '@core/dto';
+import { EmptyStateComponent } from '@shared';
+
 import { BoardColumn, TaskMoveRequest } from '../../dashboard.model';
 import { BoardTaskCardComponent } from '../board-task-card/board-task-card.component';
 

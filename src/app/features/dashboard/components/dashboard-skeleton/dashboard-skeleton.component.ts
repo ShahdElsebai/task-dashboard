@@ -1,4 +1,5 @@
 import { Component, input, InputSignal } from '@angular/core';
+
 import { SkeletonModule } from '@openng/optimus-ui/skeleton';
 
 @Component({

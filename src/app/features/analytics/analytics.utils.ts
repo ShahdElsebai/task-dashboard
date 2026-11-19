@@ -1,4 +1,5 @@
-import { TaskDto } from '../../core/dto';
+import { TaskDto } from '@core/dto';
+
 import { PRIORITY_SLICES, STATUS_SLICES } from './analytics.config';
 import { ChartSlice, SliceConfig } from './analytics.model';
 
