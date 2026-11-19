@@ -17,6 +17,8 @@ export interface TaskStats {
   overdue: number;
 }
 
+export type TaskFieldFilters = Omit<TaskFilters, 'search'>;
+
 export interface TaskFilters {
   search: string;
   status: TaskStatus | null;

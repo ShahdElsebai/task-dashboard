@@ -1,26 +1,26 @@
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideRouter } from '@angular/router';
+import { provideRouter, Router } from '@angular/router';
 
 import { provideTranslateService } from '@ngx-translate/core';
 import { MessageService } from '@openng/optimus-ui/api';
 
-import { BoardStateService } from '@features/dashboard/services/board-state.service';
+import { SearchService } from '@core/services/search.service';
 
 import { HeaderComponent } from './header.component';
 import { SEARCH_DEBOUNCE_MS } from './header.config';
 
 describe('HeaderComponent', () => {
   let fixture: ComponentFixture<HeaderComponent>;
-  let board: BoardStateService;
+  let search: SearchService;
 
   beforeEach(async () => {
     vi.useFakeTimers();
     await TestBed.configureTestingModule({
       imports: [HeaderComponent],
       providers: [
-        provideRouter([]),
+        provideRouter([{ path: 'dashboard', children: [] }]),
         provideHttpClient(),
         provideHttpClientTesting(),
         provideTranslateService(),
@@ -28,7 +28,7 @@ describe('HeaderComponent', () => {
       ],
     }).compileComponents();
     fixture = TestBed.createComponent(HeaderComponent);
-    board = TestBed.inject(BoardStateService);
+    search = TestBed.inject(SearchService);
     fixture.detectChanges();
   });
 
@@ -43,9 +43,16 @@ describe('HeaderComponent', () => {
   it('updates the search filter after the debounce, only with the last value', () => {
     type('d');
     type('design');
-    expect(board.filters().search).toBe('');
+    expect(search.query()).toBe('');
     vi.advanceTimersByTime(SEARCH_DEBOUNCE_MS);
-    expect(board.filters().search).toBe('design');
+    expect(search.query()).toBe('design');
+  });
+
+  it('opens the dashboard when searching from another page', () => {
+    const navigate: ReturnType<typeof vi.spyOn> = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+    type('budget');
+    vi.advanceTimersByTime(SEARCH_DEBOUNCE_MS);
+    expect(navigate).toHaveBeenCalledWith(['/dashboard'], { queryParams: { q: 'budget' } });
   });
 
   it('emits menuToggle from the mobile menu button', () => {

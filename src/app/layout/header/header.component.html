@@ -25,7 +25,7 @@
         type="search"
         [placeholder]="'header.searchPlaceholder' | translate"
         [attr.aria-label]="'header.searchPlaceholder' | translate"
-        [value]="board.filters().search"
+        [value]="search.query()"
         (input)="onSearch(searchInput.value)"
       />
     </p-iconfield>
