@@ -7,6 +7,9 @@ import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import tseslint from 'typescript-eslint';
 
 export default defineConfig([
+  // Generated output is never linted.
+  { ignores: ['dist/', 'coverage/', '.angular/'] },
+
   // ── Import order (all TS files, specs included) ───────────────────────────
   // Angular, then packages, then app aliases (@core, @shared, @features, @env, @testing), then relative.
   {

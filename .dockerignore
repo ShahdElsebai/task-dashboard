@@ -1,0 +1,9 @@
+node_modules
+dist
+coverage
+.angular
+.git
+.husky
+.vscode
+mock-api/db.runtime.json
+*.log
