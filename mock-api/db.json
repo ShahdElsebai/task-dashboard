@@ -6,8 +6,8 @@
       "description": "Update all npm packages to latest stable versions",
       "status": "done",
       "priority": "low",
-      "dueDate": "2026-11-11",
-      "completedAt": "2026-11-12T13:22:55.490Z",
+      "dueDate": "2026-11-13",
+      "completedAt": "2026-11-14T19:35:56.842Z",
       "assignee": {
         "id": "user-003",
         "name": "Mike Johnson",
@@ -15,8 +15,8 @@
         "email": "mike.johnson@company.com"
       },
       "tags": ["Maintenance"],
-      "createdAt": "2026-11-03T13:22:55.490Z",
-      "updatedAt": "2026-11-12T13:22:55.490Z",
+      "createdAt": "2026-11-05T19:35:56.842Z",
+      "updatedAt": "2026-11-14T19:35:56.842Z",
       "isOverdue": false,
       "position": 1000
     },
@@ -26,8 +26,8 @@
       "description": "Conduct comprehensive security review of the application",
       "status": "done",
       "priority": "high",
-      "dueDate": "2026-11-12",
-      "completedAt": "2026-11-13T13:22:55.490Z",
+      "dueDate": "2026-11-14",
+      "completedAt": "2026-11-15T19:35:56.842Z",
       "assignee": {
         "id": "user-001",
         "name": "John Doe",
@@ -35,8 +35,8 @@
         "email": "john.doe@company.com"
       },
       "tags": ["Security"],
-      "createdAt": "2026-11-04T13:22:55.490Z",
-      "updatedAt": "2026-11-13T13:22:55.490Z",
+      "createdAt": "2026-11-06T19:35:56.842Z",
+      "updatedAt": "2026-11-15T19:35:56.842Z",
       "isOverdue": false,
       "position": 2000
     },
@@ -46,8 +46,8 @@
       "description": "Clean up and optimize payment processing code",
       "status": "done",
       "priority": "medium",
-      "dueDate": "2026-11-13",
-      "completedAt": "2026-11-14T13:22:55.490Z",
+      "dueDate": "2026-11-15",
+      "completedAt": "2026-11-16T19:35:56.842Z",
       "assignee": {
         "id": "user-004",
         "name": "Emily Davis",
@@ -55,8 +55,8 @@
         "email": "emily.davis@company.com"
       },
       "tags": ["Refactoring"],
-      "createdAt": "2026-11-05T13:22:55.490Z",
-      "updatedAt": "2026-11-14T13:22:55.490Z",
+      "createdAt": "2026-11-07T19:35:56.842Z",
+      "updatedAt": "2026-11-16T19:35:56.842Z",
       "isOverdue": false,
       "position": 3000
     },
@@ -66,8 +66,8 @@
       "description": "Add comprehensive unit tests for authentication module",
       "status": "done",
       "priority": "high",
-      "dueDate": "2026-11-14",
-      "completedAt": "2026-11-15T13:22:55.490Z",
+      "dueDate": "2026-11-16",
+      "completedAt": "2026-11-17T19:35:56.842Z",
       "assignee": {
         "id": "user-002",
         "name": "Sarah Smith",
@@ -75,8 +75,8 @@
         "email": "sarah.smith@company.com"
       },
       "tags": ["Testing"],
-      "createdAt": "2026-11-07T13:22:55.490Z",
-      "updatedAt": "2026-11-15T13:22:55.490Z",
+      "createdAt": "2026-11-09T19:35:56.842Z",
+      "updatedAt": "2026-11-17T19:35:56.842Z",
       "isOverdue": false,
       "position": 4000
     },
@@ -86,7 +86,7 @@
       "description": "Analyze customer feedback from user testing sessions",
       "status": "todo",
       "priority": "medium",
-      "dueDate": "2026-11-14",
+      "dueDate": "2026-11-16",
       "isOverdue": true,
       "assignee": {
         "id": "user-004",
@@ -95,8 +95,8 @@
         "email": "emily.davis@company.com"
       },
       "tags": ["Research"],
-      "createdAt": "2026-11-02T13:22:55.490Z",
-      "updatedAt": "2026-11-16T13:22:55.490Z",
+      "createdAt": "2026-11-04T19:35:56.842Z",
+      "updatedAt": "2026-11-18T19:35:56.842Z",
       "completedAt": null,
       "position": 1000
     },
@@ -106,8 +106,8 @@
       "description": "Configured GitHub Actions for automated testing and deployment",
       "status": "done",
       "priority": "medium",
-      "dueDate": "2026-11-15",
-      "completedAt": "2026-11-16T13:22:55.490Z",
+      "dueDate": "2026-11-17",
+      "completedAt": "2026-11-18T19:35:56.842Z",
       "assignee": {
         "id": "user-001",
         "name": "John Doe",
@@ -115,8 +115,8 @@
         "email": "john.doe@company.com"
       },
       "tags": ["DevOps"],
-      "createdAt": "2026-11-08T13:22:55.490Z",
-      "updatedAt": "2026-11-16T13:22:55.490Z",
+      "createdAt": "2026-11-10T19:35:56.842Z",
+      "updatedAt": "2026-11-18T19:35:56.842Z",
       "isOverdue": false,
       "position": 5000
     },
@@ -126,7 +126,7 @@
       "description": "Compile and analyze financial data for quarterly budget presentation",
       "status": "todo",
       "priority": "high",
-      "dueDate": "2026-11-15",
+      "dueDate": "2026-11-17",
       "isOverdue": true,
       "assignee": {
         "id": "user-002",
@@ -135,8 +135,8 @@
         "email": "sarah.smith@company.com"
       },
       "tags": ["Finance"],
-      "createdAt": "2026-11-01T13:22:55.490Z",
-      "updatedAt": "2026-11-17T13:22:55.490Z",
+      "createdAt": "2026-11-03T19:35:56.842Z",
+      "updatedAt": "2026-11-19T19:35:56.842Z",
       "completedAt": null,
       "position": 2000
     },
@@ -146,8 +146,8 @@
       "description": "Resolved issue preventing users from logging in on mobile devices",
       "status": "done",
       "priority": "high",
-      "dueDate": "2026-11-16",
-      "completedAt": "2026-11-17T13:22:55.490Z",
+      "dueDate": "2026-11-18",
+      "completedAt": "2026-11-19T19:35:56.842Z",
       "assignee": {
         "id": "user-003",
         "name": "Mike Johnson",
@@ -155,8 +155,8 @@
         "email": "mike.johnson@company.com"
       },
       "tags": ["Bug Fix"],
-      "createdAt": "2026-11-15T13:22:55.490Z",
-      "updatedAt": "2026-11-17T13:22:55.490Z",
+      "createdAt": "2026-11-17T19:35:56.842Z",
+      "updatedAt": "2026-11-19T19:35:56.842Z",
       "isOverdue": false,
       "position": 6000
     },
@@ -166,7 +166,7 @@
       "description": "Migrate to new payment provider API and update billing logic",
       "status": "in_progress",
       "priority": "high",
-      "dueDate": "2026-11-16",
+      "dueDate": "2026-11-18",
       "isOverdue": true,
       "assignee": {
         "id": "user-001",
@@ -175,8 +175,8 @@
         "email": "john.doe@company.com"
       },
       "tags": ["Backend", "Critical"],
-      "createdAt": "2026-11-03T13:22:55.490Z",
-      "updatedAt": "2026-11-17T13:22:55.490Z",
+      "createdAt": "2026-11-05T19:35:56.842Z",
+      "updatedAt": "2026-11-19T19:35:56.842Z",
       "completedAt": null,
       "position": 1000
     },
@@ -186,7 +186,7 @@
       "description": "Create wireframes and mockups for the new homepage redesign with modern UI elements",
       "status": "todo",
       "priority": "high",
-      "dueDate": "2026-11-19",
+      "dueDate": "2026-11-21",
       "assignee": {
         "id": "user-001",
         "name": "John Doe",
@@ -194,8 +194,8 @@
         "email": "john.doe@company.com"
       },
       "tags": ["Design"],
-      "createdAt": "2026-11-15T13:22:55.490Z",
-      "updatedAt": "2026-11-17T13:22:55.490Z",
+      "createdAt": "2026-11-17T19:35:56.842Z",
+      "updatedAt": "2026-11-19T19:35:56.842Z",
       "isOverdue": false,
       "completedAt": null,
       "position": 3000
@@ -206,7 +206,7 @@
       "description": "Develop RESTful API endpoints for task management features",
       "status": "in_progress",
       "priority": "high",
-      "dueDate": "2026-11-19",
+      "dueDate": "2026-11-21",
       "assignee": {
         "id": "user-003",
         "name": "Mike Johnson",
@@ -214,8 +214,8 @@
         "email": "mike.johnson@company.com"
       },
       "tags": ["Backend"],
-      "createdAt": "2026-11-09T13:22:55.490Z",
-      "updatedAt": "2026-11-17T13:22:55.490Z",
+      "createdAt": "2026-11-11T19:35:56.842Z",
+      "updatedAt": "2026-11-19T19:35:56.842Z",
       "isOverdue": false,
       "completedAt": null,
       "position": 2000
@@ -226,7 +226,7 @@
       "description": "Address layout problems on mobile and tablet devices",
       "status": "todo",
       "priority": "high",
-      "dueDate": "2026-11-20",
+      "dueDate": "2026-11-22",
       "assignee": {
         "id": "user-004",
         "name": "Emily Davis",
@@ -234,8 +234,8 @@
         "email": "emily.davis@company.com"
       },
       "tags": ["Frontend"],
-      "createdAt": "2026-11-12T13:22:55.490Z",
-      "updatedAt": "2026-11-17T13:22:55.490Z",
+      "createdAt": "2026-11-14T19:35:56.842Z",
+      "updatedAt": "2026-11-19T19:35:56.842Z",
       "isOverdue": false,
       "completedAt": null,
       "position": 4000
@@ -246,7 +246,7 @@
       "description": "Add JWT-based authentication system with refresh tokens",
       "status": "in_progress",
       "priority": "high",
-      "dueDate": "2026-11-20",
+      "dueDate": "2026-11-22",
       "assignee": {
         "id": "user-001",
         "name": "John Doe",
@@ -254,8 +254,8 @@
         "email": "john.doe@company.com"
       },
       "tags": ["Backend"],
-      "createdAt": "2026-11-10T13:22:55.490Z",
-      "updatedAt": "2026-11-17T13:22:55.490Z",
+      "createdAt": "2026-11-12T19:35:56.842Z",
+      "updatedAt": "2026-11-19T19:35:56.842Z",
       "isOverdue": false,
       "completedAt": null,
       "position": 3000
@@ -266,7 +266,7 @@
       "description": "Review and optimize slow queries identified in performance audit",
       "status": "in_progress",
       "priority": "medium",
-      "dueDate": "2026-11-21",
+      "dueDate": "2026-11-23",
       "assignee": {
         "id": "user-002",
         "name": "Sarah Smith",
@@ -274,8 +274,8 @@
         "email": "sarah.smith@company.com"
       },
       "tags": ["Performance"],
-      "createdAt": "2026-11-11T13:22:55.490Z",
-      "updatedAt": "2026-11-16T13:22:55.490Z",
+      "createdAt": "2026-11-13T19:35:56.842Z",
+      "updatedAt": "2026-11-18T19:35:56.842Z",
       "isOverdue": false,
       "completedAt": null,
       "position": 4000
@@ -286,7 +286,7 @@
       "description": "Review and update API documentation for v2.0 release",
       "status": "todo",
       "priority": "medium",
-      "dueDate": "2026-11-22",
+      "dueDate": "2026-11-24",
       "assignee": {
         "id": "user-002",
         "name": "Sarah Smith",
@@ -294,8 +294,8 @@
         "email": "sarah.smith@company.com"
       },
       "tags": ["Documentation"],
-      "createdAt": "2026-11-14T13:22:55.490Z",
-      "updatedAt": "2026-11-16T13:22:55.490Z",
+      "createdAt": "2026-11-16T19:35:56.842Z",
+      "updatedAt": "2026-11-18T19:35:56.842Z",
       "isOverdue": false,
       "completedAt": null,
       "position": 5000
@@ -306,7 +306,7 @@
       "description": "Implement theme toggle with dark/light mode preferences",
       "status": "in_progress",
       "priority": "medium",
-      "dueDate": "2026-11-23",
+      "dueDate": "2026-11-25",
       "assignee": {
         "id": "user-004",
         "name": "Emily Davis",
@@ -314,8 +314,8 @@
         "email": "emily.davis@company.com"
       },
       "tags": ["Frontend"],
-      "createdAt": "2026-11-08T13:22:55.490Z",
-      "updatedAt": "2026-11-16T13:22:55.490Z",
+      "createdAt": "2026-11-10T19:35:56.842Z",
+      "updatedAt": "2026-11-18T19:35:56.842Z",
       "isOverdue": false,
       "completedAt": null,
       "position": 5000
@@ -326,7 +326,7 @@
       "description": "Schedule and prepare agenda for quarterly planning session",
       "status": "todo",
       "priority": "low",
-      "dueDate": "2026-11-24",
+      "dueDate": "2026-11-26",
       "assignee": {
         "id": "user-003",
         "name": "Mike Johnson",
@@ -334,8 +334,8 @@
         "email": "mike.johnson@company.com"
       },
       "tags": ["Admin"],
-      "createdAt": "2026-11-13T13:22:55.490Z",
-      "updatedAt": "2026-11-16T13:22:55.490Z",
+      "createdAt": "2026-11-15T19:35:56.842Z",
+      "updatedAt": "2026-11-18T19:35:56.842Z",
       "isOverdue": false,
       "completedAt": null,
       "position": 6000
@@ -421,7 +421,7 @@
         "avatar": "SS",
         "email": "sarah.smith@company.com"
       },
-      "timestamp": "2026-11-17T13:22:55.490Z"
+      "timestamp": "2026-11-19T19:35:56.842Z"
     },
     {
       "id": "activity-002",
@@ -434,7 +434,7 @@
         "avatar": "MJ",
         "email": "mike.johnson@company.com"
       },
-      "timestamp": "2026-11-17T13:22:55.490Z"
+      "timestamp": "2026-11-19T19:35:56.842Z"
     },
     {
       "id": "activity-003",
@@ -447,7 +447,7 @@
         "avatar": "JD",
         "email": "john.doe@company.com"
       },
-      "timestamp": "2026-11-17T13:22:55.490Z"
+      "timestamp": "2026-11-19T19:35:56.842Z"
     },
     {
       "id": "activity-004",
@@ -460,7 +460,7 @@
         "avatar": "JD",
         "email": "john.doe@company.com"
       },
-      "timestamp": "2026-11-17T13:22:55.490Z"
+      "timestamp": "2026-11-19T19:35:56.842Z"
     },
     {
       "id": "activity-005",
@@ -473,7 +473,7 @@
         "avatar": "MJ",
         "email": "mike.johnson@company.com"
       },
-      "timestamp": "2026-11-17T13:22:55.490Z"
+      "timestamp": "2026-11-19T19:35:56.842Z"
     },
     {
       "id": "activity-006",
@@ -486,7 +486,7 @@
         "avatar": "ED",
         "email": "emily.davis@company.com"
       },
-      "timestamp": "2026-11-17T13:22:55.490Z"
+      "timestamp": "2026-11-19T19:35:56.842Z"
     },
     {
       "id": "activity-007",
@@ -499,7 +499,7 @@
         "avatar": "JD",
         "email": "john.doe@company.com"
       },
-      "timestamp": "2026-11-17T13:22:55.490Z"
+      "timestamp": "2026-11-19T19:35:56.842Z"
     },
     {
       "id": "activity-008",
@@ -512,7 +512,7 @@
         "avatar": "ED",
         "email": "emily.davis@company.com"
       },
-      "timestamp": "2026-11-16T13:22:55.490Z"
+      "timestamp": "2026-11-18T19:35:56.842Z"
     },
     {
       "id": "activity-009",
@@ -525,7 +525,7 @@
         "avatar": "JD",
         "email": "john.doe@company.com"
       },
-      "timestamp": "2026-11-16T13:22:55.490Z"
+      "timestamp": "2026-11-18T19:35:56.842Z"
     },
     {
       "id": "activity-010",
@@ -538,7 +538,7 @@
         "avatar": "SS",
         "email": "sarah.smith@company.com"
       },
-      "timestamp": "2026-11-16T13:22:55.490Z"
+      "timestamp": "2026-11-18T19:35:56.842Z"
     },
     {
       "id": "activity-011",
@@ -551,7 +551,7 @@
         "avatar": "SS",
         "email": "sarah.smith@company.com"
       },
-      "timestamp": "2026-11-16T13:22:55.490Z"
+      "timestamp": "2026-11-18T19:35:56.842Z"
     },
     {
       "id": "activity-012",
@@ -564,7 +564,7 @@
         "avatar": "ED",
         "email": "emily.davis@company.com"
       },
-      "timestamp": "2026-11-16T13:22:55.490Z"
+      "timestamp": "2026-11-18T19:35:56.842Z"
     },
     {
       "id": "activity-013",
@@ -577,7 +577,7 @@
         "avatar": "MJ",
         "email": "mike.johnson@company.com"
       },
-      "timestamp": "2026-11-16T13:22:55.490Z"
+      "timestamp": "2026-11-18T19:35:56.842Z"
     },
     {
       "id": "activity-014",
@@ -590,7 +590,7 @@
         "avatar": "SS",
         "email": "sarah.smith@company.com"
       },
-      "timestamp": "2026-11-15T13:22:55.490Z"
+      "timestamp": "2026-11-17T19:35:56.842Z"
     },
     {
       "id": "activity-015",
@@ -603,7 +603,7 @@
         "avatar": "MJ",
         "email": "mike.johnson@company.com"
       },
-      "timestamp": "2026-11-15T13:22:55.490Z"
+      "timestamp": "2026-11-17T19:35:56.842Z"
     },
     {
       "id": "activity-016",
@@ -616,7 +616,7 @@
         "avatar": "JD",
         "email": "john.doe@company.com"
       },
-      "timestamp": "2026-11-15T13:22:55.490Z"
+      "timestamp": "2026-11-17T19:35:56.842Z"
     },
     {
       "id": "activity-017",
@@ -629,7 +629,7 @@
         "avatar": "ED",
         "email": "emily.davis@company.com"
       },
-      "timestamp": "2026-11-14T13:22:55.490Z"
+      "timestamp": "2026-11-16T19:35:56.842Z"
     },
     {
       "id": "activity-018",
@@ -642,7 +642,7 @@
         "avatar": "SS",
         "email": "sarah.smith@company.com"
       },
-      "timestamp": "2026-11-14T13:22:55.490Z"
+      "timestamp": "2026-11-16T19:35:56.842Z"
     },
     {
       "id": "activity-019",
@@ -655,7 +655,7 @@
         "avatar": "JD",
         "email": "john.doe@company.com"
       },
-      "timestamp": "2026-11-13T13:22:55.490Z"
+      "timestamp": "2026-11-15T19:35:56.842Z"
     },
     {
       "id": "activity-020",
@@ -668,7 +668,7 @@
         "avatar": "MJ",
         "email": "mike.johnson@company.com"
       },
-      "timestamp": "2026-11-13T13:22:55.490Z"
+      "timestamp": "2026-11-15T19:35:56.842Z"
     }
   ]
 }

@@ -2,7 +2,7 @@
 
 A task management dashboard built with **Angular 22** and **Optimus UI**: a kanban board with drag and drop, task filtering and search, a create/edit form, analytics charts, an activity feed and a team overview, in **English and Arabic (RTL)**.
 
-![CI](https://github.com/ShahdElsebai/task-dashboard/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/OWNER/REPO/actions/workflows/ci.yml/badge.svg)
 
 |                          |                                                                      |
 | ------------------------ | -------------------------------------------------------------------- |
@@ -16,17 +16,18 @@ A task management dashboard built with **Angular 22** and **Optimus UI**: a kanb
 ## Contents
 
 1. [Quick start](#quick-start)
-2. [Features](#features)
-3. [Scripts](#scripts)
-4. [Environment configuration](#environment-configuration)
-5. [Architecture](#architecture)
-6. [State management and data flow](#state-management-and-data-flow)
-7. [Key decisions](#key-decisions)
-8. [Testing strategy](#testing-strategy)
-9. [Performance](#performance)
-10. [Accessibility and internationalisation](#accessibility-and-internationalisation)
-11. [Docker and CI](#docker-and-ci)
-12. [Known limitations and future improvements](#known-limitations-and-future-improvements)
+2. [Technology choices](#technology-choices)
+3. [Features](#features)
+4. [Scripts](#scripts)
+5. [Environment configuration](#environment-configuration)
+6. [Architecture](#architecture)
+7. [State management and data flow](#state-management-and-data-flow)
+8. [Key decisions](#key-decisions)
+9. [Testing strategy](#testing-strategy)
+10. [Performance](#performance)
+11. [Accessibility and internationalisation](#accessibility-and-internationalisation)
+12. [Docker and CI](#docker-and-ci)
+13. [Known limitations and future improvements](#known-limitations-and-future-improvements)
 
 ---
 
@@ -53,9 +54,25 @@ docker compose up --build    # http://localhost:8080
 
 ---
 
+## Technology choices
+
+| Need              | Choice                                                                                                                       | Why                                                                                                                                      |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| Framework         | **Angular 22**                                                                                                               | Latest stable: zoneless by default, signals, `httpResource`, `@Service`, built-in `animate.enter` / `animate.leave`                      |
+| Component library | **Optimus UI** (`@openng/optimus-ui`)                                                                                        | API-compatible with PrimeNG v21 (same `p-*` components and theming), so it meets the PrimeNG requirement; themed with a slim Aura preset |
+| Styling           | **Tailwind CSS 4** + Optimus Tailwind plugin                                                                                 | Utility classes and logical properties (`ms-*`, `ps-*`) give RTL for free; design tokens shared with the theme                           |
+| Drag and drop     | **Angular CDK** `DragDrop`                                                                                                   | Official, accessible, works across connected lists                                                                                       |
+| Charts            | **Chart.js** through `p-chart`                                                                                               | Required by the assignment; lazy-loaded with the Analytics page only                                                                     |
+| i18n              | **ngx-translate**                                                                                                            | Runtime language switching without a rebuild per locale (Angular's built-in i18n builds one bundle per language)                         |
+| Mock API          | **json-server**                                                                                                              | Real REST semantics (GET/POST/PATCH/DELETE, query filters) with zero backend code                                                        |
+| Unit tests        | **Vitest** (Angular CLI builder)                                                                                             | Angular's default test runner, fast, native ESM; coverage with V8                                                                        |
+| Code quality      | **ESLint** (angular-eslint, typescript-eslint, simple-import-sort), **Prettier**, **Husky**, **lint-staged**, **commitlint** | Enforced on every commit and in CI                                                                                                       |
+
+---
+
 ## Features
 
-**Dashboard** (`/dashboard`)
+**Dashboard** (`/dashboard`, as in the Figma design)
 
 - Stat cards: total, completed, in progress and overdue. They are computed live from the tasks, so they update immediately after every change.
 - Kanban board with three fixed columns (To Do, In Progress, Done):
@@ -76,7 +93,7 @@ docker compose up --build    # http://localhost:8080
 - Doughnut chart by status and bar chart by priority (Chart.js). Each has an HTML legend with counts and percentages, which also serves as the text alternative.
 - Recent activity feed with relative times ("3 hours ago" / "منذ 3 ساعات"). Entries link to the task.
 
-> The dashboard has room only for the stat cards and the board, so the charts and the activity feed (listed under _Dashboard features_ in the requirements) are on their own page, linked from the sidebar.
+> The Figma dashboard has room only for the stat cards and the board, so the charts and the activity feed (listed under _Dashboard features_ in the requirements) are on their own page, linked from the sidebar.
 
 **Team** (`/team`): each user's open, completed and overdue tasks and completion rate. _View tasks_ opens the board filtered by that person.
 
@@ -320,6 +337,6 @@ The mobile profile emulates a slow phone (4× CPU slowdown, slow 4G). Almost all
 - **Mock backend.** json-server has no authentication, validation or concurrency control. Two people moving tasks at the same moment could both win; a real API would need versioning (ETags) or server-side ordering.
 - **Mobile performance (65–70).** The next step would be server-side rendering or prerendering of the shell, so the first paint doesn't wait for the main bundle. Another option is trimming Optimus's runtime styling.
 - **Static columns.** User-defined columns would need a `columns` resource and a `columnId` on tasks.
-- **Placeholder pages.** _Tasks_, _Calendar_ and _Settings_ are placeholders ("Coming soon").
+- **Placeholder pages.** _Tasks_, _Calendar_ and _Settings_ are placeholders ("Coming soon"). They are in the design's navigation but outside the assignment's scope.
 - **No end-to-end suite in CI.** Browser flows were verified manually with Playwright during development. Adding them as a Playwright suite in CI would protect the drag-and-drop and URL flows.
 - **Other ideas:** dark mode (the theme already has a dark-mode selector), real-time updates (WebSocket or SSE), and undo for delete.
